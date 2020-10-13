@@ -1,6 +1,13 @@
-//func
-function [y] = func_test(x)
-	     y = x * x;
+//Exercice 1
+
+//Calcul x au carré
+function [y] = x_square(x)
+	 y = x * x;
+endfunction
+
+//Calcul sin(PI * x)
+function [y] = sin_pi_x(x)
+	 y = sin(%pi * x);
 endfunction
 
 
@@ -64,7 +71,7 @@ function [res] = simpson(a, b, func, N)
 	 somme_x_k = 0;
 	 
 	 for i = 1:N-1
-	     somme_x_k = somme_x_k + func(i);
+	     somme_x_k = somme_x_k + func(a + i * h);
 	 end
 
 	 res = res + 2 * somme_x_k;
@@ -76,7 +83,7 @@ function [res] = simpson(a, b, func, N)
 	 somme_akh = 0;
 
 	 for i = 0:N-1
-	     somme_akh = somme_akh + func(a + (i + 1/2) * h);
+	     somme_akh = somme_akh + func(a + (i + 1./2) * h);
 	 end
 
 	 res = res + 4 * somme_akh;
