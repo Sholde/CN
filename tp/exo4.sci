@@ -8,14 +8,14 @@ endfunction
 // Trouve les pôlinomes d'interpolation de Lagrange associés aux point xi[i]
 function [Lag] = polyLag(x, xi)
 
-	 //Vérifie la taille de x
-	 if x < 1
-	    [Lag] = return 0;
-	 end
-	 
 	 //Récupère la taille de xi
 	 n = size(xi, '*');
 
+	 //Vérifie la taille de xi
+	 if n < 1
+	    [Lag] = return 0;
+	 end
+	 
 	 //Initialise à zéro le vecteur de résultat
 	 Lag = zeros(n);
 
@@ -27,6 +27,29 @@ function [Lag] = polyLag(x, xi)
 	     for j = 1:n
 	       	 if i ~= j
 	     	    Lag(i) = Lag(i) * product_of_sequences(x, xi(j), xi(i));
+		 end
+	     end
+	 end
+	 
+endfunction
+
+function [p] = myinterpol(func, x, xi)
+
+	 //Récupère la taille de xi
+	 n = size(xi, '*');
+
+	 //Vérifie la taille de xi
+	 if n < 1
+	    [Lag] = return 0;
+	 end
+
+	 // Initialisation du résultat
+	 p = 0;
+
+	 for i = 1:n
+	     for j = 1:n
+	       	 if i ~= j
+	     	    p = p + func(xi(i)) * product_of_sequences(x, xi(j), xi(i));
 		 end
 	     end
 	 end
