@@ -21,7 +21,7 @@ function [res] = pointgauche(a, b, func, N)
 	 h = (b-a)/N;
 
 	 //Calcul de la somme
-	 for i = 0:N-1
+	 for i = 0:(N - 1)
 	     res = res + func(a + i * h);
 	 end
 
