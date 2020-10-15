@@ -1,4 +1,4 @@
-//Exercice 4
+// Exercice 4
 
 // Calcul une séquence de produit scpécifique
 function [res] = product_of_sequences(x, xj, xi)
@@ -8,15 +8,16 @@ endfunction
 // Trouve les pôlinomes d'interpolation de Lagrange associés aux point xi[i]
 function [Lag] = polyLag(x, xi)
 
-	 //Récupère la taille de xi
+	 // Récupère la taille de xi
 	 n = size(xi, '*');
 
-	 //Vérifie la taille de xi
+	 // Vérifie la taille de xi
 	 if n < 1
-	    [Lag] = return 0;
+	    Lag = 0;
+	    return
 	 end
 	 
-	 //Initialise à zéro le vecteur de résultat
+	 // Initialise à zéro le vecteur de résultat
 	 Lag = zeros(n);
 
 	 for i = 1:n
@@ -35,12 +36,13 @@ endfunction
 
 function [p] = myinterpol(func, x, xi)
 
-	 //Récupère la taille de xi
+	 // Récupère la taille de xi
 	 n = size(xi, '*');
 
-	 //Vérifie la taille de xi
+	 // Vérifie la taille de xi
 	 if n < 1
-	    [Lag] = return 0;
+	    Lag = 0;
+	    return
 	 end
 
 	 // Initialisation du résultat
@@ -48,6 +50,7 @@ function [p] = myinterpol(func, x, xi)
 
 	 for i = 1:n
 	     for j = 1:n
+	     	 // Si i != j
 	       	 if i ~= j
 	     	    p = p + func(xi(i)) * product_of_sequences(x, xi(j), xi(i));
 		 end
