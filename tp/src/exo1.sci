@@ -1,10 +1,5 @@
 // Exercice 1
 
-// Calcul x au carré
-function [y] = x_square(x)
-	 y = x * x;
-endfunction
-
 // Calcul sin(PI * x)
 function [y] = sin_pi_x(x)
 	 y = sin(%pi * x);
