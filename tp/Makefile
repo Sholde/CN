@@ -1,4 +1,4 @@
-all: clean
+lall: clean
 
 clean:
-	rm -Rf *~
+	rm -Rf *~ src/*~
