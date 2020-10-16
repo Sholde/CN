@@ -50,7 +50,7 @@ function [res] = trapeze(a, b, func, N)
 endfunction
 
 // Calcul l'intégrale de func avec la méthode de simpson
-function [res] = simpson(a, b, func, N)
+function [res] = int_simpson(a, b, func, N)
 
 	 // Initialise à 0 la somme
 	 res = 0;
