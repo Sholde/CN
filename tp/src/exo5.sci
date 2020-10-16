@@ -31,7 +31,30 @@ function [tab] = EulerExplicite(T, N)
 	 end 
 endfunction
 
+function [tab] = Heun(T, N)
+	 // Vérifie les conditions de N
+	 if N < 1
+	    tab = 0;
+	    return
+	 end
 
+	 // Vérifie les conditions de T
+	 if T <= 0
+	    tab = 0;
+	    return
+	 end
+	 
+	 // Calcul de h
+	 h = T / N;
+	 h_2 = h / 2;
+
+	 // Initialise le tableau à 0
+	 tab = zeros(N + 1);
+
+	 for i = 1:N
+	     tab(i + 1) = tab(i) + h_2 * (func(tab(i) + h * func(tab(i))) + func(tab(i)));
+	 end
+endfunction
 
 // 4 a) calculer y1
 
