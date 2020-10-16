@@ -5,22 +5,17 @@ function [res] = func(x)
 	 res = 1 / ( 2 * x + 1);
 endfunction
 
-// Calcul de la dérivé de x
-function [res] = func_derive(x)
-	 res = - 2 / ((2 * x + 1) * (2 * x + 1));
-endfunction
-
 // Calcul le valeurs yi avec la méthode d'Euler Explicite
-function [tab] = EulerExplicite(T, N)
+function [y] = EulerExplicite(T, N)
 	 // Vérifie les conditions de N
 	 if N < 1
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 
 	 // Vérifie les conditions de T
 	 if T <= 0
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 	 
@@ -28,25 +23,25 @@ function [tab] = EulerExplicite(T, N)
 	 h = T / N;
 
 	 // Initialise le tableau
-	 tab = zeros(N + 1);
+	 y = zeros(N + 1);
 	 
 	 // Calcul des yi de 0 à N-1
 	 for i = 1:N
-	     tab(i + 1) = tab(i) + h * func(tab(i));
+	     y(i + 1) = y(i) + h * func(y(i));
 	 end 
 endfunction
 
 // Calcul le valeurs yi avec la méthode de Heun
-function [tab] = Heun(T, N)
+function [y] = Heun(T, N)
 	 // Vérifie les conditions de N
 	 if N < 1
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 
 	 // Vérifie les conditions de T
 	 if T <= 0
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 	 
@@ -55,47 +50,55 @@ function [tab] = Heun(T, N)
 	 h_2 = h / 2;
 
 	 // Initialise le tableau à 0
-	 tab = zeros(N + 1);
+	 y = zeros(N + 1);
 
+	 // Calcul des yi de 0 à N-1
 	 for i = 1:N
-	     tab(i + 1) = tab(i) + h_2 * (func(tab(i) + h * func(tab(i))) + func(tab(i)));
+	     y(i + 1) = y(i) + h_2 * (func(y(i) + h * func(y(i))) + func(y(i)));
 	 end
 endfunction
 
 // Calcul le valeurs yi avec la méthode d'Euler Implicite
-function [tab] = EulerImplicite(T, N)
+function [y] = EulerImplicite(T, N)
 	 // Vérifie les conditions de N
 	 if N < 1
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 
 	 // Vérifie les conditions de T
 	 if T <= 0
-	    tab = 0;
+	    y = 0;
 	    return
 	 end
 	 
-	 // Calcul de h
+		// Calcul de h
 	 h = T / N;
 
 	 // Initialise le tableau à 0
-	 tab = zeros(N + 1);
+	 y = zeros(N + 1);
 
+	 // Calcul des yi de 0 à N-1
 	 for i = 1:N
-	     y_i_1 = tab(i) - (func(tab(i)) / func_derive(tab(i)));
-	     tab(i + 1) = tab(i) + h * y_i_1;
+	     // Calcul (2yi + 1)^2
+	     yi_x2_1 = (2 * y(i) + 1) * (2 * y(i) + 1);
+
+	     // Calcul la racine carré qui est dans la fonction
+	     sqrt_res = sqrt(yi_x2_1 + 8 * h);
+
+	     // Calcul yi+1
+	     y(i + 1) = (2 * y(i) - 1 + sqrt_res) / 4;
 	 end
 endfunction
 
 // Affiche les différents résultat
 function [] = AfficheRes(T, N)
 
-	 ee = EulerExplicite(T, N);
-	 heun = Heun(T, N);
-	 ei = EulerImplicite(T, N);
+	 C4 = EulerExplicite(T, N);
+	 C3 = Heun(T, N);
+	 C2 = EulerImplicite(T, N);
 	 
-	 print(%io(2), ei, heun, ee);
+	 print(%io(2), C2, C3, C4);
 endfunction
 
 // 4 a) calculer y1
