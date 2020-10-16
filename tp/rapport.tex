@@ -1,3 +1,71 @@
-\documen
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
 
-\tit
+\title{TD Calcul Numérique}
+\author{BOUTON Nicolas}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercie 1}
+\section{Exercie 2}
+\section{Exercie 3}
+\section{Exercie 4}
+\section{Exercie 5}
+
+\subsection{Euler Explicite}
+
+\begin{enumerate}
+\item[a.]
+
+\item[b.]
+
+\end{enumerate}
+
+\subsection{Heun}
+
+\begin{enumerate}
+\item[a.]
+
+\item[b.]
+
+\end{enumerate}
+
+\subsection{Euler Implicite}
+
+\begin{enumerate}
+\item[a.] Déterminons un polynôme :
+
+$$ y_{i+1} = y_i + h f(y_{i+1})$$
+$$ y_{i+1} = y_i + h \frac{1}{2y_{i+1} + 1}$$
+$$ y_{i+1} = \frac{y_i (2y_{i+1} + 1) + h}{2y_{i+1} + 1} $$
+$$ y_{i+1} (2y_{i+1} + 1) = y_i (2y_{i+1} + 1) + h $$
+$$ 2y_{i+1}^2 + y_{i+1} = y_i + 2y_{i+1}y_i + h $$
+$$ 2y_{i+1}^2 + y_{i+1} - 2y_{i+1}y_i = y_i + h $$
+$$ 2y_{i+1}^2 + y_{i+1} - 2y_{i+1}y_i - y_i - h = 0 $$
+$$ 2y_{i+1}^2 + (1 - 2y_i) y_{i+1} - y_i - h = 0 $$
+
+\item[b.] Calculons le descriminant :
+
+$$ \Delta = b^2 - 4ac $$
+$$ \Delta = (1 - 2y_i)^2 - [4 * 2 * (- y_i - h)] $$
+$$ \Delta = (1 - 2y_i)^2 + 8y_i + 8h $$
+$$ \Delta = 1 - 4y_i + (2y_i)^2 + 8y_i + 8h $$
+$$ \Delta = 1 + 4y_i + (2y_i)^2 + 8h $$
+$$ \Delta = (2y_i + 1)^2 + 8h $$
+
+\item[c.] Déterminons $y_{i+1}$ en fontion de $y_i$ et $h$ :
+
+$$ y_{i+1} = \frac{- b + \sqrt{\Delta}}{2a} $$
+$$ y_{i+1} = \frac{2y_i - 1 + \sqrt{(2y_i + 1)^2 + 8h}}{4} $$
+
+\end{enumerate}
+
+\section{Exercie 6}
+
+\section{Exercie 7}
+
+\section{Exercie 8}
+
+\end{document}
