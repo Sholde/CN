@@ -97,9 +97,13 @@ function [] = AfficheRes(T, N)
 	 C4 = EulerExplicite(T, N);
 	 C3 = Heun(T, N);
 	 C2 = EulerImplicite(T, N);
-	 // C1 = [0, 0.552681, 0.1, 0.1442049, 0.1855655, 0.2245688, 0.261573, 0.2968689, 0.3306624, a finir];
 	 
-	 print(%io(2), C2, C3, C4);
+	 print(%io(2), "Euler Implicite = ");
+	 print(%io(2), C2);
+	 print(%io(2), "Heun = ");
+	 print(%io(2), C3);
+	 print(%io(2), "Euler Explicite = ");
+	 print(%io(2), C4);
 endfunction
 
 // 4 a) calculer y1
