@@ -210,9 +210,9 @@ Maintenant on peut calculer $p(x)$ :
   \left\{
   \begin{array}{l}
     f(-2) = 0 \\
-    f(-1) = 0.6931471 \\
+    f(-1) = ln(2) \\
     f(0) = 0 \\
-    f(1) = 0.6931471 \\
+    f(1) = ln(2) \\
     f(2) = 0
   \end{array}
   \right.
@@ -226,7 +226,6 @@ Maintenant on peut calculer $p(x)$ :
     \begin{array}{l}
       p(-2) = f(-2) \\
       p(-1) = f(-1) \\
-      p(0) = f(0) \\
       p(-1) = f(1) \\
       p(2) = f(2) 
     \end{array}
@@ -239,14 +238,318 @@ Maintenant on peut calculer $p(x)$ :
     \left\{
     \begin{array}{l}
       p(-2) = 0 \\
-      p(-1) = 0.6931471 \\
-      p(0) = 0 \\
-      p(-1) = 0.6931471 \\
+      p(-1) = ln(2) \\
+      p(-1) = ln(2) \\
       p(2) = 0 
     \end{array}
     \right.
   \end{equation*}
 
+  \textit{Premiére étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & 0 \\
+      -1 & ln(2)
+    \end{array}
+    \right\}
+    \frac{ln(2) - O}{-1 - (-2)} = ln(2)
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -1 & ln(2) \\
+      1 & ln(2)
+    \end{array}
+    \right\}
+    \frac{ln(2) - ln(2)}{1 - (-1)} = 0
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      1 & ln(2) \\
+      2 & 0
+    \end{array}
+    \right\}
+    \frac{0 - ln(2)}{2 - 1} = - ln(2)
+  \end{equation*}
+
+  \textit{Deuxième étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & ln(2) \\
+      1 & 0
+    \end{array}
+    \right\}
+    \frac{0 - ln(2)}{1 - (-2)} = - \frac{ln(2)}{3}
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -1 & 0 \\
+      2 & - ln(2)
+    \end{array}
+    \right\}
+    \frac{-ln(2) - 0}{2 - (-1)} = - \frac{ln(2)}{3}
+  \end{equation*}
+
+  \textit{Troisième étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & - \frac{ln(2)}{3} \\
+      2 & - \frac{ln(2)}{3}
+    \end{array}
+    \right\}
+    \frac{- \frac{ln(2)}{3} - (- \frac{ln(2)}{3})}{2 - (-2)} = 0
+  \end{equation*}
+
+  \underline{Essayons de calculer $p$ :}
+
+  \begin{equation*}
+    \begin{split}
+      p(x) & = 0 \\
+      & + ln(2) (x - (-2)) \\
+      & - \frac{ln(2)}{3} (x - (-2)) (x - (-1)) \\
+      & + 0 (x - (-2)) (x - (-1)) (x - 1) \\
+      p(x) & = ln(2) (x + 2) \\
+      & - \frac{ln(2)}{3} (x + 2) (x + 1) \\
+      p(x) & = ln(2)x + 2ln(2) \\
+      & - \frac{ln(2)}{3} (x^2 + x + 2x + 2)\\
+      p(x) & = ln(2)x + 2ln(2) \\
+      & - \frac{ln(2)x^2 + 3ln(2)x + 2ln(2)}{3}\\
+      p(x) & = \frac{3ln(2)x + 6ln(2)}{3} \\
+      & - \frac{ln(2)x^2 + 3ln(2)x + 2ln(2)}{3}\\
+      p(x) & = \frac{3ln(2)x + 6ln(2) - ln(2)x^2 - 3ln(2)x -
+        2ln(2)}{3}\\
+      p(x) & = \frac{- ln(2)x^2 + 4ln(2)}{3}\\
+      p(x) & = - \frac{ln(2)}{3}x^2 + \frac{4ln(2)}{3}\\
+    \end{split}
+  \end{equation*}
+
+\item Essayons de trouver un polynôme $q$ de degré inférieur où égale
+  à 4 tel que :
+
+  \begin{equation*}
+    \left\{
+    \begin{array}{l}
+      q(-2) = f(-2) \\
+      q(-1) = f(-1) \\
+      q(0) = f(0) \\
+      q(-1) = f(1) \\
+      q(2) = f(2) 
+    \end{array}
+    \right.
+  \end{equation*}
+
+  \underline{Appliquons la méthodes des différences divisé :}
+
+  \begin{equation*}
+    \left\{
+    \begin{array}{l}
+      q(-2) = 0 \\
+      q(-1) = ln(2) \\
+      q(0) = 0 \\
+      q(-1) = ln(2) \\
+      q(2) = 0 
+    \end{array}
+    \right.
+  \end{equation*}
+
+  \textit{Premiére étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & 0 \\
+      -1 & ln(2)
+    \end{array}
+    \right\}
+    \frac{ln(2) - O}{-1 - (-2)} = ln(2)
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -1 & ln(2) \\
+      0 & 0
+    \end{array}
+    \right\}
+    \frac{0 - ln(2)}{0 - (-1)} = - ln(2)
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      0 & 0 \\
+      1 & ln(2)
+    \end{array}
+    \right\}
+    \frac{ln(2) - 0}{1 - 0} = ln(2)
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      1 & ln(2) \\
+      2 & 0
+    \end{array}
+    \right\}
+    \frac{0 - ln(2)}{2 - 1} = - ln(2)
+  \end{equation*}
+
+  \textit{Deuxième étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & ln(2) \\
+      0 & - ln(2)
+    \end{array}
+    \right\}
+    \frac{- ln(2) - ln(2)}{0 - (-2)} = - ln(2)
+  \end{equation*}
+  
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -1 & - ln(2) \\
+      1 & ln(2)
+    \end{array}
+    \right\}
+    \frac{ln(2) - (-ln(2))}{1 - (-1)} = ln(2)
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      0 & ln(2) \\
+      2 & - ln(2) 
+    \end{array}
+    \right\}
+    \frac{- ln(2) - ln(2)}{2 - 0} = - ln(2)
+  \end{equation*}
+
+  \textit{Troisième étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 & - ln(2) \\
+      1 & ln(2) 
+    \end{array}
+    \right\}
+    \frac{ln(2) - (-ln(2))}{1 - (-2)} = \frac{2ln(2)}{3}
+  \end{equation*}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -1 & ln(2) \\
+      2 & - ln(2) 
+    \end{array}
+    \right\}
+    \frac{- ln(2) - ln(2)}{2 - (-1)} = - \frac{2ln(2)}{3}
+  \end{equation*}
+
+  \textit{Quatrième étape :}
+
+  \begin{equation*}
+    \left.
+    \begin{array}{ll}
+      x_i & y_i \\
+      -2 &  \frac{2ln(2)}{3} \\
+      2 & - \frac{2ln(2)}{3}
+    \end{array}
+    \right\}
+    \frac{- \frac{2ln(2)}{3} - \frac{2ln(2)}{3}}{2 - (-2)} = -
+    \frac{\frac{4ln(2)}{3}}{4} = - \frac{ln(2)}{3}
+  \end{equation*}
+
+  \underline{Essayons de calculer q:}
+
+  \begin{equation*}
+    \begin{split}
+      q(x) & = 0 \\
+      & + ln(2) (x - (-2)) \\
+      & - ln(2) (x - (-2)) (x - (-1)) \\
+      & + \frac{2ln(2)}{3} (x - (-2)) (x - (-1)) (x - 0) \\
+      & - \frac{ln(2)}{3} (x - (-2)) (x - (-1)) (x - 0) (x - 1) \\
+      q(x) & = ln(2) (x + 2) \\
+      & - ln(2) (x + 2) (x + 1) \\
+      & + \frac{2ln(2)}{3} (x + 2) (x + 1) x \\
+      & - \frac{ln(2)}{3} (x + 2) (x + 1) x (x - 1) \\
+      q(x) & = ln(2) (x + 2) \\
+      & - ln(2) (x^2 + x + 2x + 2) \\
+      & + \frac{2ln(2)}{3} (x^2 + x + 2x + 2) x \\
+      & - \frac{ln(2)}{3} (x^2 + x + 2x + 2) x (x - 1) \\
+      q(x) & = ln(2) (x + 2) \\
+      & - ln(2) (x^2 + 3x + 2) \\
+      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
+      & - \frac{ln(2)}{3} (x^3 + 3x^2 + 2x) (x - 1) \\
+      q(x) & = ln(2) (x + 2) \\
+      & - ln(2) (x^2 + 3x + 2) \\
+      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
+      & - \frac{ln(2)}{3} (x^4 + 3x^3 + 2x^2 - x^3 - 3x^2 - 2x) \\
+      q(x) & = ln(2) (x + 2) \\
+      & - ln(2) (x^2 + 3x + 2) \\
+      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
+      & - \frac{ln(2)}{3} (x^4 + 2x^3 - x^2 - 2x) \\
+      q(x) & = ln(2)x + 2ln(2) \\
+      & - ln(2)x^2 - 3ln(2)x - 2ln(2) \\
+      & + \frac{2ln(2)}{3}x^3 + \frac{6ln(2)}{3}x^2 + \frac{4ln(2)}{3}x \\
+      & - \frac{ln(2)}{3}x^4 - \frac{2ln(2)}{3}x^3 + \frac{ln(2)}{3}x^2 + \frac{2ln(2)}{3}x \\
+    \end{split}
+  \end{equation*}
+
+  \begin{equation*}
+    \begin{split}
+      q(x) & = - \frac{ln(2)}{3}x^4 \\
+      & + \frac{2ln(2)}{3}x^3 - \frac{2ln(2)}{3}x^3 \\
+      & - ln(2)x^2 + \frac{6ln(2)}{3}x^2 + \frac{ln(2)}{3}x^2 \\
+      & + ln(2)x - 3ln(2)x + \frac{4ln(2)}{3}x + \frac{2ln(2)}{3}x  \\
+      & + 2ln(2) - 2ln(2) \\
+      q(x) & = - \frac{ln(2)}{3}x^4 \\
+      & - \frac{3ln(2) - 6ln(2) - ln(2)}{3}x^2 \\
+      & + \frac{3ln(2) - 9ln(2) + 4ln(2) + 2ln(2)}{3}x  \\
+      q(x) & = - \frac{ln(2)}{3}x^4 + \frac{4ln(2)}{3}x^2 \\
+    \end{split}
+  \end{equation*}
+
+\item Différence entre $q$ et $p$ :
+
+  \begin{equation*}
+    \begin{split}
+      q - p & = - \frac{ln(2)}{3}x^4 + \frac{4ln(2)}{3}x^2 - (- \frac{
+        ln(2)}{3}x^2 + \frac{4ln(2)}{3}) \\
+      q - p & = - \frac{ln(2)}{3}x^4 + \frac{4ln(2)}{3}x^2 + \frac{
+        ln(2)}{3}x^2 - \frac{4ln(2)}{3} \\
+      q - p & = - \frac{ln(2)}{3}x^4 + \frac{5ln(2)}{3}x^2 - \frac{4ln(2)}{3} \\
+    \end{split}
+  \end{equation*}
+  
 \end{enumerate}
 
 \section*{Exercice 4}
