@@ -7,10 +7,10 @@ pdf:
 
 archive:
 	cd ..
-	cp -r tp $(NAME)
-	tar -cvf $(NAME).tar $(NAME)
-	gzip $(NAME)
-	rm -rf $(NAME)
+	cp -r tp/ $(NAME)
+	tar -cvf $(NAME).tar $(NAME)/
+	gzip $(NAME).tar
+	rm -rf $(NAME)/
 	cd tp
 
 clean:
