@@ -709,6 +709,114 @@ Maintenant on peut calculer $p(x)$ :
 
 \section*{Exercice 6}
 
+\subsection*{Partie I}
+
+Dans cette partie on a le système suivant :
+
+\begin{equation*}
+  \left\{
+  \begin{array}{l}
+    -u''(t) + c(t)u(t) = f(t),  t \in [0,1] \\
+    u(0) = \alpha, u'(0) = \beta
+  \end{array}
+  \right.
+\end{equation*}
+
+Et pour tout $t >= 0$ :
+
+\begin{equation*}
+  U(t) = \left(
+  \begin{array}{l}
+    u(t) \\
+    u'(t)
+  \end{array}
+  \right)
+\end{equation*}
+
+\begin{enumerate}
+
+\item On a :
+
+  \begin{equation*}
+    U'(t) = \left(
+    \begin{array}{l}
+      u'(t) \\
+      u''(t)
+    \end{array}
+    \right)
+  \end{equation*}
+
+  \underline{Calculons $A(t)U(t)+B(t)$ :}
+
+  où \begin{equation*}
+    A(t) = \left(
+    \begin{array}{ll}
+      0 & 1\\
+      c(t) & 0
+    \end{array}
+    \right)
+  \end{equation*}
+
+  et
+  
+  \begin{equation*}
+    B(t) = \left(
+    \begin{array}{l}
+      0 \\
+      -f(t)
+    \end{array}
+    \right)
+  \end{equation*}
+
+  , $t \in I$.
+
+  \begin{equation*}
+    A(t)U(t) = \left(
+    \begin{array}{l}
+      u'(t) \\
+      c(t)u(t)
+    \end{array}
+    \right)
+  \end{equation*}
+
+  \begin{equation*}
+    A(t)U(t) + B(t) = \left(
+    \begin{array}{l}
+      u'(t) \\
+      c(t)u(t) - f(t)
+    \end{array}
+    \right)
+  \end{equation*}
+
+  or
+
+  \begin{equation*}
+    U'(t) = \left(
+    \begin{array}{l}
+      u'(t) \\
+      u''(t)
+    \end{array}
+    \right)
+    =
+    \left(
+    \begin{array}{l}
+      u'(t) \\
+      c(t)u(t) - f(t)
+    \end{array}
+    \right)
+  \end{equation*}
+
+  Donc si u est solution de (E) et de (C) alors :
+
+  \begin{equation*}
+    U'(t) = A(t)U(t) + B(t)
+  \end{equation*}
+
+\item 
+  
+\end{enumerate}
+
+
 \section*{Exercice 7}
 
 \section*{Exercice 8}
