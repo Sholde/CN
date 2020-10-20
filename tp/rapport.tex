@@ -725,12 +725,12 @@ Dans cette partie on a le système suivant :
 Et pour tout $t >= 0$ :
 
 \begin{equation*}
-  U(t) = \left(
+  U(t) = \left[
   \begin{array}{l}
     u(t) \\
     u'(t)
   \end{array}
-  \right)
+  \right]
 \end{equation*}
 
 \begin{enumerate}
@@ -738,67 +738,67 @@ Et pour tout $t >= 0$ :
 \item On a :
 
   \begin{equation*}
-    U'(t) = \left(
+    U'(t) = \left[
     \begin{array}{l}
       u'(t) \\
       u''(t)
     \end{array}
-    \right)
+    \right]
   \end{equation*}
 
   \underline{Calculons $A(t)U(t)+B(t)$ :}
 
   où \begin{equation*}
-    A(t) = \left(
+    A(t) = \left[
     \begin{array}{ll}
       0 & 1\\
       c(t) & 0
     \end{array}
-    \right)
+    \right]
     ,
-    B(t) = \left(
+    B(t) = \left[
     \begin{array}{l}
       0 \\
       -f(t)
     \end{array}
-    \right)
+    \right]
   , t \in I.
   \end{equation*}
   
   \begin{equation*}
-    A(t)U(t) = \left(
+    A(t)U(t) = \left[
     \begin{array}{l}
       u'(t) \\
       c(t)u(t)
     \end{array}
-    \right)
+    \right]
   \end{equation*}
 
   \begin{equation*}
-    A(t)U(t) + B(t) = \left(
+    A(t)U(t) + B(t) = \left[
     \begin{array}{l}
       u'(t) \\
       c(t)u(t) - f(t)
     \end{array}
-    \right)
+    \right]
   \end{equation*}
 
   or
 
   \begin{equation*}
-    U'(t) = \left(
+    U'(t) = \left[
     \begin{array}{l}
       u'(t) \\
       u''(t)
     \end{array}
-    \right)
+    \right]
     =
-    \left(
+    \left[
     \begin{array}{l}
       u'(t) \\
       c(t)u(t) - f(t)
     \end{array}
-    \right)
+    \right]
   \end{equation*}
 
   Donc si u est solution de (E) et de (C) alors :
@@ -811,36 +811,138 @@ Et pour tout $t >= 0$ :
 
   \begin{enumerate}
   \item
+    On a l'équation suivante :
+
     \begin{equation*}
-      U_{i+1} = U_i + h f(t_i, U_i)
+      U'(t) = A(t)U(t) + B(t)
+    \end{equation*}
+
+    Donc on a :
+    
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        U_{i+1} = U_i + h f(t_i, U_i) \\
+        U_0 =
+        \left[
+          \begin{array}{l}
+            \alpha \\
+            \beta
+          \end{array}
+          \right]
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        U_{i+1} = U_i + h
+        \left[
+          \begin{array}{ll}
+            0 & 1 \\
+            c(t) & 0
+          \end{array}
+          \right]
+        U_i + h
+        \left[
+          \begin{array}{l}
+            0 \\
+            - f(t)
+          \end{array}
+          \right] \\
+        U_0 =
+        \left[
+          \begin{array}{l}
+            \alpha \\
+            \beta
+          \end{array}
+          \right]
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        U_{i+1} = U_i + h A(t) U_i + h B(t) \\
+        U_0 =
+        \left[
+          \begin{array}{l}
+            \alpha \\
+            \beta
+          \end{array}
+          \right]
+      \end{array}
+      \right.
     \end{equation*}
 
   \item
+    On a :
+
     \begin{equation*}
-      U_{i+1} =
-      \left(
+      \left\{
       \begin{array}{l}
-        u(i+1) \\
-        u'(i+1)
+        U_{i+1} = U_i + h A(t) U_i + h B(t) \\
+        U_0 =
+        \left[
+          \begin{array}{l}
+            \alpha \\
+            \beta
+          \end{array}
+          \right]
       \end{array}
-      \right)
+      \right.
     \end{equation*}
-    et
+
+    Posons
     \begin{equation*}
       U_i =
-      \left(
-      \begin{array}{l}
-        u(i) \\
-        u'(i)
-      \end{array}
-      \right)
+      \left[
+        \begin{array}{l}
+          u_i \\
+          w_i
+        \end{array}
+        \right]
     \end{equation*}
 
-    Donc
     \begin{equation*}
-      u_{i+1} = u_i + h f(t_i, u_i)
+      \left[
+        \begin{array}{l}
+          u_{i+1} \\
+          w_{i+1}
+        \end{array}
+        \right]
+      =
+      \left[
+        \begin{array}{l}
+          u_i \\
+          w_i
+        \end{array}
+        \right]
+      + h
+      \left[
+        \begin{array}{ll}
+          0 & 1 \\
+          c(t) & 0
+        \end{array}
+        \right]
+      \left[
+        \begin{array}{l}
+          u_i \\
+          w_i
+        \end{array}
+        \right]
+      + h
+      \left[
+        \begin{array}{l}
+          0 \\
+          -f(t)
+        \end{array}
+        \right]
     \end{equation*}
 
+    
   \item
     Voir la fonction \textbf{resouScd} dans "exo6.sci".
     
@@ -908,10 +1010,10 @@ Et pour tout $t >= 0$ :
       0 & - \frac{1}{h^2} & \frac{2}{h^2} + c(u_3) & - \frac{1}{h^2} &
       0 & 0 & 0 \\
       - & - & - & - & - & - & - \\
-      0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-2}) & - \frac{1}{h^2} &
+      0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-3}) & - \frac{1}{h^2} &
       0 \\
-      0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-1}) & - \frac{1}{h^2} \\
-      0 & 0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_n)
+      0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-2}) & - \frac{1}{h^2} \\
+      0 & 0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-1})
     \end{array}
     \right]
   \end{equation*}
@@ -926,9 +1028,9 @@ Et pour tout $t >= 0$ :
         u_2 \\
         u_3 \\
         - \\
+        u_{n-3} \\
         u_{n-2} \\
-        u_{n-1} \\
-        u_n 
+        u_{n-1}
       \end{array}
       \right]
   \end{equation*}
@@ -942,9 +1044,9 @@ Et pour tout $t >= 0$ :
           f(u_2) \\
           f(u_3) \\
           - \\
+          f(u_{n-3}) \\
           f(u_{n-2}) \\
-          f(u_{n-1}) \\
-          f(u_n)
+          f(u_{n-1})
         \end{array}
         \right]
     \end{equation*}
@@ -953,14 +1055,18 @@ Et pour tout $t >= 0$ :
     \begin{equation*}
       \begin{split}
       h^2 W^T A W = & h^2 \left(w_1 \left(\frac{2}{h^2} + c(u_1) \right) w_1 + w_2
-      \left(- \frac{1}{h^2} \right) w_2 \right) \\
+      \left(- \frac{1}{h^2} \right) w_1 \right) \\
       + & h^2 \left(w_1 \left(- \frac{1}{h^2} \right) w_1 + w_2
       \left(\frac{2}{h^2} + c(u_2) \right) w_2 + w_3
-      \left(- \frac{1}{h^2} \right) w_3 \right) \\
+      \left(- \frac{1}{h^2} \right) w_2 \right) \\
       + & ----- \\
-      + & h^2 \left(w_{n-1} \left(\frac{2}{h^2} + c(u_n) \right) w_{n-1} + w_n
-      \left(- \frac{1}{h^2} \right) w_n \right) \\
-      = & \sum_{i=1}^{n-1} {(2 + h^2c(ih)) w_i^2} - 2 \sum_{i=2}^{n} {w_{i-1}w_n}
+      + & h^2 \left(w_{n-2} \left(\frac{2}{h^2} + c(u_{n-1}) \right) w_{n-2} + w_{n-1}
+      \left(- \frac{1}{h^2} \right) w_{n-2} \right) \\
+      = & (2 + c(u_1)) w_1^2 - w_1w_2 \\
+      - & w_1w_2 + (2 + c(u_2)) w_2^2 - w_2w_3 \\
+      + & ----- \\
+      + & (2 + c(u_{n-1})) w_{n-2}^2 - w_{n-2}w_{n-1} \\
+      = & \sum_{i=1}^{n-1} {(2 + h^2c(ih)) w_i^2} - 2 \sum_{i=2}^{n-1} {w_{i-1}w_i}
       \end{split}
     \end{equation*}
 
