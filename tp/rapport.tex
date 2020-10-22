@@ -767,6 +767,19 @@ Et pour tout $t >= 0$ :
   
   \begin{equation*}
     A(t)U(t) = \left[
+    \begin{array}{ll}
+      0 & 1\\
+      c(t) & 0
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{l}
+      u(t) \\
+      u'(t)
+    \end{array}
+    \right]
+    =
+    \left[
     \begin{array}{l}
       u'(t) \\
       c(t)u(t)
@@ -775,7 +788,22 @@ Et pour tout $t >= 0$ :
   \end{equation*}
 
   \begin{equation*}
-    A(t)U(t) + B(t) = \left[
+    A(t)U(t) + B(t) =
+    \left[
+    \begin{array}{l}
+      u'(t) \\
+      c(t)u(t)
+    \end{array}
+    \right]
+    +
+    \left[
+    \begin{array}{l}
+      0 \\
+      -f(t)
+    \end{array}
+    \right]
+    =
+    \left[
     \begin{array}{l}
       u'(t) \\
       c(t)u(t) - f(t)
@@ -817,64 +845,65 @@ Et pour tout $t >= 0$ :
       U'(t) = A(t)U(t) + B(t)
     \end{equation*}
 
-    Donc on a :
+    Et on a :
     
     \begin{equation*}
-      \left\{
-      \begin{array}{l}
-        U_{i+1} = U_i + h f(t_i, U_i) \\
-        U_0 =
-        \left[
-          \begin{array}{l}
-            \alpha \\
-            \beta
-          \end{array}
-          \right]
-      \end{array}
-      \right.
-    \end{equation*}
-
-    \begin{equation*}
-      \left\{
-      \begin{array}{l}
-        U_{i+1} = U_i + h
-        \left[
-          \begin{array}{ll}
-            0 & 1 \\
-            c(t) & 0
-          \end{array}
-          \right]
-        U_i + h
-        \left[
-          \begin{array}{l}
-            0 \\
-            - f(t)
-          \end{array}
-          \right] \\
-        U_0 =
-        \left[
-          \begin{array}{l}
-            \alpha \\
-            \beta
-          \end{array}
-          \right]
-      \end{array}
-      \right.
-    \end{equation*}
-
-    \begin{equation*}
-      \left\{
-      \begin{array}{l}
-        U_{i+1} = U_i + h A(t) U_i + h B(t) \\
-        U_0 =
-        \left[
-          \begin{array}{l}
-            \alpha \\
-            \beta
-          \end{array}
-          \right]
-      \end{array}
-      \right.
+      \begin{split}
+        &
+        \left\{
+        \begin{array}{l}
+          U_{i+1} = U_i + h F(t_i, U_i) \\
+          U_0 =
+          \left[
+            \begin{array}{l}
+              \alpha \\
+              \beta
+            \end{array}
+            \right]
+        \end{array}
+        \right.
+        \\
+        &
+        \left\{
+        \begin{array}{l}
+          U_{i+1} = U_i + h A(t_i) U_i + h B(t_i) \\
+          U_0 =
+          \left[
+            \begin{array}{l}
+              \alpha \\
+              \beta
+            \end{array}
+            \right]
+        \end{array}
+        \right.
+        \\
+        &
+        \left\{
+        \begin{array}{l}
+          U_{i+1} = U_i + h
+          \left[
+            \begin{array}{ll}
+              0 & 1 \\
+              c(t_i) & 0
+            \end{array}
+            \right]
+          U_i + h
+          \left[
+            \begin{array}{l}
+              0 \\
+              - f(t_i)
+            \end{array}
+            \right] \\
+          U_0 =
+          \left[
+            \begin{array}{l}
+              \alpha \\
+              \beta
+            \end{array}
+            \right]
+        \end{array}
+        \right.
+      \end{split}
     \end{equation*}
 
   \item
@@ -883,7 +912,7 @@ Et pour tout $t >= 0$ :
     \begin{equation*}
       \left\{
       \begin{array}{l}
-        U_{i+1} = U_i + h A(t) U_i + h B(t) \\
+        U_{i+1} = U_i + h A(t_i) U_i + h B(t_i) \\
         U_0 =
         \left[
           \begin{array}{l}
@@ -901,47 +930,83 @@ Et pour tout $t >= 0$ :
       \left[
         \begin{array}{l}
           u_i \\
-          w_i
+          u_{i-1}
         \end{array}
         \right]
     \end{equation*}
 
     \begin{equation*}
+      \begin{split}
       \left[
         \begin{array}{l}
           u_{i+1} \\
-          w_{i+1}
+          u_i
         \end{array}
         \right]
       =
-      \left[
+      &
+       \left[
         \begin{array}{l}
           u_i \\
-          w_i
+          u_{i-1}
         \end{array}
         \right]
       + h
       \left[
         \begin{array}{ll}
           0 & 1 \\
-          c(t) & 0
+          c(t_i) & 0
         \end{array}
         \right]
       \left[
         \begin{array}{l}
           u_i \\
-          w_i
+          u_{i-1}
         \end{array}
         \right]
       + h
       \left[
         \begin{array}{l}
           0 \\
-          -f(t)
+          -f(t_{i-1})
         \end{array}
         \right]
+      \\
+      =
+      &
+      \left[
+        \begin{array}{l}
+          u_i \\
+          u_{i-1}
+        \end{array}
+        \right]
+      + h
+      \left[
+        \begin{array}{l}
+          u_{i-1} \\
+          c(t_{i-1}) u_i
+        \end{array}
+        \right]
+      + h
+      \left[
+        \begin{array}{l}
+          0 \\
+          -f(t_{i-1})
+        \end{array}
+        \right]
+      \end{split}
     \end{equation*}
 
+    On a :
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        u_{i+1} = u_i + h w_i \\
+        w_{i+1} = w_i + h c(t_i) u_i - h f(t_i)
+      \end{array}
+      \right.
+    \end{equation*}
     
   \item
     Voir la fonction \textbf{resouScd} dans "exo6.sci".
