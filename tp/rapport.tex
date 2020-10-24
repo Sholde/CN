@@ -1051,7 +1051,7 @@ Et pour tout $t >= 0$ :
     \end{split}
   \end{equation*}
 
-  Cela inpire le problème approché :
+  Cela inspire le problème approché :
 
   \begin{equation*}
     \left\{
@@ -1069,16 +1069,16 @@ Et pour tout $t >= 0$ :
     A =
     \left[
     \begin{array}{lllllll}
-      \frac{2}{h^2} + c(u_1) & - \frac{1}{h^2} & 0 & 0 & 0 & 0 & 0 \\
-      - \frac{1}{h^2} & \frac{2}{h^2} + c(u_2) & - \frac{1}{h^2} & 0 &
+      \frac{2}{h^2} + c(t_1) & - \frac{1}{h^2} & 0 & 0 & 0 & 0 & 0 \\
+      - \frac{1}{h^2} & \frac{2}{h^2} + c(t_2) & - \frac{1}{h^2} & 0 &
       0 & 0 & 0 \\
-      0 & - \frac{1}{h^2} & \frac{2}{h^2} + c(u_3) & - \frac{1}{h^2} &
+      0 & - \frac{1}{h^2} & \frac{2}{h^2} + c(t_3) & - \frac{1}{h^2} &
       0 & 0 & 0 \\
       - & - & - & - & - & - & - \\
-      0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-3}) & - \frac{1}{h^2} &
+      0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(t_{n-3}) & - \frac{1}{h^2} &
       0 \\
-      0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-2}) & - \frac{1}{h^2} \\
-      0 & 0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(u_{n-1})
+      0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(t_{n-2}) & - \frac{1}{h^2} \\
+      0 & 0 & 0 & 0 & 0 &- \frac{1}{h^2} & \frac{2}{h^2} + c(t_{n-1})
     \end{array}
     \right]
   \end{equation*}
@@ -1119,21 +1119,46 @@ Et pour tout $t >= 0$ :
   \item
     \begin{equation*}
       \begin{split}
-      h^2 W^T A W = & h^2 \left(w_1 \left(\frac{2}{h^2} + c(u_1) \right) w_1 + w_2
-      \left(- \frac{1}{h^2} \right) w_1 \right) \\
-      + & h^2 \left(w_1 \left(- \frac{1}{h^2} \right) w_1 + w_2
-      \left(\frac{2}{h^2} + c(u_2) \right) w_2 + w_3
-      \left(- \frac{1}{h^2} \right) w_2 \right) \\
-      + & ----- \\
-      + & h^2 \left(w_{n-2} \left(\frac{2}{h^2} + c(u_{n-1}) \right) w_{n-2} + w_{n-1}
-      \left(- \frac{1}{h^2} \right) w_{n-2} \right) \\
-      = & (2 + c(u_1)) w_1^2 - w_1w_2 \\
-      - & w_1w_2 + (2 + c(u_2)) w_2^2 - w_2w_3 \\
-      + & ----- \\
-      + & (2 + c(u_{n-1})) w_{n-2}^2 - w_{n-2}w_{n-1} \\
-      = & \sum_{i=1}^{n-1} {(2 + h^2c(ih)) w_i^2} - 2 \sum_{i=2}^{n-1} {w_{i-1}w_i}
+        h^2 W^T A W = & h^2 W^T \left[
+        \begin{split}
+          & \frac{2 w_1}{h^2} + c(u_1) w_1 - \frac{w_2}{h^2} \\
+          & - \frac{w_1}{h^2} + \frac{2 w_2}{h^2} + c(u_1) w_2 -
+          \frac{w_3}{h^2} \\
+          & ... \\
+          & - \frac{w_{n-3}}{h^2} + \frac{2 w_{n-2}}{h^2} + c(u_{n-2})
+          w_{n-2} - \frac{w_{n-1}}{h^2} \\
+          & - \frac{w_{n-2}}{h^2} + \frac{2 w_{n-1}}{h^2} + c(u_{n-1}) w_{n-1}
+        \end{split}
+        \right] \\
+        = & h^2 \left(
+        \begin{split}
+          & w_1 \frac{2 w_1}{h^2} + w_1 c(u_1) w_1 - w_1 \frac{w_2}{h^2} \\
+          & - w_2 \frac{w_1}{h^2} + w_2 \frac{2 w_2}{h^2} + w_2 c(u_1) w_2 -
+          w_2 \frac{w_3}{h^2} \\
+          & ... \\
+          & - w_{n-2} \frac{w_{n-3}}{h^2} + w_{n-2} \frac{2
+            w_{n-2}}{h^2} + w_{n-2} c(u_{n-2})
+          w_{n-2} - w_{n-2} \frac{w_{n-1}}{h^2} \\
+          & - w_{n-1} \frac{w_{n-2}}{h^2} + w_{n-1} \frac{2
+            w_{n-1}}{h^2} + w_{n-1} c(u_{n-1}) w_{n-1}
+        \end{split}
+        \right) \\
+        = & 
+        \begin{split}
+          & w_1^2 + h^2 c(t_1) w_1^2 - w_1 w_2 \\
+          & - w_1 w_2 + w_2^2 + h^2 c(t_2) w_2^2 -
+          w_2 w_3 \\
+          & ... \\
+          & - w_{n-2} w_{n-3} + w_{n-2}^2 + h^2 c(t_{n-2}) w_{n-2}^2
+          - w_{n-2} w_{n-1} \\
+          & - w_{n-1} w_{n-2} + w_{n-1}^2 + h^2 c(t_{n-1}) w_{n-1}^2
+        \end{split}
+        \\
+        = & \sum_{i=1}^{n-1} {(2 + h^2c(ih)) w_i^2} - 2 \sum_{i=2}^{n-1} {w_{i-1}w_i}
       \end{split}
     \end{equation*}
+
+    NOTE : $[] = matrixe, () = equation$
 
 
   \item
