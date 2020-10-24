@@ -930,7 +930,7 @@ Et pour tout $t >= 0$ :
       \left[
         \begin{array}{l}
           u_i \\
-          u_{i-1}
+          w_i
         \end{array}
         \right]
     \end{equation*}
@@ -940,7 +940,7 @@ Et pour tout $t >= 0$ :
       \left[
         \begin{array}{l}
           u_{i+1} \\
-          u_i
+          w_{i+1}
         \end{array}
         \right]
       =
@@ -948,7 +948,7 @@ Et pour tout $t >= 0$ :
        \left[
         \begin{array}{l}
           u_i \\
-          u_{i-1}
+          w_i
         \end{array}
         \right]
       + h
@@ -961,14 +961,14 @@ Et pour tout $t >= 0$ :
       \left[
         \begin{array}{l}
           u_i \\
-          u_{i-1}
+          w_i
         \end{array}
         \right]
       + h
       \left[
         \begin{array}{l}
           0 \\
-          -f(t_{i-1})
+          -f(t_i)
         \end{array}
         \right]
       \\
@@ -977,21 +977,21 @@ Et pour tout $t >= 0$ :
       \left[
         \begin{array}{l}
           u_i \\
-          u_{i-1}
+          w_i
         \end{array}
         \right]
       + h
       \left[
         \begin{array}{l}
-          u_{i-1} \\
-          c(t_{i-1}) u_i
+          w_i \\
+          c(t_i) u_i
         \end{array}
         \right]
       + h
       \left[
         \begin{array}{l}
           0 \\
-          -f(t_{i-1})
+          -f(t_i)
         \end{array}
         \right]
       \end{split}
@@ -1007,6 +1007,16 @@ Et pour tout $t >= 0$ :
       \end{array}
       \right.
     \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        w_i = \frac{- u_{i+1} + u_i}{h} \\
+        - \frac{u_{i-2} - 2 u_{i-1} - u_i}{h^2} + c(t_i) u_i = f(t_i)
+      \end{array}
+      \right.
+    \end{equation*}
+
     
   \item
     Voir la fonction \textbf{resouScd} dans "exo6.sci".
