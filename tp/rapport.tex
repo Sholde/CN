@@ -1262,16 +1262,16 @@ Et pour tout $t >= 0$ :
     \left\{
     \begin{array}{l}
       Trouver \quad u_h \in V_h \quad tq :\\
-      \forall 1 <= i <= n, a(u_h, w_i) = l(w_i)
+      \forall 1 \le i \le n, a(u_h, w_i) = l(w_i)
     \end{array}
     \right.
   \end{equation*}
 
   Cherchons $u_h = \sum_{k=1}^{n}{\alpha_k w_k}$ tq :
 
-  $\iff \forall 1 <= i <= n, a(\sum_{k=1}^{n}{\alpha_k w_k w_i}) = l(w_i)$
+  $\iff \forall 1 \le i \le n, a(\sum_{k=1}^{n}{\alpha_k w_k w_i}) = l(w_i)$
 
-  $\iff \forall 1 <= i <= n, \sum_{k=1}^{n}{a(w_k, w_i) \alpha_i} =
+  $\iff \forall 1 \le i \le n, \sum_{k=1}^{n}{a(w_k, w_i) \alpha_i} =
   l(w_i)$
 
   Ce qui nous donne $AU = F$ :
@@ -1312,7 +1312,7 @@ Et pour tout $t >= 0$ :
         & (w_k(t_1), ..., w_k(t_k), ..., w_k(t_{n-1})) \\
         = & (0, ..., 1, ..., 0)
       \end{split} \\
-      & \iff w_k(t_j) = \delta_{k,j} \quad 1 <= j <= n-1
+      & \iff w_k(t_j) = \delta_{k,j} \quad 1 \le j \le n-1
     \end{split}
   \end{equation*}
 
@@ -1345,6 +1345,13 @@ Et pour tout $t >= 0$ :
     \end{array}
     \right.
   \end{equation*}
+
+\item
+
+\item
+  Lorque $|i - j| > 1$, $a(i, j) = 0$. A est une matrice tridiagonale.
+
+\item
 
 \item
   
