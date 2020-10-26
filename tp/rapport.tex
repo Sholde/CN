@@ -1177,12 +1177,179 @@ Et pour tout $t >= 0$ :
     constant et égaux.
 
   \item
+    Voir la fonction \textbf{partie2} dans "exo6.sci".
 
   \item
+    Voir la première et dernière valeur du tableau retourner par la fonction.
   
 \end{enumerate}
 
 \subsection*{Partie III}
+
+\begin{enumerate}
+
+\item On a :
+  \begin{equation*}
+    \left\{
+    \begin{array}{l}
+      -u''(t) + c(t) u(t) = f(t) \\
+      u(0) = 0, u(1) = 0
+    \end{array}
+    \right.
+  \end{equation*}
+  
+  Trouver $u \in V$ tq :
+
+  \begin{equation*}
+    \forall v \in V,
+    \begin{split}
+      & \int_{a}^{b}{u'(x) v'(x) dx} + \int_{a}^{b}{c(x) u(x) v(x) dx} \\
+      = & \int_{a}^{b}{f(x) v(x) dx}
+    \end{split}
+  \end{equation*}
+
+  Le problème s'écrit alors :
+
+  \begin{equation*}
+    \left\{
+    \begin{array}{l}
+      Trouver \quad u \in V \quad tq \\
+      \forall v \in V, a(u, v) = l(v)
+    \end{array}
+    \right.
+  \end{equation*}
+
+  où :
+  
+  \begin{equation*}
+    \begin{array}{ll}
+      l : & V \rightarrow R \\
+      & v \rightarrow \int_{a}^{b}{f(x) v(x) dx}
+    \end{array}
+  \end{equation*}
+
+  l est linéaire.
+
+  \begin{equation*}
+    \begin{array}{ll}
+      a : & V x V \rightarrow R \\
+      & (w, v) \rightarrow \int_{a}^{b}{w'(x) v'(x) + c(x) w(x) v(x) dx}
+    \end{array}
+  \end{equation*}
+
+\item Approchons le problème :
+
+  Considérons un espace $V_h \subset V$ de dimension finie.
+
+  Posons $N = dim(V_h)$
+
+  Soit $w_1, ..., w_n$ une base de $V_h$
+
+  Considérons le problème approché :
+
+  \begin{equation*}
+    \iff
+    \left\{
+    \begin{array}{l}
+      Trouver \quad u_h \in V_h \quad tq :\\
+      \forall v_h \in V_h, a(u_h, v_h) = l(v_h)
+    \end{array}
+    \right.
+  \end{equation*}
+  
+  \begin{equation*}
+    \iff
+    \left\{
+    \begin{array}{l}
+      Trouver \quad u_h \in V_h \quad tq :\\
+      \forall 1 <= i <= n, a(u_h, w_i) = l(w_i)
+    \end{array}
+    \right.
+  \end{equation*}
+
+  Cherchons $u_h = \sum_{k=1}^{n}{\alpha_k w_k}$ tq :
+
+  $\iff \forall 1 <= i <= n, a(\sum_{k=1}^{n}{\alpha_k w_k w_i}) = l(w_i)$
+
+  $\iff \forall 1 <= i <= n, \sum_{k=1}^{n}{a(w_k, w_i) \alpha_i} =
+  l(w_i)$
+
+  Ce qui nous donne $AU = F$ :
+  \begin{equation*}
+    \left[
+    \begin{array}{lll}
+      a(w_1, w_1) & ... & a(w_1, w_n) \\
+      ... & ... & ... \\
+      a(w_n, w_1) & ... & a(w_n, w_n)
+    \end{array}
+    \right]
+    \left[
+      \begin{array}{l}
+        \alpha_1 \\
+        ... \\
+        \alpha_n
+      \end{array}
+      \right]
+    =
+    \left[
+      \begin{array}{l}
+        l(w_1) \\
+        ... \\
+        l(w_n)
+      \end{array}
+      \right]
+  \end{equation*}
+
+\item
+  Soit $w_k = I_h^{-1}(e_k)$ où $\{e_1, ..., e_n\}$ est la base canonique
+  de $R^{n-1}$.
+
+  \begin{equation*}
+    \begin{split}
+      w_k = I_h^{-1}(e_k) & \iff I_h(w_k) = e_k \\
+      & \iff
+      \begin{split}
+        & (w_k(t_1), ..., w_k(t_k), ..., w_k(t_{n-1})) \\
+        = & (0, ..., 1, ..., 0)
+      \end{split} \\
+      & \iff w_k(t_j) = \delta_{k,j} \quad 1 <= j <= n-1
+    \end{split}
+  \end{equation*}
+
+  Mettre la figure.
+
+  \begin{equation*}
+    w_k(t) = 
+    \left\{
+    \begin{array}{ll}
+      \frac{t - t_{k-1}}{t_k - t_{k-1}} & si \quad t \in [t_{k-1},
+        t_k] \\
+      \frac{t - t_{k+1}}{t_k - t_{k+1}} & si \quad t \in [t_k,
+        t_{k+1}] \\
+      0 & si \quad t \notin [t_{k-1}, t_{k+1}]
+    \end{array}
+    \right.
+  \end{equation*}
+
+  Si la subdivision est uniforme on a :
+
+  \begin{equation*}
+    w_k(t) = 
+    \left\{
+    \begin{array}{ll}
+      \frac{t - t_{k-1}}{h} & si \quad t \in [t_{k-1},
+        t_k] \\
+      - \frac{t - t_{k+1}}{h} & si \quad t \in [t_k,
+        t_{k+1}] \\
+      0 & sinon
+    \end{array}
+    \right.
+  \end{equation*}
+
+\item
+  
+
+\end{enumerate}
 
 \section*{Exercice 7}
 
