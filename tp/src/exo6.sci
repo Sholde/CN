@@ -47,6 +47,11 @@ function [U] = resouScd(N, alpha, beta, cofc, foncf)
 
 endfunction
 
+// Fonction 0
+function [y] = zer(a)
+	 y = 0;
+endfunction
+
 // Calcul tous les Ui de 0 à N
 function [U] = partie2(N, cofc, foncf)
 

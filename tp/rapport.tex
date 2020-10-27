@@ -1012,9 +1012,15 @@ Et pour tout $t >= 0$ :
       \left\{
       \begin{array}{l}
         w_i = \frac{- u_{i+1} + u_i}{h} \\
-        - \frac{u_{i-2} - 2 u_{i-1} - u_i}{h^2} + c(t_i) u_i = f(t_i)
+        - \frac{u_{i-2} - 2 u_{i-1} + u_i}{h^2} + c(t_i) u_i = f(t_i)
       \end{array}
       \right.
+    \end{equation*}
+
+    Donc on a :
+
+    \begin{equation*}
+      - \frac{u_{i+1} + u_{i-1} - 2 u_i}{h^2} + c(t_{i-1}) u_{i-1} = f(t_{i-1})
     \end{equation*}
 
     
@@ -1180,7 +1186,35 @@ Et pour tout $t >= 0$ :
     Voir la fonction \textbf{partie2} dans "exo6.sci".
 
   \item
-    Voir la première et dernière valeur du tableau retourner par la fonction.
+    Pour l'appel suivant :\newline
+    \textbf{$>$ partie2(10, zer, mycube)} \newline
+    où \begin{itemize}
+      \item \textbf{10} : est le nombre de pas
+      \item \textbf{zer} : est la fonction 0 qui est dans "exo6.sci"
+      \item \textbf{mycube} : est la fonction cube qui est dans "myfunc.sci"
+    \end{itemize}
+
+    On obtient :
+
+    \begin{equation*}
+      \begin{array}{ll}
+        i & f(t_i) \\
+        0 & 0.0102483 \\
+        1 & 0.0204867 \\
+        2 & 0.030645 \\
+        3 & 0.0405333 \\
+        4 & 0.0497817 \\
+        5 & 0.05778  \\
+        6 & 0.0636183 \\
+        7 & 0.0660267 \\
+        8 & 0.063315 \\
+        9 & 0.0533133 \\
+        10 & 0.0333117
+      \end{array}
+    \end{equation*}
+
+    Normalement $u_0 = 0$ et $u_N = u_{10} = 0$. \newline
+    Ici on a $u_0 = 0.0102483$ et $u_{10} = 0.0333117$.
   
 \end{enumerate}
 
@@ -1353,7 +1387,7 @@ Et pour tout $t >= 0$ :
 
 \item
 
-\item
+p\item
   
 
 \end{enumerate}
