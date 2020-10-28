@@ -18,7 +18,38 @@
 \item Voir la fonction \textbf{pointgauche} dans le fichier "exo1.sci".
 \item Voir la fonction \textbf{trapeze} dans le fichier "exo1.sci".
 \item Voir la fonction \textbf{int\_simpson} dans le fichier "exo1.sci".
-\item Voir la fonction \textbf{sin\_pi\_x} dans le fichier "exo1.sci".
+\item Voir la fonction \textbf{sin\_pi\_x} dans le fichier
+  "exo1.sci".\newline 
+
+  Sur l'intervale $[0, 1]$ et un nombre de pas de 10  on obtient :
+  \begin{itemize}
+  \item $ 0.6313752 $ pour \textbf{pointgauche}
+  \item $ 0.6313752 $ pour \textbf{trapeze}
+  \item $ 0.6366219 $ pour \textbf{int\_simpson}
+  \end{itemize}
+
+  On voit que \textbf{pointgauche} et \textbf{trapeze} ont la même
+  approximation, cela peut s'expliquer par leurs taux de convergences
+  qui est le même.\newline
+
+  Maintenant si on prend l'intervale $[0, 20]$ on obtient :
+    \begin{itemize}
+    \item $ 0.6353102 $ pour \textbf{pointgauche}
+    \item $ 0.6353102 $ pour \textbf{trapeze}
+    \item $ 0.6366119 $ pour \textbf{int\_simpson}
+    \end{itemize}
+
+    Si on compare l'écart des résultat on obtient :
+    \begin{itemize}
+    \item $ 0.0040550 $ pour \textbf{pointgauche}
+    \item $ 0.0040550 $ pour \textbf{trapeze}
+    \item $ 0.00001 $ pour \textbf{int\_simpson}
+    \end{itemize}
+
+    On voit que le taux d'erreur relative de \textbf{pointgauche} et \textbf{trapeze}
+    est plus grand que \textbf{int\_simpson}, ce qui confirme leurs
+    taux de convergence plus bas que \textbf{int\_simpson}.
+        
 \end{enumerate}
 
 \section*{Exercice 2}
