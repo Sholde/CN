@@ -32,7 +32,7 @@
   approximation, cela peut s'expliquer par leurs taux de convergences
   qui est le même.\newline
 
-  Maintenant si on prend l'intervale $[0, 20]$ on obtient :
+  Maintenant si on prend un nombre de pas de 20 on obtient :
     \begin{itemize}
     \item $ 0.6353102 $ pour \textbf{pointgauche}
     \item $ 0.6353102 $ pour \textbf{trapeze}
@@ -46,7 +46,7 @@
     \item $ 0.00001 $ pour \textbf{int\_simpson}
     \end{itemize}
 
-    On voit que le taux d'erreur relative de \textbf{pointgauche} et \textbf{trapeze}
+    On voit que l'erreur relative de \textbf{pointgauche} et \textbf{trapeze}
     est plus grand que \textbf{int\_simpson}, ce qui confirme leurs
     taux de convergence plus bas que \textbf{int\_simpson}.
         
@@ -586,8 +586,49 @@ Maintenant on peut calculer $p(x)$ :
 \section*{Exercice 4}
 
 \begin{enumerate}
-\item Voir la fonction \textbf{polyLag} dans le fichier "exo4.sci".
-\item Voir la fonction \textbf{myinterpol} dans le fichier "exo4.sci".
+\item Voir la fonction \textbf{polyLag} dans le fichier "exo4.sci".\newline
+  \underline{Explication du code :}
+  \begin{itemize}
+  \item J'ai créer une fonction \textbf{differences} qui calcul :
+  \begin{equation*}
+    \frac{x - x_j}{x_i - x_j}
+  \end{equation*}
+  qui est dans la séquence de produit du polynôme de Lagrange associé
+  au point x :
+  \begin{equation*}
+    L_i(x) = \prod_{\begin{array}{l} j = 0 \\ j \ne i \end{array}}^{n}\frac{x - x_j}{x_i - x_j}
+  \end{equation*}
+
+  \item La fonction \textbf{polyLag} récupère la taille du tableau et
+  vérifie si il y a au moins 1 argument.\\
+  Ensuite initialise le tableau de résultat et calcul les polynôme de
+  Lagrange associé au point x.
+  \end{itemize}
+  
+  \underline{Résultat numérique :}\newline
+  Pour le point $x = 5$ et le vecteur $v = [0, 10, 5, 20]$ \newline
+  On obtient : $res = [0, 0, 1, 0]$ \newline
+  Appel de fonction : \textbf{res = polyLag(5, v);} \newline
+  
+\item Voir la fonction \textbf{myinterpol} dans le fichier "exo4.sci".\\
+  \underline{Explication du code :}
+  \begin{itemize}
+    \item Cette fonction reprends ce que fait \textbf{polyLag} mais
+      ajoute à la fin de la boucle la multiplication avec la fonction
+      \textbf{func} et fait donc la somme de toute les itération de
+      \textbf{i}.
+  \end{itemize}
+  
+  \underline{Résultat numérique :}
+
+  Pour la fonction $x^2$ \newline
+  Pour $x = 5$ \newline
+  Pour le vecteur $v = [0, 10, 5, 20]$ \newline
+  On obtient : $res = 25$ \newline
+
+  Appel de fonction : \textbf{res = myinterpol(mysquare, 5, v);} \newline
+  où \textbf{mysquare} est la fonction $x^2$ qui se trouve dans "myfunc.sci".
+  
 \end{enumerate}
 
 \section*{Exercice 5}

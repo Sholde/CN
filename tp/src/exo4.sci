@@ -1,7 +1,7 @@
 // Exercice 4
 
 // Calcul une séquence de produit scpécifique
-function [res] = product_of_sequences(x, xj, xi)
+function [res] = differences(x, xj, xi)
 	 res = (x - xj) / (xi - xj);
 endfunction
 
@@ -27,13 +27,14 @@ function [Lag] = polyLag(x, xi)
 	     // Calcul de Li(x)
 	     for j = 1:n
 	       	 if i ~= j
-	     	    Lag(i) = Lag(i) * product_of_sequences(x, xi(j), xi(i));
+	     	    Lag(i) = Lag(i) * differences(x, xi(j), xi(i));
 		 end
 	     end
 	 end
 	 
 endfunction
 
+// Calcul le polynôme d'interpolation de la function func aux point du tableau xi
 function [p] = myinterpol(func, x, xi)
 
 	 // Récupère la taille de xi
@@ -41,20 +42,28 @@ function [p] = myinterpol(func, x, xi)
 
 	 // Vérifie la taille de xi
 	 if n < 1
-	    Lag = 0;
+	    p = 0;
 	    return
 	 end
 
 	 // Initialisation du résultat
 	 p = 0;
 
+
+	 // Calcul le polynôme d'interpolation
 	 for i = 1:n
+	     // Initialisation de la variable temporaire Lag
+	     // qui est le polynôme de Lagrange associé au point
+	     // correspondant à i
+	     Lag = 1;
+
 	     for j = 1:n
 	     	 // Si i != j
-	       	 if i ~= j
-	     	    p = p + func(xi(i)) * product_of_sequences(x, xi(j), xi(i));
+		 if i ~= j
+	     	    Lag = Lag * differences(x, xi(j), xi(i));
 		 end
 	     end
+     	     p = p + func(xi(i)) * Lag;
 	 end
 	 
 endfunction
