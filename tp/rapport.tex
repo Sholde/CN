@@ -746,7 +746,47 @@ Maintenant on peut calculer $p(x)$ :
     \end{split}
   \end{equation*}
 
-\item[b.] Voir la fonction \textbf{EulerExplicite} dans le fichier "exo5.sci".
+\item[b.] Voir la fonction \textbf{EulerExplicite} dans le fichier
+  "exo5.sci".\newline
+
+  \underline{Explication du code :} \newline
+  \begin{itemize}
+    \item Le code est triviale et bien commenté, il vérifie les
+      conditions sur les entrés et calcul ensuite les $y_i$ avec la
+      méthode d'Euler explicite.
+  \end{itemize}
+
+  \underline{Résultat numérique :} \newline
+  Pour l'appel suivant :\newline
+  \textbf{res = EulerExplicite(0.88, 16)}
+  où :
+  \begin{itemize}
+  \item \textbf{0.88} correspond à la fin de l'intervale
+  \item \textbf{16} le nombre de pas
+  \end{itemize}
+  On obtient :
+  \begin{equation*}
+    \begin{array}{ll}
+      i & y_i\\
+      0 & 0 \\
+      1 & 0.055   \\ 
+      2 & 0.1045495\\
+      3 & 0.150038 \\
+      4 & 0.1923432\\
+      5 & 0.2320634\\
+      6 & 0.2696284\\
+      7 & 0.30536  \\
+      8 & 0.3395062\\
+      9 & 0.3722635\\
+      10 & 0.4037907\\
+      11 & 0.4342181\\
+      12 & 0.4636545\\
+      13 & 0.4921917\\
+      14 & 0.5199081\\
+      15 & 0.5468713\\
+      16 & 0.5731401
+    \end{array}
+  \end{equation*}
   
 \end{enumerate}
 
@@ -767,6 +807,45 @@ Maintenant on peut calculer $p(x)$ :
   \end{equation*}
 
 \item[b.] Voir la fonction \textbf{Heun} dans le fichier "exo5.sci".
+
+  \underline{Explication du code :} \newline
+  \begin{itemize}
+    \item Le code est triviale et bien commenté, il vérifie les
+      conditions sur les entrés et calcul ensuite les $y_i$ avec la
+      méthode d'Heun.
+  \end{itemize}
+
+  \underline{Résultat numérique :} \newline
+  Pour l'appel suivant :\newline
+  \textbf{res = Heun(0.88, 16)}
+  où :
+  \begin{itemize}
+  \item \textbf{0.88} correspond à la fin de l'intervale
+  \item \textbf{16} le nombre de pas
+  \end{itemize}
+  On obtient :
+  \begin{equation*}
+    \begin{array}{ll}
+      i & y_i\\
+      0 & 0 \\
+      1 & 0.0522748\\ 
+      2 & 0.1000097\\
+      3 & 0.144216 \\
+      4 & 0.1855772\\
+      5 & 0.2245808\\
+      6 & 0.2615893\\
+      7 & 0.2968807\\
+      8 & 0.330674 \\
+      9 & 0.3631453\\
+      10 & 0.3944384\\
+      11 & 0.4246731\\
+      12 & 0.45395  \\
+      13 & 0.4823547\\
+      14 & 0.5099608\\
+      15 & 0.5368322\\
+      16 & 0.5630245
+    \end{array}
+  \end{equation*}
 
 \end{enumerate}
 
@@ -810,7 +889,48 @@ Maintenant on peut calculer $p(x)$ :
     \end{split}
   \end{equation*}
 
-\item[d.] Voir la fonction \textbf{EulerImplicite} dans le fichier "exo5.sci".
+\item[d.] Voir la fonction \textbf{EulerImplicite} dans le fichier
+  "exo5.sci".
+
+  \underline{Explication du code :} \newline
+  \begin{itemize}
+    \item Le code est triviale et bien commenté, il vérifie les
+      conditions sur les entrés et calcul ensuite les $y_i$ avec la
+      méthode d'EulerImplicite avec la relation ci-dessus.
+  \end{itemize}
+
+  \underline{Résultat numérique :} \newline
+  Pour l'appel suivant :\newline
+  \textbf{res = EulerImplicite(0.88, 16)}
+  où :
+  \begin{itemize}
+  \item \textbf{0.88} correspond à la fin de l'intervale
+  \item \textbf{16} le nombre de pas
+  \end{itemize}
+  On obtient :
+  \begin{equation*}
+    \begin{array}{ll}
+      i & y_i\\
+      0 & 0\\       
+      1 & 0.05   \\  
+      2 & 0.0961308\\
+      3 & 0.1391563\\
+      4 & 0.1796201\\
+      5 & 0.2179249\\
+      6 & 0.2543787\\
+      7 & 0.2892231\\
+      8 & 0.3226516\\
+      9 & 0.3548221\\
+      10 & 0.3858652\\
+      11 & 0.4158906\\
+      12 & 0.4449914\\
+      13 & 0.4732473\\
+      14 & 0.5007273\\
+      15 & 0.5274915\\
+      16 & 0.5535927
+    \end{array}
+  \end{equation*}
+
   
 \end{enumerate}
 
@@ -836,10 +956,10 @@ Maintenant on peut calculer $p(x)$ :
 
   \begin{equation*}
     \begin{split}
-      \left\lvert e - e' \right\rvert & = \left\lvert 0,5630146 - 0,5731410
+      \left\lvert e - e' \right\rvert & = \left\lvert 0,5630146 - 0,5731401
         \right\rvert \\
-        & = 0.0101264 \\
-        & = 1.01264 \%
+        & = 0.0101255 \\
+        & = 1.01255 \%
     \end{split}
   \end{equation*}
 
