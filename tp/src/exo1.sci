@@ -7,7 +7,8 @@ endfunction
 
 //**********************************************************
 
-// Calcul l'intégrale de func avec la méthode du calcul des aires des rectangles à gauche
+// Calcul l'intégrale de func avec la méthode du calcul des aires
+// des rectangles à gauche
 function [res] = pointgauche(a, b, func, N)
 
 	 // Initialise à 0 la somme

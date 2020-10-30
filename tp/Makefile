@@ -4,4 +4,4 @@ pdf:
 	pdflatex rapport.tex
 
 clean:
-	rm -Rf *~ src/*~ *.aux *.log
+	rm -Rf *~ src/*~ *.aux *.log *.toc

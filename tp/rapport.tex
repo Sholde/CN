@@ -1,7 +1,58 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[document]{ragged2e}
 \usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+
+\lstset{
+  aboveskip=3mm,
+  belowskip=-2mm,
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{red},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  framexleftmargin=16pt,
+  framextopmargin=3pt,
+  framexbottommargin=6pt,
+  frame=tb,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  language=scilab,
+  literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1,
+  morekeywords={*,...},
+  numbers=left,
+  numbersep=10pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{gray},
+  tabsize=4,
+  title=\lstname,
+}
 
 \title{TD Calcul Numérique}
 \author{BOUTON Nicolas}
@@ -11,6 +62,10 @@
 \begin{document}
 
 \maketitle
+
+Information : Les codes se trouvent à la fin du pdf.
+
+\newpage
 
 \section*{Exercice 1}
 
@@ -1575,7 +1630,7 @@ Et pour tout $t >= 0$ :
 
   Considérons un espace $V_h \subset V$ de dimension finie.
 
-  Posons $N = dim(V_h)$
+  Posons $n = dim(V_h)$
 
   Soit $w_1, ..., w_n$ une base de $V_h$
 
@@ -1687,7 +1742,7 @@ Et pour tout $t >= 0$ :
 
 \item
 
-p\item
+\item
   
 
 \end{enumerate}
@@ -1695,5 +1750,34 @@ p\item
 \section*{Exercice 7}
 
 \section*{Exercice 8}
+
+\newpage
+
+\section*{Annexe}
+
+\textbf{BOUTON NICOLAS}
+
+\lstinputlisting{src/exo1.sci}
+
+\newpage
+
+\lstinputlisting{src/exo2.sci}
+
+\newpage
+
+\lstinputlisting{src/exo3.sci}
+
+\newpage
+
+\lstinputlisting{src/exo4.sci}
+
+\newpage
+
+\lstinputlisting{src/exo5.sci}
+
+\newpage
+
+\lstinputlisting{src/exo6.sci}
+
 
 \end{document}
