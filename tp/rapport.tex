@@ -7,6 +7,7 @@
 \usepackage{color}
 \usepackage[table]{xcolor}
 \usepackage{listings}
+\usepackage{graphicx}
 
 \lstset{
   aboveskip=3mm,
@@ -63,7 +64,7 @@
 
 \maketitle
 
-Information : Les codes se trouvent à la fin du pdf.
+Information : Les codes se trouvent à la fin du pdf (page 28).
 
 \newpage
 
@@ -1705,7 +1706,8 @@ Et pour tout $t >= 0$ :
     \end{split}
   \end{equation*}
 
-  Mettre la figure.
+  \underline{Voici la courbe de l'une des fonction :} \newline
+  \includegraphics[scale=0.5]{finite_element.png}
 
   \begin{equation*}
     w_k(t) = 
@@ -1728,12 +1730,43 @@ Et pour tout $t >= 0$ :
     \begin{array}{ll}
       \frac{t - t_{k-1}}{h} & si \quad t \in [t_{k-1},
         t_k] \\
-      - \frac{t - t_{k+1}}{h} & si \quad t \in [t_k,
+      - \frac{t - t_{k-1}}{h} & si \quad t \in [t_k,
         t_{k+1}] \\
       0 & sinon
     \end{array}
     \right.
   \end{equation*}
+
+  $w_k$ est dérivable sur $[a, b]$ donc :
+
+  \begin{equation*}
+    w_k'(t) = 
+    \left\{
+    \begin{array}{ll}
+      \frac{1}{h} & si \quad t \in ]t_{k-1},
+        t_k[ \\
+      - \frac{1}{h} & si \quad t \in ]t_k,
+        t_{k+1}[ \\
+      0 & sinon
+    \end{array}
+    \right.
+  \end{equation*}
+
+  donc,
+
+  \begin{equation*}
+    w_k'(t) = 
+    \left\{
+    \begin{array}{ll}
+      \frac{1}{h} & si \quad t \in ]t_{k-1},
+        t_k[ \\
+      - \frac{1}{h} & si \quad t \in ]t_k,
+        t_{k+1}[ \\
+      0 & sinon
+    \end{array}
+    \right.
+  \end{equation*}
+
 
 \item
 
