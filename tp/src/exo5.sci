@@ -5,6 +5,8 @@ function [res] = func(x)
 	 res = 1 / ( 2 * x + 1);
 endfunction
 
+//**********************************************************
+
 // Calcul le valeurs yi avec la méthode d'Euler Explicite
 function [y] = EulerExplicite(T, N)
 	 // Vérifie les conditions de N
@@ -30,6 +32,8 @@ function [y] = EulerExplicite(T, N)
 	     y(i + 1) = y(i) + h * func(y(i));
 	 end 
 endfunction
+
+//**********************************************************
 
 // Calcul le valeurs yi avec la méthode de Heun
 function [y] = Heun(T, N)
@@ -57,6 +61,8 @@ function [y] = Heun(T, N)
 	     y(i + 1) = y(i) + h_2 * (func(y(i) + h * func(y(i))) + func(y(i)));
 	 end
 endfunction
+
+//**********************************************************
 
 // Calcul le valeurs yi avec la méthode d'Euler Implicite
 function [y] = EulerImplicite(T, N)
@@ -91,6 +97,8 @@ function [y] = EulerImplicite(T, N)
 	 end
 endfunction
 
+//**********************************************************
+
 // Affiche les différents résultat
 function [] = AfficheRes(T, N)
 
@@ -106,6 +114,3 @@ function [] = AfficheRes(T, N)
 	 print(%io(2), C4);
 endfunction
 
-// 4 a) calculer y1
-
-// parti 2 f(ti) sinon en haut f(ti-1)

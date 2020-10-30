@@ -5,6 +5,8 @@ function [res] = differences(x, xj, xi)
 	 res = (x - xj) / (xi - xj);
 endfunction
 
+//**********************************************************
+
 // Trouve les pôlinomes d'interpolation de Lagrange associés aux point xi[i]
 function [Lag] = polyLag(x, xi)
 
@@ -33,6 +35,8 @@ function [Lag] = polyLag(x, xi)
 	 end
 	 
 endfunction
+
+//**********************************************************
 
 // Calcul le polynôme d'interpolation de la function func aux point du tableau xi
 function [p] = myinterpol(func, x, xi)

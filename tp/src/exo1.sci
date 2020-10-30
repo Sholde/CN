@@ -5,6 +5,7 @@ function [y] = sin_pi_x(x)
 	 y = sin(%pi * x);
 endfunction
 
+//**********************************************************
 
 // Calcul l'intégrale de func avec la méthode du calcul des aires des rectangles à gauche
 function [res] = pointgauche(a, b, func, N)
@@ -23,6 +24,8 @@ function [res] = pointgauche(a, b, func, N)
 	 // Multiplication final
 	 res = res * h;
 endfunction
+
+//**********************************************************
 
 // Calcul l'intégrale de func avec la méthode des trapèzes
 function [res] = trapeze(a, b, func, N)
@@ -48,6 +51,8 @@ function [res] = trapeze(a, b, func, N)
 	 // Multiplication final
 	 res = res * h;
 endfunction
+
+//**********************************************************
 
 // Calcul l'intégrale de func avec la méthode de simpson
 function [res] = int_simpson(a, b, func, N)
