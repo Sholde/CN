@@ -225,7 +225,7 @@ Utilisons la métode des \textbf{différence divisé} :
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   -3 & 3 \\
   -1 & 7
 \end{array}
@@ -236,7 +236,7 @@ $$
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   -1 & 7 \\
   3 & 7
 \end{array}
@@ -247,7 +247,7 @@ $$
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   3 & 7 \\
   5 & -3
 \end{array}
@@ -260,7 +260,7 @@ $$
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   -3 & 2 \\
   3 & 0
 \end{array}
@@ -271,7 +271,7 @@ $$
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   -1 & 0 \\
   5 & -5
 \end{array}
@@ -284,7 +284,7 @@ $$
 $$
 \left.
 \begin{array}{ll}
-  x_i & y_i \\
+   
   -3 & -\frac{2}{6} \\
   5 & -\frac{5}{6}
 \end{array}
@@ -311,15 +311,15 @@ Maintenant on peut calculer $p(x)$ :
          & -\frac{(3x^2 + 3x + 9x + 9)(x - 3)}{48} \\
   p(x) = & \frac{144 + 96x + 288}{48} \\
          & -\frac{2x^2 + 8x + 6}{6} \\
-         & -\frac{3x^3 - 9x^2 + 11x^2 - 33x + 9x - 27}{48} \\
+         & -\frac{3x^3 - 9x^2 + 12x^2 - 36x + 9x - 27}{48} \\
   p(x) = & \frac{144 + 96x + 288}{48} \\
          & -\frac{16x^2 + 64x + 48}{48} \\
-         & -\frac{3x^3 + 2x^2 - 24x - 27}{48} \\
-  p(x) = & \frac{144 + 96x + 288 - (16x^2 + 64x + 48) - (3x^3 + 2x^2 -
-    24x - 27)}{48} \\
-  p(x) = &  \frac{-3x^3 - 18x^2 + 56x + 411}{48} \\
-  p(x) = & -\frac{3}{48}x^3 - \frac{6}{16}x^2 + \frac{7}{6}x +
-  \frac{411}{48}
+         & -\frac{3x^3 + 3x^2 - 27x - 27}{48} \\
+  p(x) = & \frac{144 + 96x + 288 - (16x^2 + 64x + 48) - (3x^3 + 3x^2 -
+    27x - 27)}{48} \\
+  p(x) = &  \frac{-3x^3 - 19x^2 + 59x + 411}{48} \\
+  p(x) = & -\frac{x^3}{16} - \frac{19 x^2}{48} + \frac{59 x}{48} +
+  \frac{137}{16}
 \end{split}
 \end{equation*}
 
@@ -357,8 +357,8 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \begin{split}
       f(0) & = \ln(2\cos \left( \frac{\pi(0)}{4} \right)^2 + 1) \\
-      f(0) & = \ln(1) \\
-      f(0) & = 0
+      f(0) & = \ln(2 * 1 + 1) \\
+      f(0) & = \ln(3)
     \end{split}
   \end{equation*}
 
@@ -393,7 +393,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{array}{l}
     f(-2) = 0 \\
     f(-1) = ln(2) \\
-    f(0) = 0 \\
+    f(0) = ln(3) \\
     f(1) = ln(2) \\
     f(2) = 0
   \end{array}
@@ -408,7 +408,7 @@ Maintenant on peut calculer $p(x)$ :
     \begin{array}{l}
       p(-2) = f(-2) \\
       p(-1) = f(-1) \\
-      p(-1) = f(1) \\
+      p(1) = f(1) \\
       p(2) = f(2) 
     \end{array}
     \right.
@@ -421,7 +421,7 @@ Maintenant on peut calculer $p(x)$ :
     \begin{array}{l}
       p(-2) = 0 \\
       p(-1) = ln(2) \\
-      p(-1) = ln(2) \\
+      p(1) = ln(2) \\
       p(2) = 0 
     \end{array}
     \right.
@@ -432,18 +432,18 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -2 & 0 \\
       -1 & ln(2)
     \end{array}
     \right\}
-    \frac{ln(2) - O}{-1 - (-2)} = ln(2)
+    \frac{ln(2) - 0}{-1 - (-2)} = ln(2)
   \end{equation*}
 
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -1 & ln(2) \\
       1 & ln(2)
     \end{array}
@@ -454,7 +454,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       1 & ln(2) \\
       2 & 0
     \end{array}
@@ -467,7 +467,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -2 & ln(2) \\
       1 & 0
     \end{array}
@@ -478,7 +478,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -1 & 0 \\
       2 & - ln(2)
     \end{array}
@@ -491,7 +491,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -2 & - \frac{ln(2)}{3} \\
       2 & - \frac{ln(2)}{3}
     \end{array}
@@ -544,7 +544,7 @@ Maintenant on peut calculer $p(x)$ :
     \begin{array}{l}
       q(-2) = 0 \\
       q(-1) = ln(2) \\
-      q(0) = 0 \\
+      q(0) = ln(3) \\
       q(-1) = ln(2) \\
       q(2) = 0 
     \end{array}
@@ -556,7 +556,7 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -2 & 0 \\
       -1 & ln(2)
     \end{array}
@@ -567,29 +567,29 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -1 & ln(2) \\
-      0 & 0
+      0 & ln(3)
     \end{array}
     \right\}
-    \frac{0 - ln(2)}{0 - (-1)} = - ln(2)
+    \frac{ln(3)- ln(2)}{0 - (-1)} = ln(3) - ln(2)
   \end{equation*}
 
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      0 & 0 \\
+       
+      0 & ln(3) \\
       1 & ln(2)
     \end{array}
     \right\}
-    \frac{ln(2) - 0}{1 - 0} = ln(2)
+    \frac{ln(2) - ln(3)}{1 - 0} = ln(2) - ln(3)
   \end{equation*}
 
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       1 & ln(2) \\
       2 & 0
     \end{array}
@@ -602,34 +602,35 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
+       
       -2 & ln(2) \\
-      0 & - ln(2)
+      0 & ln(3) - ln(2)
     \end{array}
     \right\}
-    \frac{- ln(2) - ln(2)}{0 - (-2)} = - ln(2)
+    \frac{ln(3) - ln(2) - ln(2)}{0 - (-2)} = \frac{ln(3) - 2ln(2)}{2}
+    = \frac{1}{2} ln(\frac{3}{4})
   \end{equation*}
   
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      -1 & - ln(2) \\
-      1 & ln(2)
+       
+      -1 & ln(3) - ln(2) \\
+      1 & ln(2) - ln(3)
     \end{array}
     \right\}
-    \frac{ln(2) - (-ln(2))}{1 - (-1)} = ln(2)
+    \frac{ln(2) - ln(3) - (ln(3) - ln(2))}{1 - (-1)} = \frac{2 ln(2) - 2 ln(3)}{2}
   \end{equation*}
 
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      0 & ln(2) \\
+       
+      0 & ln(2) - ln(3) \\
       2 & - ln(2) 
     \end{array}
     \right\}
-    \frac{- ln(2) - ln(2)}{2 - 0} = - ln(2)
+    \frac{- ln(2) - (ln(2) - ln(3) }{2 - 0} = \frac{ln(3) - 2 ln(2)}{2}
   \end{equation*}
 
   \textit{Troisième étape :}
@@ -637,23 +638,31 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      -2 & - ln(2) \\
-      1 & ln(2) 
+       
+      -2 & \frac{ln(3) - 2ln(2)}{2} \\
+      1 & \frac{2 ln(2) - 2 ln(3)}{2}
     \end{array}
     \right\}
-    \frac{ln(2) - (-ln(2))}{1 - (-2)} = \frac{2ln(2)}{3}
+    \frac{\frac{2 ln(2) - 2ln(3)}{2} - \frac{ln(3) - 2 ln(2)}{2}}{1 -
+      (-2)} =
+    \frac{\frac{4 ln(2) - 3ln(3)}{2}}{3}
+    = \frac{ 4 ln(2) - 3 ln(3)}{6}
+    = \frac{1}{6} ln(\frac{16}{27})   
   \end{equation*}
 
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      -1 & ln(2) \\
-      2 & - ln(2) 
+       
+      -1 & \frac{2 ln(2) - 2ln(3)}{2} \\
+      2 & \frac{ln(3) - 2ln(2)}{2}
     \end{array}
     \right\}
-    \frac{- ln(2) - ln(2)}{2 - (-1)} = - \frac{2ln(2)}{3}
+    \frac{\frac{ln(3) - 2ln(2)}{2} - \frac{2 ln(2) - 2 ln(3)}{2}}{2 -
+      (-1)} =
+    \frac{\frac{3 ln(3) - 4 ln(2)}{2}}{3}
+    = \frac{ 3 ln(3) - 4 ln(2)}{6}
+    = \frac{1}{6} ln(\frac{27}{16})
   \end{equation*}
 
   \textit{Quatrième étape :}
@@ -661,66 +670,66 @@ Maintenant on peut calculer $p(x)$ :
   \begin{equation*}
     \left.
     \begin{array}{ll}
-      x_i & y_i \\
-      -2 &  \frac{2ln(2)}{3} \\
-      2 & - \frac{2ln(2)}{3}
+       
+      -2 & \frac{ 4 ln(2) - 3 ln(3)}{6} \\
+      2 & \frac{ 3 ln(3) - 4 ln(2)}{6}
     \end{array}
     \right\}
-    \frac{- \frac{2ln(2)}{3} - \frac{2ln(2)}{3}}{2 - (-2)} = -
-    \frac{\frac{4ln(2)}{3}}{4} = - \frac{ln(2)}{3}
+    \frac{\frac{3 ln(3) - 4 ln(2)}{6} - \frac{ 4 ln(2) - 3 ln(3)}{6}}{2 -
+      (-2)} =
+    \frac{\frac{6 ln(3) - 8 ln(2)}{6}}{4}
+    = \frac{ 3 ln(3) - 4 ln(2)}{12}
+    = \frac{1}{12}ln(\frac{27}{16})
   \end{equation*}
 
-  \underline{Essayons de calculer q:}
+  \underline{Essayons de calculer q:} (je n'ai pas eu le temps de
+  corriger mes erreurs donc vous pouvez sauter à l'exo 4)
 
   \begin{equation*}
     \begin{split}
       q(x) & = 0 \\
       & + ln(2) (x - (-2)) \\
-      & - ln(2) (x - (-2)) (x - (-1)) \\
-      & + \frac{2ln(2)}{3} (x - (-2)) (x - (-1)) (x - 0) \\
-      & - \frac{ln(2)}{3} (x - (-2)) (x - (-1)) (x - 0) (x - 1) \\
+      & + \frac{ln(3) - 2 ln(2)}{2} (x - (-2)) (x - (-1)) \\
+      & + \frac{ 4 ln(2) - 3 ln(3)}{6} (x - (-2)) (x - (-1)) (x - 0) \\
+      & + \frac{ 3 ln(3) - 4 ln(2)}{12}(x - (-2)) (x - (-1)) (x - 0) (x -
+      1) \\
       q(x) & = ln(2) (x + 2) \\
-      & - ln(2) (x + 2) (x + 1) \\
-      & + \frac{2ln(2)}{3} (x + 2) (x + 1) x \\
-      & - \frac{ln(2)}{3} (x + 2) (x + 1) x (x - 1) \\
+      & + \frac{ln(3) - 2 ln(2)}{2} (x + 2) (x + 1) \\
+      & + \frac{ 4 ln(2) - 3 ln(3)}{6} (x + 2) (x + 1) x \\
+      & + \frac{ 3 ln(3) - 4 ln(2)}{12} (x + 2) (x + 1) x (x - 1) \\
       q(x) & = ln(2) (x + 2) \\
-      & - ln(2) (x^2 + x + 2x + 2) \\
-      & + \frac{2ln(2)}{3} (x^2 + x + 2x + 2) x \\
-      & - \frac{ln(2)}{3} (x^2 + x + 2x + 2) x (x - 1) \\
+      & + \frac{ln(3) - 2 ln(2)}{2} (x^2 + x + 2x + 2) \\
+      & + \frac{ 4 ln(2) - 3 ln(3)}{6} (x^2 + x + 2x + 2) x \\
+      & + \frac{ 3 ln(3) - 4 ln(2)}{12} (x^2 + x + 2x + 2) x (x - 1) \\
       q(x) & = ln(2) (x + 2) \\
-      & - ln(2) (x^2 + 3x + 2) \\
-      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
-      & - \frac{ln(2)}{3} (x^3 + 3x^2 + 2x) (x - 1) \\
+      & + \frac{ln(3) - 2 ln(2)}{2} (x^2 + 3x + 2) \\
+      & + \frac{ 4 ln(2) - 3 ln(3)}{6} (x^3 + 3x^2 + 2x) \\
+      & + \frac{ 3 ln(3) - 4 ln(2)}{12} (x^3 + 3x^2 + 2x) (x - 1) \\
       q(x) & = ln(2) (x + 2) \\
-      & - ln(2) (x^2 + 3x + 2) \\
-      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
-      & - \frac{ln(2)}{3} (x^4 + 3x^3 + 2x^2 - x^3 - 3x^2 - 2x) \\
-      q(x) & = ln(2) (x + 2) \\
-      & - ln(2) (x^2 + 3x + 2) \\
-      & + \frac{2ln(2)}{3} (x^3 + 3x^2 + 2x) \\
-      & - \frac{ln(2)}{3} (x^4 + 2x^3 - x^2 - 2x) \\
-      q(x) & = ln(2)x + 2ln(2) \\
-      & - ln(2)x^2 - 3ln(2)x - 2ln(2) \\
-      & + \frac{2ln(2)}{3}x^3 + \frac{6ln(2)}{3}x^2 + \frac{4ln(2)}{3}x \\
-      & - \frac{ln(2)}{3}x^4 - \frac{2ln(2)}{3}x^3 + \frac{ln(2)}{3}x^2 + \frac{2ln(2)}{3}x \\
+      & + \frac{ln(3) - 2 ln(2)}{2} (x^2 + 3x + 2) \\
+      & + \frac{ 4 ln(2) - 3 ln(3)}{6} (x^3 + 3x^2 + 2x) \\
+      & + \frac{ 3 ln(3) - 4 ln(2)}{12} (x^4 + 3x^3 + 2x^2 - x^3 - 3x^2 -
+      2x)
     \end{split}
   \end{equation*}
 
   \begin{equation*}
     \begin{split}
-      q(x) & = - \frac{ln(2)}{3}x^4 \\
-      & + \frac{2ln(2)}{3}x^3 - \frac{2ln(2)}{3}x^3 \\
-      & - ln(2)x^2 + \frac{6ln(2)}{3}x^2 + \frac{ln(2)}{3}x^2 \\
-      & + ln(2)x - 3ln(2)x + \frac{4ln(2)}{3}x + \frac{2ln(2)}{3}x  \\
-      & + 2ln(2) - 2ln(2) \\
-      q(x) & = - \frac{ln(2)}{3}x^4 \\
-      & - \frac{3ln(2) - 6ln(2) - ln(2)}{3}x^2 \\
-      & + \frac{3ln(2) - 9ln(2) + 4ln(2) + 2ln(2)}{3}x  \\
-      q(x) & = - \frac{ln(2)}{3}x^4 + \frac{4ln(2)}{3}x^2 \\
+      q(x) & = ln(2) (x + 2) \\
+      & + \frac{ln(\frac{3}{4})}{2} (x^2 + 3x + 2) \\
+      & + \frac{ln(\frac{2}{3})}{2} (x^3 + 3x^2 + 2x) \\
+      & + \frac{ln(\frac{3}{2})}{4} (x^4 + 2x^3 - x^2 -
+      2x) \\
+      q(x) & = ln(2)x + 2ln(2) \\
+      & + \frac{ln(\frac{3}{4}) x^2 + 3 ln(\frac{3}{4}) x + 2 ln(\frac{3}{4})}{2}\\
+      & + \frac{ln(\frac{2}{3}) x^3 + 3 ln(\frac{2}{3}) x^2 + 2
+        ln(\frac{2}{3}) x}{2} \\
+      & + \frac{ln(\frac{3}{2}) x^4 + 2 ln(\frac{3}{2}) x^3 -
+        ln(\frac{3}{2}) x^2 - 2 ln(\frac{3}{2}) x}{4} \\
     \end{split}
   \end{equation*}
 
-\item Différence entre $q$ et $p$ :
+\item Différence entre $q$ et $p$ : (avec la fausse equation de $q$)
 
   \begin{equation*}
     \begin{split}
@@ -1789,6 +1798,10 @@ Et pour tout $t >= 0$ :
 \section*{Annexe}
 
 \textbf{BOUTON NICOLAS}
+
+\lstinputlisting{src/myfunc.sci}
+
+\newpage
 
 \lstinputlisting{src/exo1.sci}
 
