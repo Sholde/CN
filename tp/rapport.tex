@@ -18,32 +18,100 @@
 \item Voir la fonction \textbf{pointgauche} dans le fichier
   "exo1.sci".
 
+  \underline{Calcul :}
+
+  \begin{equation*}
+    I \approx h \sum_{i = 0}^{n-1}{f(a + ih)}
+  \end{equation*}
+
+
   \underline{Explication du code :}
   \begin{itemize}
     \item Le code est trivial et bien commenté.
   \end{itemize}
   
-  \underline{Résultat numérique :}
+  \underline{Résultat numérique :} \newline
+  Pour l'appel de fonction suivant : \newline
+  \textbf{res = pointgauche(0, 10, mysquare, 100);} \newline
+  où :
+  \begin{itemize}
+  \item \textbf{0} correspond au début de l'intervale
+  \item \textbf{10} correspond à la fin de l'intervale
+  \item \textbf{mysquare} correspond à la fonction $x^2$ qui se trouve
+    dans \newline "myfunc.sci"
+  \item \textbf{100} correspond au nombre de pas
+  \end{itemize}
 
+  On obtient : \textbf{res = 328.35}
   
 \item Voir la fonction \textbf{trapeze} dans le fichier "exo1.sci".
 
+  \underline{Calcul :}
+
+  \begin{equation*}
+    I \approx h \left( \frac{1}{2} f(a) + \sum_{i = 1}^{n-1}{f(a + ih)} + \frac{1}{2} f(b) \right)
+  \end{equation*}
+
   \underline{Explication du code :}
   \begin{itemize}
     \item Le code est trivial et bien commenté.
   \end{itemize}
   
-  \underline{Résultat numérique :}
+  \underline{Résultat numérique :} \newline
+  Pour l'appel de fonction suivant : \newline
+  \textbf{res = trapeze(0, 10, mysquare, 100);} \newline
+  où :
+  \begin{itemize}
+  \item \textbf{0} correspond au début de l'intervale
+  \item \textbf{10} correspond à la fin de l'intervale
+  \item \textbf{mysquare} correspond à la fonction $x^2$ qui se trouve
+    dans \newline "myfunc.sci"
+  \item \textbf{100} correspond au nombre de pas
+  \end{itemize}
+
+  On obtient : \textbf{res = 333.35}
 
 \item Voir la fonction \textbf{int\_simpson} dans le fichier
   "exo1.sci".
 
-    \underline{Explication du code :}
+  \underline{Calcul :}
+
+  \begin{equation*}
+    \begin{split}
+      I \approx & \frac{h}{6} \left[ f(a) + 2 \left( \sum_{i = 1}^{n - 1}
+        {f(a + ih)} \right) + f(b) \right. \\
+        + & \left. 4 \left( \sum_{i = 0}^{n - 1} {f \left(a + \left(i +
+        \frac{1}{2} \right)h \right) } \right)
+        \right]
+    \end{split}
+  \end{equation*}
+
+  \underline{Explication du code :}
   \begin{itemize}
-    \item A faire
+  \item La boucle contenant \textbf{somme\_a\_ih} calcul la somme :
+    \begin{equation*}
+      \sum_{i = 1}^{n - 1} f(a + ih)
+    \end{equation*}
+  \item La boucle contenant \textbf{somme\_a\_i2h} calcul la somme :
+    \begin{equation*}
+      \sum_{i = 0}^{n - 1} f(a + (i + \frac{1}{2})h)
+    \end{equation*}
   \end{itemize}
   
-  \underline{Résultat numérique :}
+  \underline{Résultat numérique :} \newline
+  Pour l'appel de fonction suivant : \newline
+  \textbf{res = int\_simpson(0, 10, mysquare, 100);} \newline
+  où :
+  \begin{itemize}
+  \item \textbf{0} correspond au début de l'intervale
+  \item \textbf{10} correspond à la fin de l'intervale
+  \item \textbf{mysquare} correspond à la fonction $x^2$ qui se trouve
+    dans \newline "myfunc.sci"
+  \item \textbf{100} correspond au nombre de pas
+  \end{itemize}
+
+  On obtient : \textbf{res = 333.33333}
+
 
 \item Voir la fonction \textbf{sin\_pi\_x} dans le fichier
   "exo1.sci".\newline 

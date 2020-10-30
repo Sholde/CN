@@ -63,25 +63,25 @@ function [res] = int_simpson(a, b, func, N)
 	 res = res + func(a);
 	 
 	 // Calcul de la somme f(x_k)
-	 somme_x_k = 0;
+	 somme_a_ih = 0;
 	 
 	 for i = 1:N-1
-	     somme_x_k = somme_x_k + func(a + i * h);
+	     somme_a_ih = somme_a_ih + func(a + i * h);
 	 end
 
-	 res = res + 2 * somme_x_k;
+	 res = res + 2 * somme_a_ih;
 
 	 // Ajoute f(b) au résultat
 	 res = res + func(b);
 
 	 // Calcul de la some f(a + (i + 1/2) * h)
-	 somme_akh = 0;
+	 somme_a_i2h = 0;
 
 	 for i = 0:(N - 1)
-	     somme_akh = somme_akh + func(a + (i + 1 / 2) * h);
+	     somme_a_i2h = somme_a_i2h + func(a + (i + 1 / 2) * h);
 	 end
 
-	 res = res + 4 * somme_akh;
+	 res = res + 4 * somme_a_i2h;
 
 	 // Multiplication final
 	 res = res * h_6;
