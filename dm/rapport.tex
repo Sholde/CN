@@ -1,7 +1,7 @@
 \documentclass{article}
 
 % Package
-
+\usepackage{amsmath}
 
 % Title information
 \title{DM Calcul Numérique}
@@ -12,6 +12,326 @@
 
 \maketitle
 
+% Exercice 1
+\section*{Exercice 1}
 
+\begin{enumerate}
+
+  % Question 1
+\item 
+
+  Utilisons l'interpolation lagragienne.\newline
+  On a :
+  $$ f(t) \approx p(t) $$
+
+  On veut maintenant approcher l'intégrale de f, on va donc utilisé
+  l'intégrale du polynôme de lagrange :
+
+  \begin{equation*}
+    \int_a^b {f(t) dt} \approx \int_a^b {p(t) dt}
+  \end{equation*}
+
+  Et on a :
+
+  \begin{equation*}
+    \int_a^b {p(t) dt} = \sum_{i = 1}^{n} {f(t_i)w_i}
+  \end{equation*}
+
+  Avec \textbf{n} le nombre de point et $w_i$ :
+
+  \begin{equation*}
+    w_i = \int_a^b {L_i(t)dt}
+  \end{equation*}
+
+Essayons donc de calculer les polynôme de Lagrange associés aux points
+: \newline
+0, $\frac{1}{3}$, $\frac{2}{3}$, 1.
+
+% L0 avec le point 0
+\underline{Point $x = 0$ :}
+\begin{equation*}
+  \begin{split}
+    L_0 = & \frac{(x - \frac{1}{3}) (x - \frac{2}{3}) (x - 1)}
+    {(0 - \frac{1}{3}) (0 - \frac{2}{3}) (0 - 1)} \\
+    = & \frac{(x^2 - \frac{2}{3}x - \frac{1}{3}x + \frac{2}{6}) (x - 1)}
+    {(- \frac{2}{9})} \\
+    = & \frac{(x^3 - x^2 + \frac{2}{6}x) - (x^2 - x + \frac{2}{6}) }
+    {(- \frac{2}{9})} \\
+    = & \frac{(x^3 - 2x^2 + \frac{8}{6}x - \frac{2}{6}) }
+    {(- \frac{2}{9})} \\
+    = & - \frac{ 9 (x^3 - 2x^2 + \frac{8}{6}x - \frac{2}{6}) }
+    {2} \\
+  \end{split}
+\end{equation*}
+
+% L1 avec le point 1/3
+\underline{Point $x = \frac{1}{3}$ :}
+\begin{equation*}
+  \begin{split}
+    L_1 = & \frac{(x - 0) (x - \frac{2}{3}) (x - 1)}
+    {(\frac{1}{3} - 0 ) (\frac{1}{3} - \frac{2}{3}) (\frac{1}{3} - 1)}
+    \\
+    = & \frac{(x^2 - \frac{2}{3}x) (x - 1)}
+    {(\frac{1}{3}) (- \frac{1}{3}) (- \frac{2}{3})} \\
+    = & \frac{(x^3 - \frac{2}{3}x^2) - (x^2 - \frac{2}{3}x)}
+    {(\frac{2}{27})} \\
+    = & \frac{(x^3 - \frac{5}{3}x^2 + \frac{2}{3}x)}
+    {(\frac{2}{27})} \\
+    = & \frac{27 (x^3 - \frac{5}{3}x^2 + \frac{2}{3}x)}
+    {2} \\
+  \end{split}
+\end{equation*}
+
+
+% L2 avec le point 2/3
+\underline{Point $x = \frac{2}{3}$ :}
+\begin{equation*}
+  \begin{split}
+    L_2 = & \frac{(x - 0) (x - \frac{1}{3}) (x - 1)}
+    {(\frac{2}{3} - 0 ) (\frac{2}{3} - \frac{1}{3}) (\frac{2}{3} - 1)}
+    \\
+    = & \frac{(x^2 - \frac{1}{3}x) (x - 1)}
+    {(\frac{2}{3}) (\frac{1}{3}) (- \frac{1}{3})}
+    \\
+    = & \frac{(x^3 - \frac{1}{3}x^2) - (x^2 - \frac{1}{3}x)}
+    {- \frac{2}{27}}
+    \\
+    = & \frac{(x^3 - \frac{4}{3}x^2 + \frac{1}{3}x)}
+    {- \frac{2}{27}}
+    \\
+    = & - \frac{27 (x^3 - \frac{4}{3}x^2 + \frac{1}{3}x)}
+    {2}
+    \\
+  \end{split}
+\end{equation*}
+
+% L3 avec le point 1
+\underline{Point $x = 1$ :}
+\begin{equation*}
+  \begin{split}
+    L_3 = & \frac{(x - 0) (x - \frac{1}{3}) (x - \frac{2}{3})}
+    {(1 - 0 ) (1 - \frac{1}{3}) (1 - \frac{2}{3})}
+    \\
+    = & \frac{(x^2 - \frac{1}{3} x) (x - \frac{2}{3})}
+    {(\frac{2}{3}) (\frac{1}{3})}
+    \\
+    = & \frac{(x^3 - \frac{1}{3} x^2) - (\frac{2}{3}x^2 - \frac{2}{3}\frac{1}{3} x)}
+    {(\frac{2}{9})}
+    \\
+    = & \frac{(x^3 - x^2 + \frac{2}{9} x)}
+    {(\frac{2}{9})}
+    \\
+    = & \frac{ 9 (x^3 - x^2 + \frac{2}{9} x)}
+    {2}
+    \\
+  \end{split}
+\end{equation*}
+
+Calculons maintenant leurs intégrale :
+
+% I(L0) avec le point 0
+\underline{Point $x = 0$ :}
+\begin{equation*}
+  \begin{split}
+    \int_0^1 {L_0(t)dt} = & \int_0^1 {- \frac{ 9 (t^3 - 2t^2 +
+        \frac{8}{6}t - \frac{2}{6}) } {2} dt} \\
+    = & - \frac{9}{2} \int_0^1 {\left(t^3 - 2t^2 +
+      \frac{8}{6}t - \frac{2}{6} \right)  dt} \\
+    = & - \frac{9}{2} \left[ \frac{1}{4}t^4 - \frac{2}{3}t^3 +
+      \frac{8}{12}t^2 - \frac{2}{6}t  \right]_0^1 \\
+    = & - \frac{9}{2} \left(\frac{1}{4} * 1^4 - \frac{2}{3} * 1^3 +
+    \frac{8}{12} * 1^2 - \frac{2}{6} * 1 \right)  \\
+    = & - \frac{9}{2} \left(\frac{1}{4} - \frac{2}{3} +
+    \frac{8}{12} - \frac{2}{6} \right)  \\
+    = & - \frac{9}{2} \left(\frac{3}{12} - \frac{8}{12} +
+    \frac{8}{12} - \frac{4}{12} \right)  \\
+    = & - \frac{9}{2} \left(- \frac{1}{12} \right)  \\
+    = & \frac{9}{24} \\
+    = & \frac{3}{8}
+  \end{split}
+\end{equation*}
+
+% I(L1) avec le point 1/3
+\underline{Point $x = \frac{1}{3}$ :}
+\begin{equation*}
+  \begin{split}
+    \int_0^1 {L_1(t) dt} = & \int_0^1 {\frac{27 (t^3 - \frac{5}{3}t^2 + \frac{2}{3}t)}
+      {2} dt} \\
+    = & \frac{27}{2} \int_0^1 { \left( t^3 - \frac{5}{3}t^2 + \frac{2}{3}t \right) 
+      dt} \\
+    = & \frac{27}{2} \left[ \left( \frac{1}{4}t^4 - \frac{5}{9}t^3 +
+      \frac{2}{6}t^2 \right) \right]_0^1 \\
+    = & \frac{27}{2} \left( \frac{1}{4} - \frac{5}{9} + \frac{2}{6} \right)  \\
+    = & \frac{27}{2} \left( \frac{9}{36} - \frac{20}{36} + \frac{12}{36} \right)  \\
+    = & \frac{27}{2} \left(  \frac{1}{36} \right)  \\
+    = & \frac{27}{72} \\
+    = & \frac{3}{7}
+  \end{split}
+\end{equation*}
+
+% I(L2) avec le point 2/3
+\underline{Point $x = \frac{2}{3}$ :}
+\begin{equation*}
+  \begin{split}
+    \int_0^1 {L_2(t) dt} = & \int_0^1 {- \frac{27 (t^3 - \frac{4}{3}t^2 + \frac{1}{3}t)}
+    {2} dt }
+    \\
+    = & - \frac{27}{2} \int_0^1 { \left( t^3 - \frac{4}{3}t^2 +
+      \frac{1}{3}t \right) dt }
+    \\
+    = & - \frac{27}{2} \left[ \frac{1}{4}t^4 - \frac{4}{9}t^3 +
+      \frac{1}{6}t^2 \right]_0^1
+    \\
+    = & - \frac{27}{2} \left( \frac{1}{4} - \frac{4}{9} + \frac{1}{6} \right) 
+    \\
+    = & - \frac{27}{2} \left( \frac{9}{36} - \frac{16}{36} +
+    \frac{6}{36} \right)
+    \\
+    = & - \frac{27}{2} \left( - \frac{1}{36} \right) 
+    \\
+    = & \frac{27}{72}
+    \\
+    = & \frac{3}{7}
+    \\
+  \end{split}
+\end{equation*}
+
+% I(L3) avec le point 1
+\underline{Point $x = 1$ :}
+\begin{equation*}
+  \begin{split}
+    \int_0^1 {L_3(t) dt} = & \int_0^1 {\frac{ 9 (t^3 - t^2 + \frac{2}{9} t)}
+    {2} dt}
+    \\
+    = & \frac{9}{2} \int_0^1 { \left(t^3 - t^2 + \frac{2}{9} t \right) dt}
+    \\
+    = & \frac{9}{2} \left[ \frac{1}{4}t^4 - \frac{1}{3}t^3 +
+      \frac{2}{18} t^2 \right]_0^1
+    \\
+    = & \frac{9}{2} \left(\frac{1}{4} - \frac{1}{3} +
+      \frac{2}{18} \right)
+    \\
+    = & \frac{9}{2} \left( \frac{9}{36} - \frac{12}{36} +
+      \frac{4}{36} \right)
+    \\
+    = & \frac{9}{2} \left( \frac{1}{36} \right)
+    \\
+    = & \frac{1}{7}
+    \\
+  \end{split}
+\end{equation*}
+
+\underline{Résultat :}
+
+\begin{equation*}
+    w_0 = \frac{3}{8},
+    w_1 = \frac{3}{7},
+    w_2 = \frac{3}{7},
+    w_3 = \frac{1}{7}
+\end{equation*}
+
+
+\end{enumerate}
+
+% Exercice 2
+\section*{Exercice 2}
+
+\begin{enumerate}
+
+  % Question 1
+\item
+
+  \begin{enumerate}
+
+    % Question a
+  \item
+
+    D'après la méthode de Gauss-Legendre on a :
+    \begin{equation*}
+      w_i = \frac{2}{(1 - x_i^2) P'_n(x_i)^2}
+    \end{equation*}
+
+    Ici on a $n = 3$, donc on a la formule suivante :
+
+    \begin{equation*}
+      P_3(x) = \frac{1}{2} (5x^3 - 3x)
+    \end{equation*}
+
+    Et sa dérivé est donc :
+
+    \begin{equation*}
+      P'_3(x) = \frac{1}{2} (15x^2 - 3)
+    \end{equation*}
+
+    \underline{Nous pouvons désormais calculé les $wi$ :} \newline
+
+    $i = 0, x_0 = 0 :$
+    
+    \begin{equation*}
+      \begin{split}
+        w_0 = & \frac{2}{(1 - 0^2) \left( \frac{1}{2} (15* 0^2 -
+          3) \right)^2} \\
+        = & \frac{2}{\left( \frac{1}{2} (- 3) \right)^2} \\
+        = & \frac{2}{\frac{9}{4}} \\
+        = & \frac{8}{9}
+      \end{split}
+    \end{equation*}
+
+    $i = 1, x_1 = \frac{1}{3} :$
+
+    \begin{equation*}
+      \begin{split}
+        w_1 = & \frac{2}{(1 - \frac{1}{3}^2) \left( \frac{1}{2} (15*
+          \frac{1}{3}^2 - 3) \right)^2} \\
+        = & \frac{2}{(1 - \frac{1}{9}) \left( \frac{1}{2} (15*
+          \frac{1}{9} - 3) \right)^2} \\
+        = & \frac{2}{(\frac{8}{9}) \left( \frac{1}{2} (\frac{5}{3} -
+          3) \right)^2} \\
+        = & \frac{2}{(\frac{8}{9}) \left( \frac{1}{2} (- \frac{4}{3})
+          \right)^2} \\
+        = & \frac{2}{(\frac{8}{9}) \left(- \frac{4}{6} \right)^2} \\
+        = & \frac{2}{(\frac{8}{9}) \left(- \frac{2}{3} \right)^2} \\
+        = & \frac{2}{(\frac{8}{9}) \left(\frac{4}{9} \right)} \\
+        = & \frac{2}{(\frac{32}{81}) } \\
+        = & \frac{162}{32} \\
+        = & \frac{81}{16}
+      \end{split}
+    \end{equation*}
+
+    $i = 2, x_2 = \frac{2}{3} :$
+
+    \begin{equation*}
+      \begin{split}
+        w_2 = & \frac{2}{(1 - \frac{2}{3}^2) \left( \frac{1}{2} (15*
+          \frac{2}{3}^2 - 3) \right)^2} \\
+        = & \frac{2}{(1 - \frac{4}{9}) \left( \frac{1}{2} (15*
+          \frac{4}{9} - 3) \right)^2} \\
+        = & \frac{2}{(\frac{5}{9}) \left( \frac{1}{2} (\frac{20}{3} -
+          3) \right)^2} \\
+        = & \frac{2}{(\frac{5}{9}) \left( \frac{1}{2} (- \frac{10}{3})
+          \right)^2} \\
+        = & \frac{2}{(\frac{5}{9}) \left(- \frac{10}{6} \right)^2} \\
+        = & \frac{2}{(\frac{5}{9}) \left(- \frac{5}{3} \right)^2} \\
+        = & \frac{2}{(\frac{5}{9}) \left(\frac{25}{9} \right)} \\
+        = & \frac{2}{(\frac{125}{81}) } \\
+        = & \frac{162}{125}
+      \end{split}
+    \end{equation*}
+
+    $i = 3, x_3 = 1 :$
+
+    \begin{equation*}
+      \begin{split}
+        w_3 = & \frac{2}{(1 - 1^2) \left( \frac{1}{2} (15* 1^2 -
+          3) \right)^2} \\
+        = & 0
+      \end{split}
+    \end{equation*}
+
+
+  \end{enumerate}
+
+  
+\end{enumerate}
 
 \end{document}
