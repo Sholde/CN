@@ -239,16 +239,20 @@ Calculons maintenant leurs intégrale :
 \item \underline{Formule de quadrature :}
 
   \begin{equation*}
-    \int_{x_k}^{x_{k+1}} {f(x) dx} \approx \sum_{i = 0}^4 {w_i f\left(
-    i * \frac{x_{k + 1} - x_k}{N - 1} \right)}
+    \int_{x_k}^{x_{k+1}} {f(x) dx} \approx \sum_{i = 0}^3 {w_i f\left(
+    i * \frac{x_{k + 1} - x_k}{3} \right)}
   \end{equation*}
 
 
   % Question 4
 \item \underline{Formule composite :}
   \begin{equation*}
-    \int_a^b {f(x) dx} \approx \sum_{k = 0}^{N - 1}{\int_{x_k}^{x_{k +
-          1}}{f(x) dx}}
+    \begin{split}
+      \int_a^b {f(x) dx} & \approx \sum_{k = 0}^{N - 1}{\int_{x_k}^{x_{k +
+            1}}{f(x) dx}} \\
+      & \approx \sum_{k = 0}^{N - 1}{\sum_{i = 0}^3 {w_i f\left(
+          i * \frac{x_{k + 1} - x_k}{3} \right)}}
+      \end{split}
   \end{equation*}
 
   % Question 5
@@ -268,9 +272,33 @@ Calculons maintenant leurs intégrale :
   \item \textbf{res} : résultat de l'intégrale $\int_a^b {f(x) dx}$
   \end{itemize}
 
-  \underline{Explication du code :}
+  \underline{Explication du code :} \newline
+  
+  \begin{itemize}
+  \item Pour moi $x_k = k * \frac{b - a}{N}$
+  \item Le reste est triviale
+  \end{itemize}
 
-  \underline{Résultat numérique :}
+  \underline{Résultat numérique :} \newline\newline
+  \underline{1er test :} \textbf{fourpoints(0, 1, 1, mysquare)}
+
+  \begin{itemize}
+  \item $ a = 0 $
+  \item $ b = 1 $
+  \item $ N = 1 $
+  \item f : mysquare fonction $f(x) = x^2$
+  \item \textbf{résultat :} $0.3333333$
+  \end{itemize}
+
+  \underline{2ème test :} \textbf{fourpoints(0, 1, 10, mysquare)}
+
+  \begin{itemize}
+  \item $ a = 0 $
+  \item $ b = 1 $
+  \item $ N = 10 $
+  \item f : mysquare fonction $f(x) = x^2$
+  \item \textbf{résultat :} $0.0333333$
+  \end{itemize}
 
 \end{enumerate}
 
