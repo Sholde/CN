@@ -237,21 +237,64 @@ Calculons maintenant leurs intégrale :
   
   % Question 3
 \item \underline{Formule de quadrature :}
-
+  Faisons un changement de variable. \newline
+  On a $x = \frac{t - x_k}{x_{k + 1} - x_k}$ donc $t = (x (x_{k + 1} -
+  x_k) + x_k )$
+  
   \begin{equation*}
-    \int_{x_k}^{x_{k+1}} {f(x) dx} \approx \sum_{i = 0}^3 {w_i f\left(
-    i * \frac{x_{k + 1} - x_k}{3} \right)}
+    \begin{split}
+      \int_{x_k}^{x_{k+1}} {f(x) dx} & \approx (x_{k + 1} - x_k) \int_0^1
+          {f(x (x_{k + 1} - x_k) + x_k ) dx} \\
+          & \approx (x_{k + 1} - x_k) \\
+          & * \left[ w_0 f( (x_{k +1} - x_k)
+            0 + x_k) \right. \\
+          & + w_1 f\left( (x_{k +1} - x_k)
+            \frac{1}{3} + x_k \right) \\
+          & + w_2 f\left( (x_{k +1} - x_k)
+            \frac{2}{3} + x_k \right) \\
+          & + \left. w_3 f\left( (x_{k +1} - x_k)
+            1 + x_k \right) \right]\\
+          & \approx (x_{k + 1} - x_k) \\
+          & * \left[ \frac{1}{8} f( (x_{k +1} - x_k)
+            0 + x_k) \right. \\
+          & + \frac{3}{8} f\left( (x_{k +1} - x_k)
+            \frac{1}{3} + x_k \right) \\
+          & + \frac{3}{8} f\left( (x_{k +1} - x_k)
+            \frac{2}{3} + x_k \right) \\
+          & + \left. \frac{1}{8} f\left( (x_{k +1} - x_k)
+            1 + x_k \right) \right] \\
+          & \approx \frac{(x_{k + 1} - x_k)}{8} \left[ f(x_k) + 3
+            f\left( \frac{1}{3} x_{k + 1} + \frac{2}{3} x_k \right)
+            \right.\\
+          & + \left. 3 f\left( \frac{2}{3} x_{k + 1} + \frac{1}{3} x_k
+            \right) + f(x_{k + 1}) \right]
+    \end{split}
   \end{equation*}
 
 
   % Question 4
 \item \underline{Formule composite :}
+
+  On a $x_k = a + kh$ et $h = \frac{b - a}{N}$
+  
   \begin{equation*}
     \begin{split}
-      \int_a^b {f(x) dx} & \approx \sum_{k = 0}^{N - 1}{\int_{x_k}^{x_{k +
-            1}}{f(x) dx}} \\
-      & \approx \sum_{k = 0}^{N - 1}{\sum_{i = 0}^3 {w_i f\left(
-          i * \frac{x_{k + 1} - x_k}{3} \right)}}
+      \int_a^b {f(x) dx} & \approx \sum_{k = 0}^{N - 1}{\int_{x_k}^{x_{k + 1}}{f(x) dx}} \\
+      & \approx \sum_{k = 0}^{N - 1} h \frac{(x_{k + 1} - x_k)}{8} \left[ f(x_k) + 3
+          f\left( \frac{1}{3} x_{k + 1} + \frac{2}{3} x_k \right)
+          \right. \\
+      & \left . + 3 f\left( \frac{2}{3} x_{k + 1} + \frac{1}{3} x_k
+          \right) + f(x_{k + 1}) \right] \\
+      & \approx \sum_{k = 0}^{N - 1} h \frac{(a * (k + 1)h - a - kh)}{8} \left[ f(x_k) + 3
+          f\left( \frac{1}{3} x_{k + 1} + \frac{2}{3} x_k \right)
+          \right. \\
+      & \left . + 3 f\left( \frac{2}{3} x_{k + 1} + \frac{1}{3} x_k
+          \right) + f(x_{k + 1}) \right] \\
+      & \approx \sum_{k = 0}^{N - 1} \frac{h}{8} \left[ f(x_k) + 3
+          f\left( \frac{1}{3} x_{k + 1} + \frac{2}{3} x_k \right)
+          \right. \\
+      & \left . + 3 f\left( \frac{2}{3} x_{k + 1} + \frac{1}{3} x_k
+          \right) + f(x_{k + 1}) \right]
       \end{split}
   \end{equation*}
 
@@ -290,14 +333,25 @@ Calculons maintenant leurs intégrale :
   \item \textbf{résultat :} $0.3333333$
   \end{itemize}
 
-  \underline{2ème test :} \textbf{fourpoints(0, 1, 10, mysquare)}
+  \underline{2ème test :} \textbf{fourpoints(0, 10, 1, mysquare)}
 
   \begin{itemize}
   \item $ a = 0 $
-  \item $ b = 1 $
-  \item $ N = 10 $
+  \item $ b = 10 $
+  \item $ N = 1 $
   \item f : mysquare fonction $f(x) = x^2$
-  \item \textbf{résultat :} $0.0333333$
+  \item \textbf{résultat :} $0.3333333$
+  \end{itemize}
+
+  \underline{3ème test :} \textbf{fourpoints(0, 100, 1, mypolynome)}
+
+  \begin{itemize}
+  \item $ a = 0 $
+  \item $ b = 100 $
+  \item $ N = 1 $
+  \item f : mypolynome fonction $f(x) = - \frac{1}{3} x^3 +
+    \frac{67}{4} x^2 + 7$
+  \item \textbf{résultat :} $-2749300.0$
   \end{itemize}
 
 \end{enumerate}
