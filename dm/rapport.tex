@@ -356,6 +356,8 @@ Calculons maintenant leurs intégrale :
 
 \end{enumerate}
 
+\newpage
+
 % Exercice 2
 \section*{Exercice 2}
 
@@ -369,15 +371,335 @@ Calculons maintenant leurs intégrale :
     % Question a
   \item
 
+    $S_f$ est un polynôme de degré inférieur ou égale à 3.\newline
+    Donc $S_f''$ est un polynôme de degré inférieur ou égale à
+    1.\newline
+    On connait deux point :
+
+    \begin{itemize}
+    \item au point $x_k$ : $S_f''(x_k) = M_k$
+    \item au point $x_{k + 1}$ : $S_f''(x_{k + 1}) = M_{k + 1}$
+    \end{itemize}
+
+    Et on sait que $h = \frac{b - a}{N}$ \newline
+
+    Donc on peut appliquer la méthode de Lagrange : \newline
+
     \begin{equation*}
-      S''_f(x) = 
+      L_0 = \frac{(x - x_{k + 1})}{(x_k - x_{k + 1})}
     \end{equation*}
+
+    \begin{equation*}
+      L_1 = \frac{(x - x_k)}{(x_{k + 1} - x_k)}
+    \end{equation*}
+
+    \begin{equation*}
+      \begin{split}
+        S''_f(x) & = S_f''(x_k) L_0 + S_f''(x_{k + 1}) L_1 \\
+        & = M_k \frac{(x - x_{k + 1})}{(x_k - x_{k + 1})} + M_{k + 1}
+        \frac{(x - x_k)}{(x_{k + 1} - x_k)} \\
+        & = - \frac{M_k}{h} (x - x_{k + 1}) + 
+        \frac{M_{k + 1}}{h} (x - x_k)\\
+      \end{split}
+    \end{equation*}
+
+    car on a : $x_{k + 1} - x_k = a + (k + 1) h - (a + kh) = h$
 
     % Question b
   \item
 
+    On a :
+
+    \begin{equation*}
+        S''_f(x) = - \frac{M_k}{h} (x - x_{k + 1}) + 
+        \frac{M_{k + 1}}{h} (x - x_k)
+    \end{equation*}
+
+    En intégrant une fois on obtient :
+
+    \begin{equation*}
+      S'_f(x) = - \frac{M_k}{2h} (x - x_{k + 1})^2 + 
+      \frac{M_{k + 1}}{2h} (x - x_k)^2 + C
+    \end{equation*}
+
+    avec C une constante. \newline \newline
+
+    En intégrant une nouvelle fois on obtient ;
+
+    \begin{equation*}
+        S_f(x) = - \frac{M_k}{6h} (x - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x - x_k)^3 + Cx + D
+    \end{equation*}
+
+    avec D une constante. \newline \newline
+
+    Calculons $S_f(x_k)$ :
+
+    \begin{equation*}
+      \begin{split}
+        S_f(x_k) & = - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x_k - x_k)^3 + Cx_k + D \\
+        & = - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D
+      \end{split}
+    \end{equation*}
+
+    Calculons $S_f(x_{k + 1})$ :
+
+    \begin{equation*}
+      \begin{split}
+        S_f(x_{k + 1}) & = - \frac{M_k}{6h} (x_{k + 1} - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x_{k + 1} - x_k)^3 + Cx_{k + 1} + D \\
+        & = \frac{M_{k + 1}}{6h} (x_{k + 1} - x_k)^3 + Cx_{k + 1} + D \\
+      \end{split}
+    \end{equation*}
+
+    On a donc le système suivant :
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        \frac{M_{k + 1}}{6h} (x_{k + 1} - x_k)^3 + Cx_{k + 1} + D =
+        y_{k + 1}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        \frac{M_{k + 1}}{6h} (x_{k + 1} - x_k)^3 + Cx_{k + 1} + D -
+        \left (- \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D \right)
+        = y_{k + 1} - y_k\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        \frac{1}{6h} (M_{k + 1}(x_{k + 1} - x_k)^3 + M_k (x_k - x_{k +
+          1})^3) + C (x_{k + 1} - x_k) = y_{k + 1} - y_k\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        \frac{1}{6h} (M_{k + 1} h^3 + M_k (-h^3)) + C h = y_{k + 1} - y_k\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        C = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h^3 }{6 h^2} + \frac{M_k h^3}{6h^2}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        - \frac{M_k}{6h} (x_k - x_{k + 1})^3 + Cx_k + D = y_k \\
+        C = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h}{6} + \frac{M_k h}{6}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        C x_k + D = y_k + \frac{M_k}{6h} (x_k - x_{k + 1})^3\\
+        C = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h}{6} + \frac{M_k h}{6}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        C x_k + D = y_k - \frac{M_k h^2}{6}\\
+        C = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h}{6} + \frac{M_k h}{6}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        D = y_k - \frac{M_k h^2}{6} - (\frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h}{6} + \frac{M_k h}{6}) x_k\\
+        C = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+          + 1} h}{6} + \frac{M_k h}{6}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+    Maintenant remplaçons C et D par leurs valeurs :
+
+    \begin{equation*}
+      S_f(x) = - \frac{M_k}{6h} (x - x_{k + 1})^3 + 
+      \frac{M_{k + 1}}{6h} (x - x_k)^3 + C x + y_k - \frac{M_k h^2}{6} - C x_k\\
+    \end{equation*}
+
+    \begin{equation*}
+      \begin{split}
+        S_f(x) & = - \frac{M_k}{6h} (x - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x - x_k)^3 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) x \\
+        & + y_k - \frac{M_k h^2}{6} \\
+        & - \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) x_k\\
+      \end{split}
+    \end{equation*}
+
+    Donc on a :
+
+    \begin{equation*}
+      \begin{split}
+        S_f(x) & = - \frac{M_k}{6h} (x - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x - x_k)^3 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) (x - x_k) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+      \end{split}
+    \end{equation*}
+
+    Et on a :
+    
+    \begin{equation*}
+      \begin{split}
+        S_f(x) & = A_k (x - x_{k + 1})^3 + B_k (x - x_k)^3 + C_k (x -
+        x_k) + D_k \\
+      \end{split}
+    \end{equation*}
+
+    Finalement on trouve :
+
+    \begin{equation*}
+      \left\{
+      \begin{array}{l}
+        A_k = - \frac{M_k}{6h}\\
+        B_k = \frac{M_{k + 1}}{6h}\\
+        C_k = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6}\\
+        D_k = y_k - \frac{M_k h^2}{6}\\
+      \end{array}
+      \right.
+    \end{equation*}
+
+
     % Question c
   \item
+
+    Commencons par calculer $S_f'(x)$ les calculs seront plus faciles
+    avec :
+
+    \begin{equation*}
+      \begin{split}
+        S_f'(x) & = 3 A_k (x - x_{k + 1})^2 + 3 B_k (x - x_k)^2 + C_k
+        \\
+        & = - \frac{M_k}{2h} (x - x_{k + 1})^2 + 
+        \frac{M_{k + 1}}{2h} (x - x_k)^2 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) \\
+      \end{split}
+    \end{equation*}
+
+    Calculons maintenant $S_f'(x_k)$ :
+
+    \begin{equation*}
+      \begin{split}
+        S_f'(x_k) & = - \frac{M_k}{2h} (x_k - x_{k + 1})^2 + 
+        \frac{M_{k + 1}}{2h} (x_k - x_k)^2 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) \\
+        & = - \frac{M_k}{2h} h^2 + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) \\
+        & = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h^2}{6h} + \frac{M_k h^2}{6h} - \frac{3 M_k h^2}{6h} \\
+        & = \frac{y_{k + 1} - y_k}{h} - \frac{h}{6} M_{k + 1} -
+        \frac{h}{3} M_k \\
+      \end{split}
+    \end{equation*}
+
+    Calculons maintenant $S_f'(x_{k - 1})$ : \newline \newline
+
+    Si on pose $k = k -1$ on a l'équation suivante :
+
+    \begin{equation*}
+      \begin{split}
+        S_f'(x_{k - 1}) & = \frac{y_k - y_{k - 1}}{h} - \frac{h}{6} M_k -
+        \frac{h}{3} M_{k - 1} \\
+      \end{split}
+    \end{equation*}
+
+    Comme on a poser $k = k - 1$ ici, on doit s'assurer que $1 \le k$
+    car sinon on aurait un k négatif. Et évidemment $k \le N - 1$ car
+    sinon $k + 1 > N$. \newline \newline
+
+    Supposons maintenant que $h$ est très petit, c'est-à-dire que la
+    différence des dérivé de $S_f'(x_k)$ et $S_f'(x_{k - 1})$ est
+    quasiment nulle. On peut donc dire que $S_f'(x_k) = S_f'(x_{k -
+      1})$. Et on a :
+
+    \begin{equation*}
+      \begin{split}
+        S_f'(x_k) & = S_f'(x_{k - 1}) \\
+        \frac{y_{k + 1} - y_k}{h} - \frac{h}{6} M_{k + 1} -
+        \frac{h}{3} M_k
+        & = \frac{y_k - y_{k - 1}}{h} - \frac{h}{6} M_k -
+        \frac{h}{3} M_{k - 1} \\
+        \frac{y_{k + 1} - y_k}{h} - \frac{y_k - y_{k - 1}}{h}
+        & =  - \frac{h}{6} M_k - \frac{h}{3} M_{k - 1}
+        + \frac{h}{6} M_{k + 1} + \frac{h}{3} M_k\\
+        \frac{y_{k + 1} - 2 y_k + y_{k - 1}}{h}
+        & =  - \frac{h}{6} M_k - \frac{2h}{6} M_{k - 1}
+        + \frac{h}{6} M_{k + 1} + \frac{2h}{6} M_k\\
+        6 \frac{y_{k + 1} - 2 y_k + y_{k - 1}}{h}
+        & =  - h M_k - 2h M_{k - 1}
+        + h M_{k + 1} + 2h M_k\\
+      \end{split}
+    \end{equation*}
+
+    Il faut calculer $S_f(x_{k - 1})$ et $S_f''(x_{k - 1})$.
+
+    \begin{equation*}
+      \begin{split}
+        S_f''(x_{k - 1}) & = - \frac{M_k}{h} (x_{k - 1} - x_{k + 1}) + 
+        \frac{M_{k + 1}}{h} (x_{k - 1} - x_k)\\
+        M_{k - 1} & = - \frac{M_k}{h} (-2h) + 
+        \frac{M_{k + 1}}{h} (-h)\\
+        M_{k - 1} & = 2 M_k - M_{k + 1}\\
+      \end{split}
+    \end{equation*}
+
+    \begin{equation*}
+      \begin{split}
+        S_f(x_{k - 1}) & = - \frac{M_k}{6h} (x_{k - 1} - x_{k + 1})^3 + 
+        \frac{M_{k + 1}}{6h} (x_{k - 1} - x_k)^3 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) (x_{k - 1} - x_k) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+        S_f(x_{k - 1}) & = - \frac{M_k}{6h} (- 2h)^3 + 
+        \frac{M_{k + 1}}{6h} (-h)^3 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) (-h) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+      \end{split}
+    \end{equation*}
 
   \end{enumerate}
 
@@ -386,7 +708,14 @@ Calculons maintenant leurs intégrale :
   
 \end{enumerate}
 
+\newpage
+
 % Exercice 3
 \section*{Ecercice 3}
+
+\newpage
+
+% Annexe
+\section*{Annexe}
 
 \end{document}
