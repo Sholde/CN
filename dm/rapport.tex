@@ -682,7 +682,6 @@ Calculons maintenant leurs intégrale :
         \frac{M_{k + 1}}{h} (x_{k - 1} - x_k)\\
         M_{k - 1} & = - \frac{M_k}{h} (-2h) + 
         \frac{M_{k + 1}}{h} (-h)\\
-        M_{k - 1} & = 2 M_k - M_{k + 1}\\
       \end{split}
     \end{equation*}
 
@@ -701,6 +700,58 @@ Calculons maintenant leurs intégrale :
       \end{split}
     \end{equation*}
 
+    Donc cela nous ramène à :
+    
+    \begin{equation*}
+      \begin{split}
+        S_f(x_{k - 1}) & = - \frac{M_k}{6h} (- 2h) (2h)^2 + 
+        \frac{M_{k + 1}}{6h} (-h) (h)^2 \\
+        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
+            + 1} h}{6} + \frac{M_k h}{6} \right) (-h) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+        y_{k - 1} & = - \frac{M_k}{h} (- 2h) \frac{(2h)^2}{6} + 
+        \frac{M_{k + 1}}{h} (-h) \frac{(h)^2}{6} \\
+        & - \left( y_{k + 1} - y_k - \frac{M_{k
+            + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+        y_{k - 1} & = \left( - \frac{M_k}{h} (- 2h) - \frac{M_k}{h} (-
+        2h) 4 + \frac{M_{k + 1}}{h} (-h) \right) \frac{(h)^2}{6} \\
+        & - \left( y_{k + 1} - y_k - \frac{M_{k
+            + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+        y_{k - 1} & = \left( - \frac{M_k}{h} (- 2h) + \frac{M_{k + 1}}{h} (-h) - \frac{M_k}{h} (-
+        2h) 4 \right) \frac{(h)^2}{6} \\
+        & - \left( y_{k + 1} - y_k - \frac{M_{k
+            + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
+        & + y_k - \frac{M_k h^2}{6} \\
+      \end{split}
+    \end{equation*}
+
+    Et on voit la relation de $M_{k - 1}$
+
+    \begin{equation*}
+      \begin{split}
+        y_{k - 1} & = \frac{M_{k - 1} h^2}{6} + \frac{8 M_k h^2}{6} \\
+        & - y_{k + 1} + 2 y_k + \frac{M_{k
+            + 1} h^2}{6} - \frac{2 M_k h^2}{6} \\
+      \end{split}
+    \end{equation*}
+
+    Après réarangement :
+
+    \begin{equation*}
+      \begin{split}
+        y_{k - 1} & = - y_{k + 1} + 2 y_k + \frac{M_{k
+            + 1} h^2}{6} - \frac{2 M_k h^2}{6} + \frac{M_{k - 1}
+          h^2}{6} + \frac{8 M_k h^2}{6} \\
+        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{M_{k
+            + 1} h^2}{6} + \frac{6 M_k h^2}{6} + \frac{M_{k - 1}
+          h^2}{6} \\
+        6 \frac{y_{k + 1} + y_{k - 1} - 2 y_k}{h^2} & = M_{k + 1}
+        + 6 M_k + M_{k - 1}\\
+      \end{split}
+    \end{equation*}
+    
   \end{enumerate}
 
   % Question 2
