@@ -1,9 +1,15 @@
 // Exercice 2
 
+//****************************************************************************
+
+// Fonction test
 function [res] = test(x)
-	 res = (- x^3 / 3 + 5 * x^2 - 4 * x - 6);
+	 res = x^2 - 3;
 endfunction
 
+//****************************************************************************
+
+// Calcul de y_k+1 + y_k-1 - 2y_k
 function [res] = calcul_y(func, a, k, h)
 	 // Initialisation du résultat
 	 res = 0;
@@ -13,11 +19,14 @@ function [res] = calcul_y(func, a, k, h)
 	 res = res - 2 * func(a + k * h);
 endfunction
 
+//****************************************************************************
+
+// Calcul des moments
 function [res] = moments(func, a, b, N)
 	 // Calcul de h et h^2
 	 h = (b - a) / N;
 	 h2 = h * h;
-	 
+
 	 // Initialisation du tableau des moments
 	 res = zeros(N - 1);
 	 res(1) = 0;
@@ -47,11 +56,14 @@ function [res] = moments(func, a, b, N)
 	 // Calcul des Mk
 	 for i = 1:(N - 1)
 	     for k = 1:(N - 1)
-	     	 res(k) = A(k, i) * u(k);
+	     	 res(k) = A(i, k) * u(k);
 	     end
 	 end
 endfunction
 
+//****************************************************************************
+
+// Calcul de Sf
 function [res] = interpol(M, func, a, b, N, x)
 	 // Initialisation du résultat
 	 res = 0;
@@ -84,7 +96,7 @@ function [res] = interpol(M, func, a, b, N, x)
 	 Bk = M(k + 1) / (6 * h);
 
 	 // Calcul de Ck
-	 Ck = (func(x_k1) - func(x_k)) / h + Ak + Bk;
+	 Ck = (func(x_k1) - func(x_k)) / h - Bk - Ak;
 
 	 // Calcul de Dk
 	 Dk = func(x_k) - (M(k) * h^2) / 6;

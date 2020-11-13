@@ -1,7 +1,59 @@
-\documentclass{article}
-
-% Package
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[document]{ragged2e}
 \usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\lstset{
+  aboveskip=3mm,
+  belowskip=-2mm,
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{red},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  framexleftmargin=16pt,
+  framextopmargin=3pt,
+  framexbottommargin=6pt,
+  frame=tb,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  language=scilab,
+  literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1,
+  morekeywords={*,...},
+  numbers=left,
+  numbersep=10pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{gray},
+  tabsize=4,
+  title=\lstname,
+}
 
 % Title information
 \title{DM Calcul Numérique}
@@ -318,11 +370,10 @@ Calculons maintenant leurs intégrale :
   \underline{Explication du code :} \newline
   
   \begin{itemize}
-  \item Pour moi $x_k = k * \frac{b - a}{N}$
-  \item Le reste est triviale
+  \item Le code est triviale et commenté
   \end{itemize}
 
-  \underline{Résultat numérique :} \newline\newline
+  \underline{Résultat numérique :} \newline
   \underline{1er test :} \textbf{fourpoints(0, 1, 1, mysquare)}
 
   \begin{itemize}
@@ -422,7 +473,7 @@ Calculons maintenant leurs intégrale :
       \frac{M_{k + 1}}{2h} (x - x_k)^2 + C
     \end{equation*}
 
-    avec C une constante. \newline \newline
+    avec C une constante. \newline
 
     En intégrant une nouvelle fois on obtient ;
 
@@ -431,7 +482,7 @@ Calculons maintenant leurs intégrale :
         \frac{M_{k + 1}}{6h} (x - x_k)^3 + Cx + D
     \end{equation*}
 
-    avec D une constante. \newline \newline
+    avec D une constante. \newline
 
     Calculons $S_f(x_k)$ :
 
@@ -550,7 +601,7 @@ Calculons maintenant leurs intégrale :
 
     \begin{equation*}
       S_f(x) = - \frac{M_k}{6h} (x - x_{k + 1})^3 + 
-      \frac{M_{k + 1}}{6h} (x - x_k)^3 + C x + y_k - \frac{M_k h^2}{6} - C x_k\\
+      \frac{M_{k + 1}}{6h} (x - x_k)^3 + C x + y_k - \frac{M_k h^2}{6} - C x_k
     \end{equation*}
 
     \begin{equation*}
@@ -605,7 +656,7 @@ Calculons maintenant leurs intégrale :
   \item
 
     Il faut calculer $S_f(x_{k - 1})$ et $S_f''(x_{k -
-      1})$. \newline \newline
+      1})$. \newline
 
     Commencons par calculer $S_f''(x_{k - 1})$ :
 
@@ -690,7 +741,7 @@ Calculons maintenant leurs intégrale :
     \end{equation*}
 
     Posons $u_k = 6 \frac{y_{k + 1} + y_{k - 1} - 2
-      y_k}{6}$ \newline \newline
+      y_k}{6}$ \newline
 
     On a donc :
 
@@ -698,7 +749,7 @@ Calculons maintenant leurs intégrale :
       u_k = M_{k + 1} + 4  M_k + M_{k - 1}
     \end{equation*}
 
-    avec $1 \le k \le n - 1$ \newline \newline
+    avec $1 \le k \le n - 1$ \newline
 
     Ce qui nous donne le système linéaire suivant :
 
@@ -754,8 +805,97 @@ Calculons maintenant leurs intégrale :
     
 
     % Question 2
-\item 
+  \item
+
+    \underline{Nom de la fontion :} \textbf{calcul\_y} \newline
+    
+    \underline{Paramètre d'entrées :}
+    \begin{itemize}
+    \item \textbf{func} : fonction f
+    \item \textbf{a} : borne inférieur de l'intervale
+    \item \textbf{k} : nombre de pas en cours
+    \item \textbf{h} : le pas
+    \end{itemize}
+
+    \underline{Paramètre de sortie :}
+    \begin{itemize}
+    \item \textbf{res} : $y_{k + 1} + y_{k - 1} - 2 y_k$
+    \end{itemize}
+
+    \underline{Nom de la fontion :} \textbf{moments} \newline
+    
+    \underline{Paramètre d'entrées :}
+    \begin{itemize}
+    \item \textbf{func} : fonction f
+    \item \textbf{a} : borne inférieur de l'intervale
+    \item \textbf{b} : borne supérieur de l'intervale
+    \item \textbf{N} : nombre de pas
+    \end{itemize}
+
+    \underline{Paramètre de sortie :}
+    \begin{itemize}
+    \item \textbf{res} : vecteur de tous les moments $M_k$ avec $1 \le
+      k \le n - 1$
+    \end{itemize}
+
+    \underline{Explication du code :} \newline
+    
+    \begin{itemize}
+    \item Le code est triviale et commenté
+    \end{itemize}
+
+    \underline{Résultat numérique :} \newline
+    \underline{1er test :} \textbf{moments(test, 0, 1, 10)}
+
+    \begin{itemize}
+    \item test : fonction test
+    \item $ a = 0 $
+    \item $ b = 1 $
+    \item $ N = 10 $
+    \item \textbf{résultat :} 
+    \end{itemize}
+
+    Je ne sais pas ce qu'elle doit retourner pour cette appelle ...
   
+    \underline{Nom de la fontion :} \textbf{interpol} \newline
+    
+    \underline{Paramètre d'entrées :}
+    \begin{itemize}
+    \item \textbf{M} : vecteur des moments $M_k$
+    \item \textbf{func} : fonction f
+    \item \textbf{a} : borne inférieur de l'intervale
+    \item \textbf{b} : borne supérieur de l'intervale
+    \item \textbf{N} : nombre de pas
+    \item \textbf{x} : point x où il faut calculer la fonction
+    \end{itemize}
+
+    \underline{Paramètre de sortie :}
+    \begin{itemize}
+    \item \textbf{res} : $S_f$
+    \end{itemize}
+
+    \underline{Explication du code :} \newline
+    
+    \begin{itemize}
+    \item Le code est triviale et commenté
+    \end{itemize}
+
+    \underline{Résultat numérique :} \newline
+    \underline{1er test :} \textbf{interpol(moments(test, 0, 1, 10), test,
+      0, 1, 10, 0)}
+
+    \begin{itemize}
+    \item \textbf{moments(test, 0, 1, 10)} : appel à la fonction \textbf{moments}
+    \item test : fonction test
+    \item $ a = 0 $
+    \item $ b = 1 $
+    \item $ N = 10 $
+    \item $x = 0$
+    \item \textbf{résultat :} 
+    \end{itemize}
+
+    Je ne sais pas ce qu'elle doit retourner pour cette appelle ...
+
 \end{enumerate}
 
 \newpage
@@ -767,5 +907,13 @@ Calculons maintenant leurs intégrale :
 
 % Annexe
 \section*{Annexe}
+
+\textbf{BOUTON NICOLAS}
+
+\lstinputlisting{src/exo1.sci}
+
+\newpage
+
+\lstinputlisting{src/exo2.sci}
 
 \end{document}
