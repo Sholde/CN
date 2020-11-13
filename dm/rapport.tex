@@ -604,77 +604,10 @@ Calculons maintenant leurs intégrale :
     % Question c
   \item
 
-    Commencons par calculer $S_f'(x)$ les calculs seront plus faciles
-    avec :
+    Il faut calculer $S_f(x_{k - 1})$ et $S_f''(x_{k -
+      1})$. \newline \newline
 
-    \begin{equation*}
-      \begin{split}
-        S_f'(x) & = 3 A_k (x - x_{k + 1})^2 + 3 B_k (x - x_k)^2 + C_k
-        \\
-        & = - \frac{M_k}{2h} (x - x_{k + 1})^2 + 
-        \frac{M_{k + 1}}{2h} (x - x_k)^2 \\
-        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
-            + 1} h}{6} + \frac{M_k h}{6} \right) \\
-      \end{split}
-    \end{equation*}
-
-    Calculons maintenant $S_f'(x_k)$ :
-
-    \begin{equation*}
-      \begin{split}
-        S_f'(x_k) & = - \frac{M_k}{2h} (x_k - x_{k + 1})^2 + 
-        \frac{M_{k + 1}}{2h} (x_k - x_k)^2 \\
-        & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
-            + 1} h}{6} + \frac{M_k h}{6} \right) \\
-        & = - \frac{M_k}{2h} h^2 + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
-            + 1} h}{6} + \frac{M_k h}{6} \right) \\
-        & = \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
-            + 1} h^2}{6h} + \frac{M_k h^2}{6h} - \frac{3 M_k h^2}{6h} \\
-        & = \frac{y_{k + 1} - y_k}{h} - \frac{h}{6} M_{k + 1} -
-        \frac{h}{3} M_k \\
-      \end{split}
-    \end{equation*}
-
-    Calculons maintenant $S_f'(x_{k - 1})$ : \newline \newline
-
-    Si on pose $k = k -1$ on a l'équation suivante :
-
-    \begin{equation*}
-      \begin{split}
-        S_f'(x_{k - 1}) & = \frac{y_k - y_{k - 1}}{h} - \frac{h}{6} M_k -
-        \frac{h}{3} M_{k - 1} \\
-      \end{split}
-    \end{equation*}
-
-    Comme on a poser $k = k - 1$ ici, on doit s'assurer que $1 \le k$
-    car sinon on aurait un k négatif. Et évidemment $k \le N - 1$ car
-    sinon $k + 1 > N$. \newline \newline
-
-    Supposons maintenant que $h$ est très petit, c'est-à-dire que la
-    différence des dérivé de $S_f'(x_k)$ et $S_f'(x_{k - 1})$ est
-    quasiment nulle. On peut donc dire que $S_f'(x_k) = S_f'(x_{k -
-      1})$. Et on a :
-
-    \begin{equation*}
-      \begin{split}
-        S_f'(x_k) & = S_f'(x_{k - 1}) \\
-        \frac{y_{k + 1} - y_k}{h} - \frac{h}{6} M_{k + 1} -
-        \frac{h}{3} M_k
-        & = \frac{y_k - y_{k - 1}}{h} - \frac{h}{6} M_k -
-        \frac{h}{3} M_{k - 1} \\
-        \frac{y_{k + 1} - y_k}{h} - \frac{y_k - y_{k - 1}}{h}
-        & =  - \frac{h}{6} M_k - \frac{h}{3} M_{k - 1}
-        + \frac{h}{6} M_{k + 1} + \frac{h}{3} M_k\\
-        \frac{y_{k + 1} - 2 y_k + y_{k - 1}}{h}
-        & =  - \frac{h}{6} M_k - \frac{2h}{6} M_{k - 1}
-        + \frac{h}{6} M_{k + 1} + \frac{2h}{6} M_k\\
-        6 \frac{y_{k + 1} - 2 y_k + y_{k - 1}}{h}
-        & =  - h M_k - 2h M_{k - 1}
-        + h M_{k + 1} + 2h M_k\\
-      \end{split}
-    \end{equation*}
-
-    Il faut calculer $S_f(x_{k - 1})$ et $S_f''(x_{k - 1})$.
+    Commencons par calculer $S_f''(x_{k - 1})$ :
 
     \begin{equation*}
       \begin{split}
@@ -682,8 +615,11 @@ Calculons maintenant leurs intégrale :
         \frac{M_{k + 1}}{h} (x_{k - 1} - x_k)\\
         M_{k - 1} & = - \frac{M_k}{h} (-2h) + 
         \frac{M_{k + 1}}{h} (-h)\\
+        M_{k - 1} & = 2 M_k - M_{k + 1} \\
       \end{split}
     \end{equation*}
+
+    Maintenant calculons $S_f(x_{k - 1})$ :
 
     \begin{equation*}
       \begin{split}
@@ -704,36 +640,16 @@ Calculons maintenant leurs intégrale :
     
     \begin{equation*}
       \begin{split}
-        S_f(x_{k - 1}) & = - \frac{M_k}{6h} (- 2h) (2h)^2 + 
-        \frac{M_{k + 1}}{6h} (-h) (h)^2 \\
+        S_f(x_{k - 1}) & = \frac{8 M_k h^2}{6} - 
+        \frac{M_{k + 1} h^2}{6}\\
         & + \left( \frac{y_{k + 1}}{h} - \frac{y_k}{h} - \frac{M_{k
             + 1} h}{6} + \frac{M_k h}{6} \right) (-h) \\
         & + y_k - \frac{M_k h^2}{6} \\
-        y_{k - 1} & = - \frac{M_k}{h} (- 2h) \frac{(2h)^2}{6} + 
-        \frac{M_{k + 1}}{h} (-h) \frac{(h)^2}{6} \\
+        y_{k - 1} & = \frac{8 M_k h^2}{6} - 
+        \frac{M_{k + 1} h^2}{6}\\
         & - \left( y_{k + 1} - y_k - \frac{M_{k
             + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
         & + y_k - \frac{M_k h^2}{6} \\
-        y_{k - 1} & = \left( - \frac{M_k}{h} (- 2h) - \frac{M_k}{h} (-
-        2h) 4 + \frac{M_{k + 1}}{h} (-h) \right) \frac{(h)^2}{6} \\
-        & - \left( y_{k + 1} - y_k - \frac{M_{k
-            + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
-        & + y_k - \frac{M_k h^2}{6} \\
-        y_{k - 1} & = \left( - \frac{M_k}{h} (- 2h) + \frac{M_{k + 1}}{h} (-h) - \frac{M_k}{h} (-
-        2h) 4 \right) \frac{(h)^2}{6} \\
-        & - \left( y_{k + 1} - y_k - \frac{M_{k
-            + 1} h^2}{6} + \frac{M_k h^2}{6} \right) \\
-        & + y_k - \frac{M_k h^2}{6} \\
-      \end{split}
-    \end{equation*}
-
-    Et on voit la relation de $M_{k - 1}$
-
-    \begin{equation*}
-      \begin{split}
-        y_{k - 1} & = \frac{M_{k - 1} h^2}{6} + \frac{8 M_k h^2}{6} \\
-        & - y_{k + 1} + 2 y_k + \frac{M_{k
-            + 1} h^2}{6} - \frac{2 M_k h^2}{6} \\
       \end{split}
     \end{equation*}
 
@@ -742,19 +658,102 @@ Calculons maintenant leurs intégrale :
     \begin{equation*}
       \begin{split}
         y_{k - 1} & = - y_{k + 1} + 2 y_k + \frac{M_{k
-            + 1} h^2}{6} - \frac{2 M_k h^2}{6} + \frac{M_{k - 1}
+            + 1} h^2}{6} - \frac{2 M_k h^2}{6} - \frac{M_{k + 1}
           h^2}{6} + \frac{8 M_k h^2}{6} \\
-        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{M_{k
-            + 1} h^2}{6} + \frac{6 M_k h^2}{6} + \frac{M_{k - 1}
-          h^2}{6} \\
-        6 \frac{y_{k + 1} + y_{k - 1} - 2 y_k}{h^2} & = M_{k + 1}
-        + 6 M_k + M_{k - 1}\\
+        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{6 M_k h^2}{6} \\
+        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{4 M_k h^2}{6} + \frac{2 M_k h^2}{6}\\
       \end{split}
     \end{equation*}
-    
+
+    Or on a :
+
+    \begin{equation*}
+      \begin{split}
+        M_{k - 1} & = 2 M_k - M_{k + 1} \\
+        2 M_k & =M_{k + 1} + M_{k - 1} \\
+      \end{split}
+    \end{equation*}
   \end{enumerate}
 
-  % Question 2
+  Donc on a :
+
+    \begin{equation*}
+      \begin{split}
+        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{4 M_k h^2}{6} +
+        \frac{(M_{k + 1} + M_{k - 1}) h^2}{6}\\
+        y_{k + 1} + y_{k - 1} - 2 y_k & = \frac{4 M_k h^2}{6} +
+        \frac{M_{k + 1} h^2}{6} + \frac{M_{k - 1} h^2}{6}\\
+        6 \frac{y_{k + 1} + y_{k - 1} - 2 y_k}{h^2} & = M_{k + 1} + 4
+        M_k + M_{k - 1} \\
+        M_{k + 1} + 4  M_k + M_{k - 1} & = 6 \frac{y_{k + 1} + y_{k - 1} - 2 y_k}{h^2} \\
+      \end{split}
+    \end{equation*}
+
+    Posons $u_k = 6 \frac{y_{k + 1} + y_{k - 1} - 2
+      y_k}{6}$ \newline \newline
+
+    On a donc :
+
+    \begin{equation*}
+      u_k = M_{k + 1} + 4  M_k + M_{k - 1}
+    \end{equation*}
+
+    avec $1 \le k \le n - 1$ \newline \newline
+
+    Ce qui nous donne le système linéaire suivant :
+
+    \begin{equation*}
+      \begin{split}
+        \left[
+          \begin{array}{lllllllll}
+            4 & 1 & 0 & . & . & . & 0 & 0 & 0 \\
+            1 & 4 & 1 & . & . & . & 0 & 0 & 0 \\
+            0 & 1 & 4 & . & . & . & 0 & 0 & 0 \\
+            . & . & . & . &   &   & . & . & . \\
+            . & . & . &   & . &   & . & . & . \\
+            . & . & . &   &   & . & . & . & . \\
+            0 & 0 & 0 & . & . & . & 4 & 1 & 0 \\
+            0 & 0 & 0 & . & . & . & 1 & 4 & 1 \\
+            0 & 0 & 0 & . & . & . & 0 & 1 & 4 \\
+          \end{array}
+          \right]
+        \left[
+          \begin{array}{l}
+            M_1 \\
+            M_2 \\
+            M_3 \\
+            .   \\
+            .   \\
+            .   \\
+            M_{n-3} \\
+            M_{n-2} \\
+            M_{n-1} \\
+          \end{array}
+          \right]
+        & =
+        \left[
+          \begin{array}{l}
+            u_1 \\
+            u_2 \\
+            u_3 \\
+            .   \\
+            .   \\
+            .   \\
+            u_{n-3} \\
+            u_{n-2} \\
+            u_{n-1} \\
+          \end{array}
+          \right] \\
+        AM &= U
+      \end{split}
+    \end{equation*}
+
+    Avec M un vecteur qui représente tous les $M_k$ \newline
+    et un vecteur U qui représente tout les $u_k$ \newline
+    avec $1 \le k \le n - 1$.
+    
+
+    % Question 2
 \item 
   
 \end{enumerate}
