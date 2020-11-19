@@ -12,15 +12,31 @@
 Nous remarquons 3 chose :
 
 \begin{itemize}
-\item Augmentation du conditionnement avec la taille, ce qui implique
-  une réduction des chiffres significatifs des résultats
+\item Augmentation du conditionnement avec la taille
 \item Il faut considéré l'erreur arrière entaché du conditionnement
   pour avoir une approximation des résultats
 \item Nous manipulons des algorithmes avec certaines complexité qui
   peuvent être algorithmique ou bien de mémoire
 \end{itemize}
 
+Le code source se trouve dans \textbf{exo2.sci}.
+
 \section*{Exercice 3}
+
+Le produit \textbf{matrice x matrice} à une complexité cubique.
+Nous remarquons dans un premier temps que l'appel au fonction de
+\textbf{Scilab} pour des calculs \textbf{vecteur x vecteur} ou bien
+\textbf{vecteur x matrice} au lieu de déroulé nous même les bloucles
+est beaucoup plus performant. Il est d'autant plus performant si la
+taille des matrices est grandes. \textbf{Scilab} appelle des noyaux de
+calcul optimizé tel que blass. \newline
+
+\underline{Graphiques :} à faire
+
+\begin{itemize}
+\item Le code des fonction se trouve dans \textbf{opmat.sci}.
+\item Le code de test se trouve dans \textbf{exo3.sci}.
+\end{itemize}
 
 \section*{Annexe}
 
