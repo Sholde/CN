@@ -35,15 +35,15 @@ end
 // Plot
 xtitle("matmat3b", "n", "time");
 plot([10:5:100], t3);
-xs2png(0, "matmat3b.png");
+xs2png(0, "img/matmat3b.png");
 clf();
 
 xtitle("matmat2b", "n", "time");
 plot([10:5:100], t2);
-xs2png(0, "matmat2b.png");
+xs2png(0, "img/matmat2b.png");
 clf();
 
 xtitle("matmat1b", "n", "time");
 plot([10:5:100], t1);
-xs2png(0, "matmat1b.png");
+xs2png(0, "img/matmat1b.png");
 clf();
