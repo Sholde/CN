@@ -9,9 +9,9 @@ t2 = zeros(10);
 t1 = zeros(10);
 
 //
-for n = 10:10:100
+for n = 10:5:100
 
-i = n / 10;
+i = (n - 5) / 5;
 
 // Init matrix
 A = rand(n, n);
@@ -34,10 +34,16 @@ end
 
 // Plot
 xtitle("matmat3b", "n", "time");
-plot([10:10:100], t3);
+plot([10:5:100], t3);
+xs2png(0, "matmat3b.png");
+clf();
 
 xtitle("matmat2b", "n", "time");
-plot([10:10:100], t2);
+plot([10:5:100], t2);
+xs2png(0, "matmat2b.png");
+clf();
 
 xtitle("matmat1b", "n", "time");
-plot([10:10:100], t1);
+plot([10:5:100], t1);
+xs2png(0, "matmat1b.png");
+clf();
