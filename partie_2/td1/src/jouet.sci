@@ -1,6 +1,6 @@
 
 // Main function
-function jouet(n)
+function [f, b, c, b] = jouet(n)
 
 // Change format of floating point
 format("e", 16);
@@ -25,11 +25,10 @@ capa = cond(A);
 // Compute born
 born = capa * brelres;
 
-//
-disp("frelres :", frelres);
-disp("brelres :", brelres);
-disp("capa :", capa);
-disp("born :", born);
+f = frelres;
+b = brelres;
+c = capa;
+b = born;
 
 endfunction
 
