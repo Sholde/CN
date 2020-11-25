@@ -4,10 +4,10 @@ s = 10
 rand("seed", s);
 
 // Init vectors 
-U_ferrorb = zeros(11);
-U_berrorb = zeros(11);
-L_ferrorb = zeros(11);
-L_berrorb = zeros(11);
+U_ferrorb = zeros(10);
+U_berrorb = zeros(10);
+L_ferrorb = zeros(10);
+L_berrorb = zeros(10);
 
 // xdata
 xdata = [10:10:100];
@@ -23,7 +23,7 @@ for n = xdata
 	L = tril(A);
 	xex = rand(n, 1);
 	
-	b = A * xex;
+	b = U * xex;
 
 	// U
 	x = usolve(U, b);
@@ -32,7 +32,10 @@ for n = xdata
 	U_ferrorb(i) = norm(xex - x, 2) / norm(xex, 2);
 	U_berrorb(i) = norm(b - U * x, 2) / norm(b, 2);
 
-	// L
+
+	b = L * xex;
+
+        // L
 	x = lsolve(L, b);
 	
 	// error
