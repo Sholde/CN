@@ -77,19 +77,25 @@ Pour la fonction \textbf{matmat3b} :
 
 \includegraphics[scale=0.5]{img/matmat3b.png}
 
-On voit que la fonction suit une complexité \textbf{cubique}. \newline
+On voit que la fonction suit une complexité \textbf{cubique}, car
+\textbf{Scilab} n'appelle pas \textbf{BLAS} à cause du fait que nous
+avons déroulé 3 boucles. \newline
 
 Pour la fonction \textbf{matmat2b} :
 
 \includegraphics[scale=0.5]{img/matmat2b.png}
 
-On voit que la fonction suit une complexité \textbf{quadratique}. \newline
+On voit que la fonction suit une complexité \textbf{quadratique}, car
+\textbf{Scilab} appelle une fonction \textbf{vecteur x vecteur} de
+\textbf{BLAS} ce qui réduit l'orde de 1. \newline
 
 Pour la fonction \textbf{matmat1b} :
 
 \includegraphics[scale=0.5]{img/matmat1b.png}
 
-On voit que la fonction suit une complexité \textbf{linéaire}.\newline
+On voit que la fonction suit une complexité \textbf{linéaire}, car
+\textbf{Scilab} appelle une fonction \textbf{vecteur x matrice} de
+\textbf{BLAS} ce qui réduit l'ordre de 2. \newline
 
 \begin{itemize}
 \item Le code des fonction se trouve dans \textbf{opmat.sci}.
