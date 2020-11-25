@@ -36,8 +36,6 @@ Pour l'erreur relative avant :
 
 \includegraphics[scale=0.5]{img/frelres.png}
 
-On voit que l'erreur relative avant est très sensible suivant la
-taille de la matrice.
 
 \underline{Graphiques :} \newline
 
@@ -53,7 +51,13 @@ Pour les bornes :
 
 \includegraphics[scale=0.5]{img/born.png}
 
-Nous voyons que pour les autres graphiques la tailles n'influe pas. \newline
+On voit que les erreurs relatives avant et arrières, ainsi que le
+conditionnement de \textbf{A} et les bornes sont très sensible à la
+taille de la matrice. De plus on peut apercevoir que c'est courbe
+suivent une complexité logarithmique. En effet au début
+l'augmentation de la taille entraîne une augmentation du résultat,
+alors qu'a partir d'aune taille de \textbf{100 x 100} la courbe se
+stabilise. \newline
 
 Le code source se trouve dans \textbf{exo2.sci}.
 
