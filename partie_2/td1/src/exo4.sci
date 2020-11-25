@@ -4,18 +4,18 @@ s = 10
 rand("seed", s);
 
 // Init vectors 
-U_ferrorb = zeros(10);
-U_berrorb = zeros(10);
-L_ferrorb = zeros(10);
-L_berrorb = zeros(10);
+U_ferrorb = zeros(11);
+U_berrorb = zeros(11);
+L_ferrorb = zeros(11);
+L_berrorb = zeros(11);
 
 // xdata
-xdata = [1:10];
+xdata = [10:10:100];
 
 // Loop
 for n = xdata
 
-	i = n;
+        i = n / 10;
 	
 	// Init matrix
 	A = rand(n, n);
@@ -42,21 +42,21 @@ for n = xdata
 end
 
 xtitle("Forward relative result for U", "n", "ferrorb");
-plot(xdata, U_ferrorb);
+plot(xdata, log(U_ferrorb));
 xs2png(0, "img/U_ferrorb.png");
 clf();
 
 xtitle("Backward relative result for U", "n", "berrorb");
-plot(xdata, U_berrorb);
+plot(xdata, log(U_berrorb));
 xs2png(0, "img/U_berrorb.png");
 clf();
 
 xtitle("Forward relative result for L", "n", "ferrorb");
-plot(xdata, L_ferrorb);
+plot(xdata, log(L_ferrorb));
 xs2png(0, "img/L_ferrorb.png");
 clf();
 
 xtitle("Backward relative result for L", "n", "berrorb");
-plot(xdata, L_berrorb);
+plot(xdata, log(L_berrorb));
 xs2png(0, "img/L_berrorb.png");
 clf();
