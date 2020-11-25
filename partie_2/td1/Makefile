@@ -11,4 +11,4 @@ pdf:
 	mv $(tex_name).pdf $(pdf_name).pdf
 
 clean:
-	rm -Rf *~ *.aux *.log *.toc
+	rm -Rf *~ *.aux *.log *.toc *.out
