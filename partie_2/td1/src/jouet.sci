@@ -16,7 +16,7 @@ b = A * xex;
 x = A \ b;
 
 // Compute error
-frelres = norm(xex - x) / norm(x);
+frelres = norm(xex - x) / norm(xex);
 brelres = norm(b - A * x) / norm(b);
 
 // Cumpute condition
