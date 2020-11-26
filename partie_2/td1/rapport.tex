@@ -86,7 +86,8 @@ Pour la fonction \textbf{matmat2b} :
 
 On voit que la fonction suit une complexité \textbf{quadratique}, car
 \textbf{Scilab} appelle une fonction \textbf{vecteur x vecteur} de
-\textbf{BLAS} ce qui réduit l'orde de 1. \newline
+\textbf{BLAS} ce qui réduit l'orde de 1, ce qui augmente la
+rapidité. \newline
 
 Pour la fonction \textbf{matmat1b} :
 
@@ -94,7 +95,11 @@ Pour la fonction \textbf{matmat1b} :
 
 On voit que la fonction suit une complexité \textbf{linéaire}, car
 \textbf{Scilab} appelle une fonction \textbf{vecteur x matrice} de
-\textbf{BLAS} ce qui réduit l'ordre de 2. \newline
+\textbf{BLAS} ce qui réduit l'ordre de 2, ce qui augmente la
+rapidité. \newline
+
+A l'avenir on appellera directement les \textbf{BLAS 3} c'est-à-dire
+le produit \textbf{matrice x matrice} car le calcul est plus rapide.
 
 \begin{itemize}
 \item Le code des fonction se trouve dans \textbf{opmat.sci}.
