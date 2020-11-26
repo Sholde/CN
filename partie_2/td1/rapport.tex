@@ -110,25 +110,29 @@ le produit \textbf{matrice x matrice} car le calcul est plus rapide.
 
 \underline{Graphiques :} \newline
 
-Pour l'erreur relative avant pour la matrice supérieure :
+Pour l'erreur relative avant pour les 2 matrices :
 
-\includegraphics[scale=0.5]{img/U_ferrorb.png}
+\includegraphics[scale=0.5]{img/ferrorb.png}
 
-Pour l'erreur relative arrière pour la matrice supérieure :
+Pour l'erreur relative arrière pour les 2 matrices :
 
-\includegraphics[scale=0.5]{img/U_berrorb.png}
+\includegraphics[scale=0.5]{img/berrorb.png}
 
-Pour l'erreur relative avant pour la matrice inférieure :
+Pour le conditionnement des 2 matrices :
 
-\includegraphics[scale=0.5]{img/L_ferrorb.png}
+\includegraphics[scale=0.5]{img/condb.png}
 
-Pour l'erreur relative arrière pour la matrice inférieure :
+On sait que l'erreur relative avant est borné avec la formule suivante
+: \textbf{forward error $\le$ condition number x backward error} et
+donc cela explique pourquoi nos errerus relatives avant se
+dégrade très vite lorsque la taille augmente car le conditionnement
+augmente très vite et les résultats sont entaché par le
+conditionnement qui est quand à lui borné par la précision de la
+machine qui est ici $10^{-16}$. \newline
 
-\includegraphics[scale=0.5]{img/L_berrorb.png}
-
-Je ne comprends pas trop ces résultats. Car cela voudrait dire que
-l'erreur relative est \textbf{linéaire} et très élevé or cela n'a
-aucun sens.
+Donc après une certaine taille l'erreur relative avant n'est plus une
+erreur étant donné qu'il dépasse le plus petit nombre entier
+représentable qui est \textbf{1}.
 
 \section*{Annexe}
 
