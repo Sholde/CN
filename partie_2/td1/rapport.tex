@@ -139,6 +139,32 @@ Donc pour les erreurs relatives arrières, elles sont acceptables car
 elles sont inférieure à la précision machine qui est de
 $10^{-16}$. \newline
 
+\section*{Exercice 5}
+
+\underline{Graphiques :} \newline
+
+Pour les erreurs relatives :
+
+\includegraphics[scale=0.5]{img/gauss_error.png}
+
+Les erreurs relatives avant et arrières sont acceptables car elles
+sont inférieur à la précision machine qui est de $10^{-16}$. \newline
+
+Et on a toujours l'erreur avant qui est plus élevé que l'erreur
+arrière mais qui reste proportionnelle, c'est-à-dire que si l'une
+baisse ou augmente l'autre fait de même étant donné qu'on a la
+relation suivante qui borne l'erreur arrière : \newline
+\textbf{forward error $\le$ condition number x backward
+  error} \newline
+
+Pour le conditionnement :
+
+\includegraphics[scale=0.5]{img/gauss_cond.png}
+
+Le conditionnement pour une taille de matrice \textbf{100 x 100} est
+de $10^{10}$ ce qui peut donné un résultat avec au minimum une
+précision de $10^{6}$ avec une précision machine de $10^{16}$.\newline
+
 \section*{Annexe}
 
 Dépot github : \url{https://github.com/Sholde/CN/tree/master/partie_2}
