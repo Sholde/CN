@@ -141,6 +141,13 @@ $10^{-16}$. \newline
 
 \section*{Exercice 5}
 
+Complexité de la méthode de \textbf{Gauss} :
+
+\begin{itemize}
+\item en temps  : $\frac{2}{3} n^3$
+\item en espace : $O(n^2)$
+\end{itemize}
+
 \underline{Graphiques :} \newline
 
 Pour les erreurs relatives :
@@ -164,6 +171,27 @@ Pour le conditionnement :
 Le conditionnement pour une taille de matrice \textbf{100 x 100} est
 de $10^{10}$ ce qui peut donné un résultat avec au minimum une
 précision de $10^{6}$ avec une précision machine de $10^{16}$.\newline
+
+\section*{Exercice 6}
+
+Complexité de la méthode \textbf{LU} :
+
+\begin{itemize}
+\item en temps  : $\frac{2}{3} n^3$ (mais 1 seul fois car indépendant
+  du second menbre)
+\item en espace : $O(n^2)$ (forme compact)
+\end{itemize}
+
+Remarques sur le pivot :
+
+\begin{itemize}
+\item éviter les pivots proches de zéro au début, ce qui implique
+  d'utiliser des méthodes pour choisir les pivots
+\item on priviliegera généralement le \textbf{pivot partiel} si on
+  veut assurer une stabilité numérique, car le \textbf{pivot complet}
+  est trop couteux et le gain en stabilité n'est pas assez bon
+\end{itemize}
+
 
 \section*{Annexe}
 
