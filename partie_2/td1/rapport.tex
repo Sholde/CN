@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
 
 \title{TP Calcul Numérique}
 \author{Nicolas BOUTON}
@@ -193,6 +196,24 @@ Remarques sur le pivot :
   est trop couteux et le gain en stabilité n'est pas assez bon
 \end{itemize}
 
+\section*{TD 2}
+
+\subsection*{Exercice 1}
+
+\subsubsection*{Algortihme}
+
+\begin{algorithm} [H]
+  \SetAlgoLined
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$}
+  \KwResult{$LU \in \mathbb{R}^{n \cdot n}$}
+  
+  LU(1, 1) = $a_1$\;
+  \For{$i = 2:n$} {
+    LU(i, i) = $a_i - \frac{b_{i-1} c_{i-1}}{\pi_{i-1}}$\;
+  }
+    
+  \caption{Détermier la matrice LU compacte}
+\end{algorithm}
 
 \section*{Annexe}
 
