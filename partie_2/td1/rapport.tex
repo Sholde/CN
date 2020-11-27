@@ -209,11 +209,24 @@ Remarques sur le pivot :
   
   LU(1, 1) = $a_1$\;
   \For{$i = 2:n$} {
-    LU(i, i) = $a_i - \frac{b_{i-1} c_{i-1}}{\pi_{i-1}}$\;
+    // Compute $d_i$\;
+    LU(i, i) = $A(i, i) - \frac{A(i-2, i-1) A(i-1, i-2)}{LU(i-1,
+      i-1)}$\;
+    // Compute $c_i$\;
+    LU(i-1, i) = $A(i-1, i)$\;
+    // Compute $e_i$\;
+    LU(i, i-1) = $\frac{A(i, i-1)}{LU(i-1, i-1)}$\;
   }
-    
-  \caption{Détermier la matrice LU compacte}
+
+  \caption{Détermie la matrice compact LU}
 \end{algorithm}
+
+\subsubsection*{Complexité de l'algoritme}
+
+\begin{itemize}
+\item en temps : $n^3$
+\item en espace : $2n^2$
+\end{itemize}
 
 \section*{Annexe}
 
