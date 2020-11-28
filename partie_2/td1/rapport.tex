@@ -207,26 +207,43 @@ Remarques sur le pivot :
   \KwData{$A \in \mathbb{R}^{n \cdot n}$}
   \KwResult{$LU \in \mathbb{R}^{n \cdot n}$}
   
-  LU(1, 1) = $a_1$\;
+  $LU(1, 1) = A(1, 1)$\;
   \For{$i = 2:n$} {
     // Compute $d_i$\;
-    LU(i, i) = $A(i, i) - \frac{A(i-2, i-1) A(i-1, i-2)}{LU(i-1,
+    $LU(i, i) = A(i, i) - \frac{A(i-1, i) A(i, i-1)}{LU(i-1,
       i-1)}$\;
     // Compute $c_i$\;
-    LU(i-1, i) = $A(i-1, i)$\;
+    $LU(i-1, i) = A(i-1, i)$\;
     // Compute $e_i$\;
-    LU(i, i-1) = $\frac{A(i, i-1)}{LU(i-1, i-1)}$\;
+    $LU(i, i-1) = \frac{A(i, i-1)}{LU(i-1, i-1)}$\;
   }
 
-  \caption{Détermie la matrice compact LU}
+  \caption{Détermine la matrice compact LU}
 \end{algorithm}
 
-\subsubsection*{Complexité de l'algoritme}
+\subsubsection*{Complexité de l'algorithme}
 
 \begin{itemize}
-\item en temps : $n^3$
+\item en temps : $3n$
 \item en espace : $2n^2$
 \end{itemize}
+
+\subsubsection*{Graphiques}
+
+\underline{Temps :}
+
+\includegraphics[scale=0.5]{img/lu_times.png}
+
+Nous pouvons apercevoir que le temps est plutôt linéaire même si il y
+a un pic à un moment.
+
+\underline{Conditionnement :}
+
+\includegraphics[scale=0.5]{img/lu_cond.png}
+
+Le conditionnement reste bon pour des tailles de matrice entre 10 et
+100 étant donné qu'il ne dépasse pas $10^{10}$, ce qui rendrait l'erreur
+pour un double une erreru pour un float.
 
 \section*{Annexe}
 
