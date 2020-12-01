@@ -9,6 +9,7 @@ rand("seed", s);
 
 // Init vectors
 times = zeros(10);
+linear = zeros(10);
 condA = zeros(10);
 ferror = zeros(10);
 berror = zeros(10);
@@ -37,6 +38,9 @@ for n = xdata
 	LU = lu_compute(LU);
 	times(k) = toc();
 
+	// compute linear time
+	linear(k) = k * 0.00025;
+
 	// error
 	ferror(k) = norm(A - LU) / norm(A);
 	
@@ -46,7 +50,8 @@ for n = xdata
 end
 
 xtitle("Times per size", "sizes of matrix", "times");
-plot(xdata, times);
+plot(xdata, [times linear]);
+legend(["lu compact" "3n"], 2);
 xs2png(0, "img/lu_times.png");
 clf();
 
