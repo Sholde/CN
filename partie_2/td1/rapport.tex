@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass[12pt, letterpaper]{article}
+\usepackage[document]{ragged2e}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{amsmath}
@@ -196,6 +197,34 @@ Remarques sur le pivot :
   est trop couteux et le gain en stabilité n'est pas assez bon
 \end{itemize}
 
+\underline{Temps :}
+
+\includegraphics[scale=0.5]{img/mylu_times.png}
+
+\begin{itemize}
+\item Nous pouvons apercevoir que le temps suit une complexité
+  cubique, ce qui est normal car nous avont déroulé les 3 boucles et
+  donc nous n'avons fait appel à aucun noyeau de calcul optimisé.
+\end{itemize}
+
+\underline{Erreur relative avant :}
+
+\includegraphics[scale=0.5]{img/mylu_error.png}
+
+\underline{Conditionnement :}
+
+\includegraphics[scale=0.5]{img/mylu_cond.png}
+
+Nous remarquons :
+
+\begin{itemize}
+\item l'erreur relative avant est proportionnelle au conditionnement
+  (normale car elle est dépendante de celle-ci)
+\item pour des matrices \textbf{100 x 100} ou moins, l'erreur est
+  respectables étant donné qu'elle est inférieur à la précision
+  machine ($10^{-16}$)
+\end{itemize}
+
 \section*{TD 2}
 
 \subsection*{Exercice 1}
@@ -234,7 +263,9 @@ Remarques sur le pivot :
 
 \includegraphics[scale=0.5]{img/lu_times.png}
 
-Nous pouvons apercevoir que le temps est plutôt linéaire.\newline
+\begin{itemize}
+\item Nous pouvons apercevoir que le temps est plutôt linéaire.
+\end{itemize}
 
 \underline{Conditionnement :}
 
