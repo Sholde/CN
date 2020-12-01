@@ -51,7 +51,7 @@ end
 
 xtitle("Times per size", "sizes of matrix", "times");
 plot(xdata, [times linear]);
-legend(["lu compact" "3n"], 2);
+legend(["lu compact" "2.5*10^(-4) x"], 2);
 xs2png(0, "img/lu_times.png");
 clf();
 
