@@ -1,6 +1,6 @@
 
-// Compute LU from A
-function [LU] = lu(A)
+// Create LU compact matrix from A
+function [LU] = lu_compact(A)
 
 	 // Recup the size
 	 n = max(size(A));
@@ -20,5 +20,29 @@ function [LU] = lu(A)
 	     // Compute e_i
 	     LU(i, i-1) = A(i, i-1) / LU(i-1, i-1);
 	 end
+	 
+endfunction
+
+// Compute  LU compact matrix
+function [LU] = lu_compute(LU)
+
+	 // Recup the size
+	 n = max(size(LU));
+
+	 // n2
+	 n2 = n^2;
+
+	 // Init L
+	 L = zeros(n, n);
+	 L(1:n+1:n2) = 1;
+	 L(2:n+1:n2) = LU(2:n+1:n2);
+
+	 // Init U
+	 U = zeros(n, n);
+	 U(1:n+1:n2) = LU(1:n+1:n2);
+	 U(n+1:n+1:n2) = LU(n+1:n+1:n2);
+
+	 // Compute
+	 LU = L * U;
 	 
 endfunction
