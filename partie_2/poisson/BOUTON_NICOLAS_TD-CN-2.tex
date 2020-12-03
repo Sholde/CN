@@ -1,0 +1,245 @@
+% Created 2020-12-03 jeu. 20:36
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Nicolas BOUTON}
+\date{2020}
+\title{TP de Calcul Numérique}
+\hypersetup{
+ pdfauthor={Nicolas BOUTON},
+ pdftitle={TP de Calcul Numérique},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Exercice 1}
+\label{sec:orgc2bf58d}
+
+Developpement limité : 
+
+\begin{equation*}
+\begin{split}
+T(x_i + h) & = T(x_i) + h \left(\frac{\delta T}{\delta x} \right)_i + h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2) \\
+T(x_i - h) & = T(x_i) - h \left(\frac{\delta T}{\delta x} \right)_i + h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2)
+\end{split}
+\end{equation*}
+
+On somme et on inverse le signe :
+
+\begin{equation*}
+\begin{split}
+- T(x_i + h) + 2 T(x_i) - T(x_i - h) = - h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2) \\
+\frac{- T(x_i + h) + 2 T(x_i) - T(x_i - h)}{h^2} = - \left(\frac{\delta^2 T}{\delta x^2} \right)_i
+\end{split}
+\end{equation*}
+
+Or on a :
+
+\begin{equation*}
+- k \left( \frac{\delta^2 T}{\delta x^2} \right)_i = g_i, k > 0
+\end{equation*}
+
+On se permet de négligé k car c'est une constante dans nos prochain calcul :
+
+\begin{equation*}
+\begin{split}
+- T(x_i + h) + 2 T(x_i) - T(x_i - h) = h^2 g_i
+\end{split}
+\end{equation*}
+
+On écrit le système d'équation : 
+
+\begin{equation*}
+\begin{array}{ll}
+u_0 = T_0 & i = 0 \\
+- u_0 + 2 u_1 - u_2 = h^2 g_1 & i = 1\\
+... & ... \\
+- u_{k-1} + 2 u_k - u_{k+1} = h^2 g_k & i = k\\
+... & ... \\
+- u_{n-1} + 2 u_n - u_{n+1} = h^2 g_n & i = n\\
+u_n = T_n & i = n + 1 \\
+\end{array}
+\end{equation*}
+
+Avec les conditions aux bords on obtient :
+
+\begin{equation*}
+2 u_1 - u_2 = h^2 g_1 + T_0 \\
+- u_{n-1} + 2 u_n = h^2 g_n + T_n \\
+\end{equation*}
+
+Donc on explicite le système linéaire \(Au = g\) :
+
+\begin{equation*}
+A = \left[
+\begin{array}{ccccccc}
+2 & -1 & 0 & - & - & - & 0 \\
+-1 & 2 & -1 & . &  &  & |  \\
+0 & -1 & . & . & . &  & |  \\
+| & . & . & . & . & . & |  \\
+| & & . & . & . & -1 & 0  \\
+| & & & . & -1 & 2 & -1  \\
+0 & - & - & - & 0 & -1 & 2 \\
+\end{array}
+\right]
+\end{equation*}
+
+\begin{equation*}
+u = \left[
+\begin{array}{c}
+T_1 \\
+| \\
+T_n \\
+\end{array}
+\right]
+\end{equation*}
+
+\begin{equation*}
+g = \left[
+\begin{array}{c}
+h^2 T_1 + T_0 \\
+h^2 T_2 \\
+| \\
+h^2 T_{n-1} \\
+h^2T_n + T_1\\
+\end{array}
+\right]
+\end{equation*}
+
+Comme il n'y a pas de source de chaleur, on a \(\forall\) i \(\in\) [ 1, n
+] : h\textsuperscript{2} g\textsubscript{i} = 0
+
+D'où g = \left[
+\begin{array}{c}
+T_0 \\
+0 \\
+| \\
+0 \\
+T_1 \\
+\end{array}
+\right]
+
+Et la solution qnalytique qui se déguage est : 
+
+$$ T(x) = T_0 + x (T_1 - T_0) $$
+
+\section{Exercice 2}
+\label{sec:org50083dc}
+\subsection{Arch}
+\label{sec:orgec442c3}
+\subsubsection{Bibliothèque}
+\label{sec:org7254db5}
+
+Pour l'intallation des bibliothèque \textbf{cblas} et \textbf{lapacke} :
+\begin{verbatim}
+$ sudo pacman -S cblas lapacke
+\end{verbatim}
+
+\subsubsection{Makefile}
+\label{sec:org71efc17}
+
+Il faut modifier la ligne qui link les librairie en linkant la
+bibliothèque \textbf{cblas}:
+
+\begin{verbatim}
+#
+# -- librairies
+LIBS=-llapacke -lcblas -lm
+\end{verbatim}
+
+\section{Exercice 3}
+\label{sec:org2a3f00e}
+\subsection{Question 1}
+\label{sec:org466d901}
+
+Les matrices pour utilisé \textbf{BLAS} et \textbf{LAPACK} en \textbf{C} se font de la
+même manière que les tableaux en \textbf{C}. C'est-à-dire que que pour une
+matrice donné, il faut la stocké en \textbf{1 dimmension}.
+
+Par exemple en C :
+\begin{verbatim}
+double[2][2] = { {1, 2}, {3, 4} };
+\end{verbatim}
+
+Pour \textbf{BLAS} et \textbf{LAPACK} :
+
+\begin{verbatim}
+double[4] = { 1, 2, 3, 4 };
+\end{verbatim}
+
+\subsection{Question 2}
+\label{sec:org1adee99}
+
+\begin{itemize}
+\item Les constantes \(LAPACK\_ROW\_MAJOR\) et \(LAPACK\_COL\_MAJOR\)
+signifie la priorité ligne ou colonne respectivement de la
+représentation de la matrice.
+\item Effectivement, comme il faut utilisé des tableaux en \textbf{1 dimension}
+il faut préciser si on a utilisé une priorité ligne ou colonne pour
+ranger la matrice.
+\end{itemize}
+
+\subsection{Question 3}
+\label{sec:org107d882}
+
+\begin{itemize}
+\item De ce que j'ai compris, c'est un argument qui permet de savoir si
+dans la représentatin de la matrice, les éléments des lignes ou des
+colonnes, suivant la priorité choisis, sont contigue.
+
+\item C'est-à-dire qu'il dois y avoir le même nombre d'élément pour
+chaque colonne ainsi que dans chaque ligne.
+\end{itemize}
+
+\subsection{Question 4}
+\label{sec:orgcd666c8}
+\subsubsection{Résumé}
+\label{sec:org462cb27}
+
+La fonction \(LAPACKE\_dgbsv\) permet de calculer le résultat d'un
+système linéaire du type \(A * X = B\), avec \textbf{X} l'inconnu, \textbf{A} une
+matrice et \textbf{B} le second membre, où \textbf{X} et \textbf{B} peuvent être des
+vecteurs ou des matrices.
+
+\subsubsection{Argument}
+\label{sec:org010939b}
+
+Elle prend en argument la dimension de la matrice, le nombre du
+sous-diagonnale ainsi que de sur-diagonnale.
+
+\subsubsection{Implémentation}
+\label{sec:orgca7c1c3}
+
+Cette fonction implémente une décomposition \textbf{LU} à pivot partiel et
+la méthode de dessente et de remonté.
+
+\subsubsection{Sources}
+\label{sec:org86015d0}
+
+\url{http://www.math.utah.edu/software/lapack/lapack-d/dgbsv.html}
+
+\subsection{Question 5}
+\label{sec:orgdb19e77}
+\section{Annexe}
+\label{sec:org4a46c2c}
+
+Dépôt : \url{https://github.com/Sholde/CN/tree/master/partie\_2/poisson}
+\end{document}

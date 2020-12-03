@@ -113,6 +113,25 @@
   $$ T(x) = T_0 + x (T_1 - T_0) $$
 
 * Exercice 2
+** Arch  
+*** Bibliothèque
+
+    Pour l'intallation des bibliothèque *cblas* et *lapacke* :
+    #+begin_src
+    $ sudo pacman -S cblas lapacke
+    #+end_src
+
+*** Makefile
+
+    Il faut modifier la ligne qui link les librairie en linkant la
+    bibliothèque *cblas*:
+    
+    #+begin_src c
+    #
+    # -- librairies
+    LIBS=-llapacke -lcblas -lm
+    #+end_src
+
 * Exercice 3
 ** Question 1
 
