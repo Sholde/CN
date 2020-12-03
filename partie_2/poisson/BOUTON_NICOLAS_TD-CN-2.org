@@ -1,0 +1,69 @@
+
+* Exercice 1
+* Exercice 2
+  
+  Installation faites.
+
+* Exercice 3
+** Question 1
+
+   Les matrices pour utilisé *BLAS* et *LAPACK* en *C* se font de la
+   même manière que les tableaux en *C*. C'est-à-dire que que pour une
+   matrice donné, il faut la stocké en *1 dimmension*.
+
+   Par exemple en C :
+   #+begin_src c
+   double[2][2] = { {1, 2}, {3, 4} };
+   #+end_src
+
+   Pour *BLAS* et *LAPACK* :
+
+   #+begin_src c
+   double[4] = { 1, 2, 3, 4 };
+   #+end_src
+
+** Question 2
+
+- Les constantes \(LAPACK\_ROW\_MAJOR\) et \(LAPACK\_COL\_MAJOR\)
+  signifie la priorité ligne ou colonne respectivement de la
+  représentation de la matrice.
+- Effectivement, comme il faut utilisé des tableaux en *1 dimension*
+  il faut préciser si on a utilisé une priorité ligne ou colonne pour
+  ranger la matrice.
+
+** Question 3
+   
+-  De ce que j'ai compris, c'est un argument qui permet de savoir si
+   dans la représentatin de la matrice, les éléments des lignes ou des
+   colonnes, suivant la priorité choisis, sont contigue.
+
+-  C'est-à-dire qu'il dois y avoir le même nombre d'élément pour
+   chaque colonne ainsi que dans chaque ligne.
+
+** Question 4
+*** Résumé
+
+   La fonction \(LAPACKE\_dgbsv\) permet de calculer le résultat d'un
+   système linéaire du type $A * X = B$, avec *X* l'inconnu, *A* une
+   matrice et *B* le second membre, où *X* et *B* peuvent être des
+   vecteurs ou des matrices.
+
+*** Argument
+
+   Elle prend en argument la dimension de la matrice, le nombre du
+   sous-diagonnale ainsi que de sur-diagonnale.
+
+*** Implémentation
+
+   Cette fonction implémente une décomposition *LU* à pivot partiel et
+   la méthode de dessente et de remonté.
+
+*** Sources
+
+    http://www.math.utah.edu/software/lapack/lapack-d/dgbsv.html
+   
+** Question 5
+* Annexe
+
+  Dépôt : https://github.com/Sholde/CN/tree/master/partie_2/poisson
+
