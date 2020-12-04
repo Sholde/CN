@@ -135,20 +135,21 @@
 * Exercice 3
 ** Question 1
 
-   Les matrices pour utilisé *BLAS* et *LAPACK* en *C* se font de la
-   même manière que les tableaux en *C*. C'est-à-dire que que pour une
-   matrice donné, il faut la stocké en *1 dimmension*.
+   Les matrices pour utiliser *BLAS* et *LAPACK* en *C* sont allouées
+   et déclarées de la même manière que les tableaux en *C*. Mais elles
+   doivent être stockées dans l'un des formats suivant :
 
-   Par exemple en C :
-   #+begin_src c
-   double[2][2] = { {1, 2}, {3, 4} };
-   #+end_src
+   - stockage conventionnel en 2 dimension (ex: int tab[10][10])
+   - stockage compact pour les matrices symétrique, hermitienne et
+     triangulaire (stockage dans un tableau à 1 dimension des éléments
+     de la matrice supérieur ou inférieur)
+   - stockage bandes pour les matrices à bandes (cad que les
+     diagonales autour de la diagonale principale contiennent la
+     plupart des NNZ) (GB et GE)
+   - utilisation de 2 ou 3 tableaux à 1 dimension pour stocker les
+     matrices bidiagonale et tridiagonale respectivement
 
-   Pour *BLAS* et *LAPACK* :
-
-   #+begin_src c
-   double[4] = { 1, 2, 3, 4 };
-   #+end_src
+   source : http://performance.netlib.org/lapack/lug/node121
 
 ** Question 2
 
