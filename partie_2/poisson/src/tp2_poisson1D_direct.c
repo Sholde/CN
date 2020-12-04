@@ -63,7 +63,7 @@ int main(int argc,char *argv[])
   } 
   else { // LAPACK_COL_MAJOR
     set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);
-    //write_GB_operator_colMajor_poisson1D(AB, &lab, &la, "AB_col.dat");
+    write_GB_operator_colMajor_poisson1D(AB, &lab, &la, "AB_col.dat");
 
     info = LAPACKE_dgbsv(LAPACK_COL_MAJOR,la, kl, ku, NRHS, AB, lab, ipiv, RHS, la);
   }    
