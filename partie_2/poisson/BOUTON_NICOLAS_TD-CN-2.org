@@ -191,6 +191,13 @@
    Cette fonction implémente une décomposition *LU* à pivot partiel et
    la méthode de dessente et de remonté.
 
+*** Note importante
+
+    Pour la factorisation *LU*, la fonction a besoin d'un vecteur de
+    travail ou il stockera les pivots. Suivant le stockage choisis on
+    rajoutera une ligne ou une colonne avant de stocker notre matrice
+    car le vecteur doit apparaître en premier.
+
 *** Sources
 
     http://www.math.utah.edu/software/lapack/lapack-d/dgbsv.html
