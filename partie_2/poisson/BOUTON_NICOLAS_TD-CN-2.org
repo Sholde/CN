@@ -157,8 +157,9 @@
   signifie la priorité ligne ou colonne respectivement de la
   représentation de la matrice.
 - Effectivement, cet argument sert si on utilise un stockage
-  particulier en *1 dimension* car il faut préciser si on a utilisé
-  une priorité ligne ou colonne pour stocker la matrice.
+  par priorité ligne ou colonne car il faut préciser si on a utilisé
+  une priorité ligne ou colonne pour stocker la matrice pour pouvoir
+  faire les bons calculs.
 
 ** Question 3
    
