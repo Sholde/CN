@@ -156,9 +156,9 @@
 - Les constantes \(LAPACK\_ROW\_MAJOR\) et \(LAPACK\_COL\_MAJOR\)
   signifie la priorité ligne ou colonne respectivement de la
   représentation de la matrice.
-- Effectivement, comme il faut utilisé des tableaux en *1 dimension*
-  il faut préciser si on a utilisé une priorité ligne ou colonne pour
-  ranger la matrice.
+- Effectivement, cet argument sert si on utilise un stockage
+  particulier en *1 dimension* car il faut préciser si on a utilisé
+  une priorité ligne ou colonne pour stocker la matrice.
 
 ** Question 3
    
