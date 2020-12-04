@@ -162,12 +162,16 @@
 
 ** Question 3
    
--  De ce que j'ai compris, c'est un argument qui permet de savoir si
-   dans la représentatin de la matrice, les éléments des lignes ou des
-   colonnes, suivant la priorité choisis, sont contigue.
+   La *leading dimension* permet de savoir qu'elle élément correspond
+   à la prochaine colonne ou la prochaine ligne suivant le stockage
+   colonne ou ligne respectivement.
 
--  C'est-à-dire qu'il dois y avoir le même nombre d'élément pour
-   chaque colonne ainsi que dans chaque ligne.
+   - Si on choisis un stockage priorité ligne, alors la *leading
+     dimension* correspond au nombre d'élément d'une ligne pour
+     pouvoir accéder à la ligne suivante.
+   - Si on choisis un stockage priorité colonne, alors la *leading
+     dimension* correspond au nombre d'élément d'une colonne pour
+     pouvoir accéder à la colonne suivante.
 
 ** Question 4
 *** Résumé
