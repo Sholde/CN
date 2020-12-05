@@ -219,6 +219,60 @@ car le vecteur doit apparaître en premier.
 \url{http://www.math.utah.edu/software/lapack/lapack-d/dgbsv.html}
    
 \subsection{Question 5}
+A titre comparatif nous prendrons une matrice de taille 10 x 10.
+
+\subsubsection{Stockage priorité colonne}
+
+\begin{equation*}
+  \begin{array}{rrrr}
+    0.000000 &	0.000000  &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	-1.000000	\\
+    0.000000 &	-1.000000 &	2.000000 &	0.000000	\\
+  \end{array}
+\end{equation*}
+
+\subsubsection{Stockage priorité ligne}
+
+\begin{equation*}
+  \begin{array}{rrrrrrrrrr}
+    0.000 &	0.000 &	0.000 &	0.000 &
+    0.000 &	0.000 &	0.000 &	0.000 &
+    0.000 &	0.000 \\	
+    0.000 &	-1.000 &	-1.000 &	-1.000 &
+    -1.000 &	-1.000 &	-1.000 &	-1.000 &
+    -1.000 &	-1.000 \\
+    2.000 &	2.000 &	2.000 &	2.000 &
+    2.000 &	2.000 &	2.000 &	2.000 &
+    2.000 &	2.000 \\	
+    -1.000 &	-1.000 &	-1.000 &	-1.000 &
+    -1.000 &	-1.000 &	-1.000 &	-1.000 &
+    -1.000 &	0.000 \\
+  \end{array}
+\end{equation*}
+
+Pour que le tableau soit affichable nous avons dû enlever les 3
+derniers 0 de la sortie, mais cela ne change pas le résultat.
+
+\subsubsection{Remarques}
+
+Nous pouvons apercevoir que nous avons le bon résultat, étant donné
+que la première ligne qui réservé à \textbf{BlAS} pour son vecteur de
+travail est constitué de zéro ainsi que le premier élément de la
+diagonale supérieur et le dernier élément de le diagonale
+inférieur.\newline
+
+De plus pour vérifier le résultat il suffit de calculer la transposé
+de l'une des matrices et la comparé à la deuxième car elles doivent
+être égales. Ici la transposé d'une des 2 matrices est égales à la
+deuxième.
+
 \section{Annexe}
 
 Dépôt github : \url{https://github.com/Sholde/CN/tree/master/partie_2/poisson}
