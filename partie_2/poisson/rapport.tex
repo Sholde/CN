@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+\usepackage[document]{ragged2e} % no indent line
+\usepackage{amsmath} % math
+\usepackage{hyperref} % url
+
+\title{TP de Calcul Numérique}
+\author{Nicolas BOUTON}
+\date{2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Exercice 1}
+
+Developpement limité : 
+
+\begin{equation*}
+  \begin{split}
+    T(x_i + h) & = T(x_i) + h \left(\frac{\delta T}{\delta x} \right)_i + h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2) \\
+    T(x_i - h) & = T(x_i) - h \left(\frac{\delta T}{\delta x} \right)_i + h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2)
+  \end{split}
+\end{equation*}
+
+On somme et on inverse le signe :
+
+\begin{equation*}
+  \begin{split}
+    - T(x_i + h) + 2 T(x_i) - T(x_i - h) = - h^2 \left(\frac{\delta^2 T}{\delta x^2} \right)_i + O(h^2) \\
+    \frac{- T(x_i + h) + 2 T(x_i) - T(x_i - h)}{h^2} = - \left(\frac{\delta^2 T}{\delta x^2} \right)_i
+  \end{split}
+\end{equation*}
+
+Or on a :
+
+\begin{equation*}
+  - k \left( \frac{\delta^2 T}{\delta x^2} \right)_i = g_i, k > 0
+\end{equation*}
+
+On se permet de négligé k car c'est une constante dans nos prochain calcul :
+
+\begin{equation*}
+  \begin{split}
+    - T(x_i + h) + 2 T(x_i) - T(x_i - h) = h^2 g_i
+  \end{split}
+\end{equation*}
+
+On écrit le système d'équation : 
+
+\begin{equation*}
+  \begin{array}{ll}
+    u_0 = T_0 & i = 0 \\
+    - u_0 + 2 u_1 - u_2 = h^2 g_1 & i = 1\\
+    ... & ... \\
+    - u_{k-1} + 2 u_k - u_{k+1} = h^2 g_k & i = k\\
+    ... & ... \\
+    - u_{n-1} + 2 u_n - u_{n+1} = h^2 g_n & i = n\\
+    u_n = T_n & i = n + 1 \\
+  \end{array}
+\end{equation*}
+
+Avec les conditions aux bords on obtient :
+
+\begin{equation*}
+  \begin{array}{l}
+    2 u_1 - u_2 = h^2 g_1 + T_0 \\
+    - u_{n-1} + 2 u_n = h^2 g_n + T_n \\
+  \end{array}
+\end{equation*}
+
+Donc on explicite le système linéaire $Au = g$ :
+
+\begin{equation*}
+  A = \left[
+    \begin{array}{ccccccc}
+      2 & -1 & 0 & - & - & - & 0 \\
+      -1 & 2 & -1 & . &  &  & |  \\
+      0 & -1 & . & . & . &  & |  \\
+      | & . & . & . & . & . & |  \\
+      | & & . & . & . & -1 & 0  \\
+      | & & & . & -1 & 2 & -1  \\
+      0 & - & - & - & 0 & -1 & 2 \\
+    \end{array}
+    \right]
+\end{equation*}
+
+\begin{equation*}
+  u = \left[
+    \begin{array}{c}
+      T_1 \\
+      | \\
+      T_n \\
+    \end{array}
+    \right]
+\end{equation*}
+
+\begin{equation*}
+  g = \left[
+    \begin{array}{c}
+      h^2 T_1 + T_0 \\
+      h^2 T_2 \\
+      | \\
+      h^2 T_{n-1} \\
+      h^2T_n + T_1\\
+    \end{array}
+    \right]
+\end{equation*}
+
+Comme il n'y a pas de source de chaleur, on a $\forall i \in [ 1, n
+] : h^2 g_i = 0$
+
+D'où $g = \left[
+  \begin{array}{c}
+    T_0 \\
+    0 \\
+    | \\
+    0 \\
+    T_1 \\
+  \end{array}
+  \right]$
+
+Et la solution qnalytique qui se déguage est : 
+
+$$ T(x) = T_0 + x (T_1 - T_0) $$
+
+\section{Exercice 2}
+\subsection{Arch}
+\subsubsection{Bibliothèque}
+
+Pour l'intallation des bibliothèque \textbf{cblas} et \textbf{lapacke}
+:
+\newline
+\$ sudo pacman -S cblas lapacke
+
+\subsubsection{Makefile}
+
+Il faut modifier la ligne qui link les librairie en linkant la
+bibliothèque \textbf{cblas}:
+
+\# \\
+\# -- librairies \\
+LIBS=-llapacke -lcblas -lm \\
+
+\section{Exercice 3}
+\subsection{Question 1}
+
+Les matrices pour utiliser \textbf{BLAS} et \textbf{LAPACK} en \textbf{C} sont allouées
+et déclarées de la même manière que les tableaux en \textbf{C}. Mais elles
+doivent être stockées dans l'un des formats suivant :
+
+\begin{itemize}
+\item stockage conventionnel en 2 dimension (ex: int tab[10][10])
+\item stockage compact pour les matrices symétrique, hermitienne et
+  triangulaire (stockage dans un tableau à 1 dimension des éléments
+  de la matrice supérieur ou inférieur)
+\item stockage bandes pour les matrices à bandes (cad que les
+  diagonales autour de la diagonale principale contiennent la
+  plupart des NNZ) (GB et GE)
+\item utilisation de 2 ou 3 tableaux à 1 dimension pour stocker les
+  matrices bidiagonale et tridiagonale respectivement
+\end{itemize}
+
+source : \url{http://performance.netlib.org/lapack/lug/node121}
+
+\subsection{Question 2}
+
+\begin{itemize}
+\item Les constantes LAPACK\_ROW\_MAJOR et LAPACK\_COL\_MAJOR
+  signifie la priorité ligne ou colonne respectivement de la
+  représentation de la matrice.
+\item Effectivement, cet argument sert si on utilise un stockage
+  par priorité ligne ou colonne car il faut préciser si on a utilisé
+  une priorité ligne ou colonne pour stocker la matrice pour pouvoir
+  faire les bons calculs.
+\end{itemize}
+
+\subsection{Question 3}
+   
+La \textbf{leading dimension} permet de savoir qu'elle élément correspond
+à la prochaine colonne ou la prochaine ligne suivant le stockage
+colonne ou ligne respectivement.
+
+\begin{itemize}
+\item Si on choisis un stockage priorité ligne, alors la \textbf{leading dimension}
+  correspond au nombre d'élément d'une ligne pour
+  pouvoir accéder à la ligne suivante.
+\item Si on choisis un stockage priorité colonne, alors la \textbf{leading dimension}
+  correspond au nombre d'élément d'une colonne pour
+  pouvoir accéder à la colonne suivante.
+\end{itemize}
+
+\subsection{Question 4}
+\subsubsection{Résumé}
+
+La fonction LAPACKE\_dgbsv permet de calculer le résultat d'un
+système linéaire du type $A * X = B$, avec \textbf{X} l'inconnu, \textbf{A} une
+matrice et \textbf{B} le second membre, où \textbf{X} et \textbf{B} peuvent être des
+vecteurs ou des matrices.
+
+\subsubsection{Argument}
+
+Elle prend en argument la dimension de la matrice, le nombre du
+sous-diagonnale ainsi que de sur-diagonnale.
+
+\subsubsection{Implémentation}
+
+Cette fonction implémente une décomposition \textbf{LU} à pivot partiel et
+la méthode de dessente et de remonté.
+
+\subsubsection{Note importante}
+
+Pour la factorisation \textbf{LU}, la fonction a besoin d'un vecteur de
+travail ou il stockera les pivots. Suivant le stockage choisis on
+rajoutera une ligne ou une colonne avant de stocker notre matrice
+car le vecteur doit apparaître en premier.
+
+\subsubsection{Sources}
+
+\url{http://www.math.utah.edu/software/lapack/lapack-d/dgbsv.html}
+   
+\subsection{Question 5}
+\section{Annexe}
+
+Dépôt github : \url{https://github.com/Sholde/CN/tree/master/partie_2/poisson}
+
+\end{document}

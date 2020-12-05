@@ -27,7 +27,13 @@ LIBS=-llapacke -lcblas -lm
 # -- Include directories
 INCLBLASLAPACK= -I /usr/include
 
-INCL= -I $(TPDIR)/include $(INCLBLASLAPACK) 
+INCL= -I $(TPDIR)/include $(INCLBLASLAPACK)
+
+# PDF
+TEX_FILE=rapport.tex
+TEX_PDF_FILE=rapport.pdf
+PDF_FILE=BOUTON_NICOLAS_TD-CN-2.pdf
+
 #
 #################################################################
 # makefile
@@ -76,5 +82,10 @@ run_tp2poisson1D_iter:
 run_tp2poisson1D_direct:
 	bin/tp2poisson1D_direct
 
+pdf: rapport.tex
+	pdflatex $(TEX_FILE)
+	mv $(TEX_PDF_FILE) $(PDF_FILE)
+	make clean
+
 clean:
-	rm -Rf *~ *.o bin/* *.aux *.out *.toc
+	rm -Rf *~ *.o bin/* *.aux *.out *.toc *.log
