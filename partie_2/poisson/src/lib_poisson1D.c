@@ -5,10 +5,26 @@
 /**********************************************/
 #include "lib_poisson1D.h"
 
-void set_GB_operator_rowMajor_poisson1D(double* AB, int *lab, int *la){
+void set_GB_operator_rowMajor_poisson1D(double *AB, int *lab, int *la, int *kv){
+  // Init tmp vector
+  int size_tmp_vector = (*kv) * (*la);
+  if (*kv >= 0)
+    {
+      for (int i = 0; i < size_tmp_vector; ++i)
+	{
+	  AB[i] = 0.0;
+	}
+    }
 
-  //TODO
+  // Init matrix
+  for (int i = 0; i < (*la); ++i)
+    {
+      AB[size_tmp_vector + i] = -1.0;
+      AB[size_tmp_vector + i + (*la)] = 2.0;
+      AB[size_tmp_vector + i + 2 * (*la)] = -1.0;
+    }
 }
+
 void set_GB_operator_colMajor_poisson1D(double* AB, int *lab, int *la, int *kv){
   int ii, jj, kk;
   for (jj=0;jj<(*la);jj++){

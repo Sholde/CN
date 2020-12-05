@@ -52,11 +52,11 @@ int main(int argc,char *argv[])
   /* working array for pivot used by LU Factorization */
   ipiv = (int *) calloc(la, sizeof(int));
 
-  int row = 0; //
+  int row = 1; //
 
   if (row == 1){ // LAPACK_ROW_MAJOR
-    set_GB_operator_rowMajor_poisson1D(AB, &lab, &la);
-    //write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row.dat");
+    set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
+    write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row.dat");
     
     info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
   
