@@ -23,6 +23,12 @@ void set_GB_operator_rowMajor_poisson1D(double *AB, int *lab, int *la, int *kv){
       AB[size_tmp_vector + i + (*la)] = 2.0;
       AB[size_tmp_vector + i + 2 * (*la)] = -1.0;
     }
+
+  // Init first element of upper diagonal
+  AB[size_tmp_vector] = 0.0;
+
+  // Init last element of lower diagonal
+  AB[size_tmp_vector + 3 * (*la) - 1] = 0.0;
 }
 
 void set_GB_operator_colMajor_poisson1D(double* AB, int *lab, int *la, int *kv){
