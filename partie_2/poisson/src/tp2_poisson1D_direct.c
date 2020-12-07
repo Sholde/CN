@@ -22,7 +22,7 @@ int main(int argc,char *argv[])
   double temp, relres;
 
   NRHS=1;
-  nbpoints=102;
+  nbpoints=12;
   la=nbpoints-2;
   T0=-5.0;
   T1=5.0;
@@ -59,7 +59,8 @@ int main(int argc,char *argv[])
     write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row.dat");
     
     //info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
-    info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR, lab, la, AB, la, ipiv);
+    info = LAPACKE_dgbtrf(LAPACK_ROW_MAJOR, lab, la, kl, ku, AB, la, ipiv);
+    write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row_inv.dat");
     cblas_dgbmv(LAPACK_ROW_MAJOR, CblasNoTrans, lab, la, kl, ku, NRHS, AB, la, RHS, NRHS, 0, RHS, NRHS);
   } 
   else { // LAPACK_COL_MAJOR
