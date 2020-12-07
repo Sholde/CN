@@ -57,11 +57,9 @@ int main(int argc,char *argv[])
   if (row == 1){ // LAPACK_ROW_MAJOR
     set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
     write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row.dat");
-    
+
     //info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
-    info = LAPACKE_dgbtrf(LAPACK_ROW_MAJOR, lab, la, kl, ku, AB, la, ipiv);
-    write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row_inv.dat");
-    cblas_dgbmv(LAPACK_ROW_MAJOR, CblasNoTrans, lab, la, kl, ku, NRHS, AB, la, RHS, NRHS, 0, RHS, NRHS);
+    cblas_dgbmv(LAPACK_ROW_MAJOR, CblasNoTrans, lab, la, kl, ku, 1.0, AB, la, EX_SOL, 1, 0.0, RHS, 1);    
   } 
   else { // LAPACK_COL_MAJOR
     set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);

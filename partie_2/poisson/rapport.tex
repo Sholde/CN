@@ -275,6 +275,48 @@ de l'une des matrices et la comparé à la deuxième car elles doivent
 être égales. Ici la transposé d'une des 2 matrices est égales à la
 deuxième.
 
+\section{Exercice 5}
+
+\subsection{Question 1}
+
+\subsubsection{Equation}
+
+La fonction \textbf{cblas\_dgbmv} permet de calculer l'équation
+suivante :
+
+\begin{equation*}
+y = \alpha * A * x + \beta * y
+\end{equation*}
+
+Dans notre cas on a l'équation suivante :
+
+\begin{equation*}
+A * u = b
+\end{equation*}
+
+Qu'on peut écrire avec les notations de l'équation juste au dessus :
+
+\begin{equation*}
+A * y = x
+\end{equation*}
+
+Avec la question précédente on a calculer y. On peut donc tester la
+fonction sur l'équation suivante :
+
+\begin{equation*}
+x = 1 * A * y + 0 * x
+\end{equation*}
+
+\subsubsection{Argument}
+
+La fonction \textbf{cblas\_dgbmv} prends à peut près les mêmes
+paramètres que \textbf{LAPACKE\_dgbsv} plus les coefficient $\alpha$
+et $beta$, le nombre de ligne et de colonne de la matrice en format
+general band ainsi qu'un paramètre qui indique si la matrice est une
+transposé ou non et la condition que y et x soit des vecteur.
+
+\subsection{Question 2}
+
 \section{Annexe}
 
 Dépôt github : \url{https://github.com/Sholde/CN/tree/master/partie_2/poisson}
