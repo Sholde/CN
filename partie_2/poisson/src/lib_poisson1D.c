@@ -33,6 +33,7 @@ void set_GB_operator_rowMajor_poisson1D(double *AB, int *lab, int *la, int *kv){
 
 void set_GB_operator_colMajor_poisson1D(double* AB, int *lab, int *la, int *kv){
   int ii, jj, kk;
+  *kv = 0;
   for (jj=0;jj<(*la);jj++){
     kk = jj*(*lab);
     if (*kv>=0){
