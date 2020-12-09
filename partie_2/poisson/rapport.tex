@@ -312,8 +312,16 @@ x = 1 * A * y + 0 * x
 La fonction \textbf{cblas\_dgbmv} prends à peut près les mêmes
 paramètres que \textbf{LAPACKE\_dgbsv} plus les coefficient $\alpha$
 et $beta$, le nombre de ligne et de colonne de la matrice en format
-general band ainsi qu'un paramètre qui indique si la matrice est une
-transposé ou non et la condition que y et x soit des vecteur.
+classic ainsi qu'un paramètre qui indique si la matrice est une
+transposé ou non.\newline
+
+La fonction prend comme précondition que y et x soit des vecteurs.
+
+\subsubsection{Note importante}
+
+Contrairement à la fonction \textbf{LAPACKE\_dgbsv}, la fonction
+\textbf{cblas\_dgbmv} n'attend pas à ce qu'on lui laisse un vecteur au
+début de la matrice.
 
 \subsection{Question 2}
 
