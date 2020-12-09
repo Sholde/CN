@@ -16,7 +16,7 @@ int main(int argc,char *argv[])
   int info;
   int NRHS;
   double T0, T1;
-  double *RHS, *EX_SOL, *X;
+  double *RHS, *B, *EX_SOL, *X, *Y;
   double *AB;
 
   double temp, relres;
@@ -29,11 +29,14 @@ int main(int argc,char *argv[])
 
   printf("--------- Poisson 1D ---------\n\n");
   RHS=(double *) malloc(sizeof(double)*la);
+  B=(double *) malloc(sizeof(double)*la);
   EX_SOL=(double *) malloc(sizeof(double)*la);
   X=(double *) malloc(sizeof(double)*la);
+  Y=(double *) malloc(sizeof(double)*la);
 
   set_grid_points_1D(X, &la);
   set_dense_RHS_DBC_1D(RHS,&la,&T0,&T1);
+  set_dense_RHS_DBC_1D(B,&la,&T0,&T1);
   set_analytical_solution_DBC_1D(EX_SOL, X, &la, &T0, &T1);
   
   write_vec(RHS, &la, "RHS.dat");
@@ -55,19 +58,28 @@ int main(int argc,char *argv[])
   int row = 0; //
 
   if (row == 1){ // LAPACK_ROW_MAJOR
+    // Scalar x Vector
     set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
     write_GB_operator_rowMajor_poisson1D(AB, &lab, &la, "AB_row.dat");
 
-    //info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
-    cblas_dgbmv(CblasRowMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, la, EX_SOL, 1, 0.0, RHS, 1);
+    info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
+
+    // Matrix x Vector
+    kv = 0;
+    set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
+    cblas_dgbmv(CblasRowMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, la, EX_SOL, 1, 0.0, Y, 1);
   } 
   else { // LAPACK_COL_MAJOR
+    // Scalar x Vector
     set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);
     write_GB_operator_colMajor_poisson1D(AB, &lab, &la, "AB_col.dat");
 
-    //info = LAPACKE_dgbsv(LAPACK_COL_MAJOR,la, kl, ku, NRHS, AB, lab, ipiv, RHS, la);
-    RHS[0] = 0; RHS[la-1] = 0;
-    cblas_dgbmv(CblasColMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, lab, EX_SOL, 1, 0.0, RHS, 1);
+    info = LAPACKE_dgbsv(LAPACK_COL_MAJOR,la, kl, ku, NRHS, AB, lab, ipiv, RHS, la);
+
+    // Matrix x Vector
+    kv = 0;
+    set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);
+    cblas_dgbmv(CblasColMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, lab, EX_SOL, 1, 0.0, Y, 1);
   }    
 
   
@@ -75,7 +87,7 @@ int main(int argc,char *argv[])
 
   write_xy(RHS, X, &la, "SOL.dat");
 
-  /* Relative residual */
+  /* Relative residual for DGBSV */
   temp = cblas_ddot(la, RHS, 1, RHS,1);
   temp = sqrt(temp);
   cblas_daxpy(la, -1.0, RHS, 1, EX_SOL, 1);
@@ -85,9 +97,26 @@ int main(int argc,char *argv[])
   
   printf("\nThe relative residual error is relres = %e\n",relres);
 
+  printf("\n DGBSV :\n");
+
+  write_vec(B, &la, "B.dat");
+  write_vec(Y, &la, "Y.dat");
+  
+  /* Relative residual for DGBSV */
+  temp = cblas_ddot(la, Y, 1, Y,1);
+  temp = sqrt(temp);
+  cblas_daxpy(la, -1.0, Y, 1, B, 1);
+  relres = cblas_ddot(la, B, 1, B,1);
+  relres = sqrt(relres);
+  relres = relres / temp;
+  
+  printf("\nThe relative residual error is relres = %e\n",relres);
+
   free(RHS);
   free(EX_SOL);
+  free(B);
   free(X);
+  free(Y);
   free(AB);
   free(ipiv);
 
