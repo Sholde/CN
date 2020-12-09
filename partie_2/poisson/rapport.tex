@@ -329,7 +329,7 @@ début de la matrice.
 \subsection{Question 2}
 
 Comme méthode de validation, nous proposons de calculé l'erreur
-relative suivant :\newline
+relative suivante.\newline
 
 Etant donné que nous calculons l'équation suivante :
 
@@ -351,24 +351,41 @@ Le résultat est stocké dans le fichier \textbf{Y\_row.dat}.\newline
 
 Cela ne marche pas encore.
 
+\begin{lstlisting}
+--------- Poisson 1D ---------
+
+
+ INFO DGBSV = 0
+
+The relative residual error is relres = 1.764638e-16
+
+ DGBSV :
+
+The relative residual error is relres = 1.121773e+00
+
+
+--------- End -----------
+\end{lstlisting}
+
+
 \subsubsection{Priorité Colonne}
 
 Le résultat est stocké dans le fichier \textbf{Y\_col.dat}.
 
 \begin{lstlisting}
-  --------- Poisson 1D ---------
+--------- Poisson 1D ---------
 
 
-  INFO DGBSV = 0
+ INFO DGBSV = 0
 
-  The relative residual error is relres = 1.764638e-16
+The relative residual error is relres = 1.764638e-16
 
-  DGBSV :
+ DGBSV :
 
-  The relative residual error is relres = 5.102197e-16
+The relative residual error is relres = 5.102197e-16
 
 
-  --------- End -----------
+--------- End -----------
 \end{lstlisting}
 
 \subsubsection{Explication}
