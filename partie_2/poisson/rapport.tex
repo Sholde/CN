@@ -2,6 +2,9 @@
 \usepackage[document]{ragged2e} % no indent line
 \usepackage{amsmath} % math
 \usepackage{hyperref} % url
+\usepackage{mathtools} % norm
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\usepackage{listings} % show code
 
 \title{TP de Calcul Numérique}
 \author{Nicolas BOUTON}
@@ -324,6 +327,58 @@ Contrairement à la fonction \textbf{LAPACKE\_dgbsv}, la fonction
 début de la matrice.
 
 \subsection{Question 2}
+
+Comme méthode de validation, nous proposons de calculé l'erreur
+relative suivant :\newline
+
+Etant donné que nous calculons l'équation suivante :
+
+\begin{equation*}
+b = A * u
+\end{equation*}
+
+Nous allons calculer l'erreur relative suivante :
+
+\begin{equation*}
+relres = \frac{\norm{b - A * u}}{\norm{b}}
+\end{equation*}
+
+Le résultat exacte de \textbf{B} est stocké dans le fichier \textbf{B.dat}.
+
+\subsubsection{Priorité Ligne}
+
+Le résultat est stocké dans le fichier \textbf{Y\_row.dat}.\newline
+
+Cela ne marche pas encore.
+
+\subsubsection{Priorité Colonne}
+
+Le résultat est stocké dans le fichier \textbf{Y\_col.dat}.
+
+\begin{lstlisting}
+  --------- Poisson 1D ---------
+
+
+  INFO DGBSV = 0
+
+  The relative residual error is relres = 1.764638e-16
+
+  DGBSV :
+
+  The relative residual error is relres = 5.102197e-16
+
+
+  --------- End -----------
+\end{lstlisting}
+
+\subsubsection{Explication}
+
+L'erreur relative de la fonction \textbf{cblas\_dgbmv} est un peut
+plus élevé que l'erreur relative de la fonction
+\textbf{LAPACKE\_dgbsv} qui peut être expliqué par le fait que le bit
+de signe ne change pas et nous nous retrouvons avec des zéro négatif
+au lieu de positif mais l'erreur reste acceptable car il est de
+l'ordre de la précision machine.
 
 \section{Annexe}
 

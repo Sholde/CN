@@ -68,6 +68,7 @@ int main(int argc,char *argv[])
     kv = 0;
     set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
     cblas_dgbmv(CblasRowMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, la, EX_SOL, 1, 0.0, Y, 1);
+    write_vec(Y, &la, "Y_row.dat");
   } 
   else { // LAPACK_COL_MAJOR
     // Scalar x Vector
@@ -80,6 +81,7 @@ int main(int argc,char *argv[])
     kv = 0;
     set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);
     cblas_dgbmv(CblasColMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, lab, EX_SOL, 1, 0.0, Y, 1);
+    write_vec(Y, &la, "Y_col.dat");
   }    
 
   
@@ -100,14 +102,17 @@ int main(int argc,char *argv[])
   printf("\n DGBSV :\n");
 
   write_vec(B, &la, "B.dat");
-  write_vec(Y, &la, "Y.dat");
   
   /* Relative residual for DGBSV */
+  // Do the norm of Y = A * X
   temp = cblas_ddot(la, Y, 1, Y,1);
   temp = sqrt(temp);
+  // B - Y
   cblas_daxpy(la, -1.0, Y, 1, B, 1);
+  // Do the norm of B
   relres = cblas_ddot(la, B, 1, B,1);
   relres = sqrt(relres);
+  // Result of norm(B - Y) / norm(B)
   relres = relres / temp;
   
   printf("\nThe relative residual error is relres = %e\n",relres);
