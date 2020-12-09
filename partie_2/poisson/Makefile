@@ -29,6 +29,8 @@ INCLBLASLAPACK= -I /usr/include
 
 INCL= -I $(TPDIR)/include $(INCLBLASLAPACK)
 
+ARGS=
+
 # PDF
 TEX_FILE=rapport.tex
 TEX_PDF_FILE=rapport.pdf
@@ -80,7 +82,7 @@ run_tp2poisson1D_iter:
 	bin/tp2poisson1D_iter
 
 run_tp2poisson1D_direct:
-	bin/tp2poisson1D_direct
+	bin/tp2poisson1D_direct $(ARGS)
 
 pdf: rapport.tex
 	pdflatex $(TEX_FILE)

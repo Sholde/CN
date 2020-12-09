@@ -3,11 +3,41 @@
 /* This file contains the main function   */
 /* to solve the Poisson 1D problem        */
 /******************************************/
+
+#include <stdio.h>
+#include <string.h>
 #include "lib_poisson1D.h"
+
+#define ERR_NUM_ARG 1
+#define ERR_VAL_ARG 2
+
 int main(int argc,char *argv[])
 /* ** argc: Number of arguments */
 /* ** argv: Values of arguments */
 {
+  if (argc != 2)
+    {
+      printf("Usage: make run_tp2_poisson1D_direct ARGS=[priority]\n");
+      return ERR_NUM_ARG;
+    }
+
+  char *str = argv[1];
+  int row = 0;
+  
+  if (strcmp(str, "row") == 0)
+    {
+      row = 1;
+    }
+  else if (strcmp(str, "col") == 0)
+    {
+      row = 0;
+    }
+  else
+    {
+      printf("Usage: make run_tp2_poisson1D_direct ARGS=[priority]\n");
+      return ERR_VAL_ARG;
+    }
+
   int ierr;
   int jj;
   int nbpoints, la;
@@ -54,8 +84,6 @@ int main(int argc,char *argv[])
 
   /* working array for pivot used by LU Factorization */
   ipiv = (int *) calloc(la, sizeof(int));
-
-  int row = 0; //
 
   if (row == 1){ // LAPACK_ROW_MAJOR
     // Scalar x Vector
