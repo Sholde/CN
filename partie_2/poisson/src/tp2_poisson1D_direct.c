@@ -93,7 +93,13 @@ int main(int argc,char *argv[])
     info = LAPACKE_dgbsv(LAPACK_ROW_MAJOR,la, kl, ku, NRHS, AB, la, ipiv, RHS, NRHS);
 
     // Matrix x Vector
+    // Resize matrix AB
     kv = 0;
+    lab--;
+    free(AB);
+    AB = (double *) malloc(sizeof(double)*lab*la);
+
+    // Compute
     set_GB_operator_rowMajor_poisson1D(AB, &lab, &la, &kv);
     cblas_dgbmv(CblasRowMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, la, EX_SOL, 1, 0.0, Y, 1);
     write_vec(Y, &la, "Y_row.dat");
@@ -106,7 +112,13 @@ int main(int argc,char *argv[])
     info = LAPACKE_dgbsv(LAPACK_COL_MAJOR,la, kl, ku, NRHS, AB, lab, ipiv, RHS, la);
 
     // Matrix x Vector
+    // Resize matrix AB
     kv = 0;
+    lab--;
+    free(AB);
+    AB = (double *) malloc(sizeof(double)*lab*la);
+
+    // Compute
     set_GB_operator_colMajor_poisson1D(AB, &lab, &la, &kv);
     cblas_dgbmv(CblasColMajor, CblasNoTrans, la, la, kl, ku, 1.0, AB, lab, EX_SOL, 1, 0.0, Y, 1);
     write_vec(Y, &la, "Y_col.dat");
