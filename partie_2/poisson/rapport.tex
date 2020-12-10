@@ -400,6 +400,52 @@ l'ordre de la précision machine.
 
 \subsection{Question 1}
 
+Le code scilab de la fonction se trouve dans le fichier
+\textbf{src/facto\_lu.sci}.
+
+\subsection{Question 2}
+
+Le code scilab du script de test se trouve dans le fichier
+\textbf{src/script\_facto\_lu.sci}.
+
+\subsubsection{Graphiques}
+
+\underline{Temps :}
+
+\includegraphics[scale=0.5]{img/lu_times.png}
+
+\begin{itemize}
+\item Nous pouvons apercevoir que le temps est plutôt linéaire.
+\end{itemize}
+
+\underline{Conditionnement :}
+
+\includegraphics[scale=0.5]{img/lu_cond.png}
+
+Le conditionnement reste bon pour des tailles de matrice entre 10 et
+100 étant donné qu'il ne dépasse pas $10^{10}$, ce qui rendrait l'erreur
+pour un double une erreur pour un float.\newline
+
+\underline{Erreur relative avant :}
+
+\includegraphics[scale=0.5]{img/lu_compact_error.png}
+
+L'erreur relative arrière est respectable étant donné qu'elle est de
+l'ordre de $10^{-34}$ pour des matrices de taille \textbf{100 x 100} ce
+qui donne des bornes pour l'erreur vers $10^{-24}$ (étant donné
+que le conditionnement est de $\approx 10^{10}$). Et cette
+borne est également respectable comparé à la précision machine de
+$10^{-16}$.
+
+\subsubsection{Conclusion}
+
+Donc nous pouvons dire que l'algorithme et son implémentation est
+validé.
+
+\section{Exercice 6}
+
+\subsection{Question 1}
+
 \subsection{Question 2}
 
 \subsection{Question 3}
