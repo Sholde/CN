@@ -361,11 +361,17 @@ The relative residual error is relres = 1.764638e-16
 
  DGBSV :
 
-The relative residual error is relres = 1.121773e+00
+The relative residual error is relres = 5.102197e-16
 
 
 --------- End -----------
 \end{lstlisting}
+
+Pour la priorité ligne il faut stocké les lignes en colonne et mettre
+comme leading dimension la leading dimension des colonnes donc
+conformément au code FORTRAN de BLAS qui stipule que la transposé de
+la matrice est calculé et utilisé à la place de la matrice d'entré si
+jamais on entre l'argument \textbf{CblasNoTrans}.
 
 \subsubsection{Priorité Colonne}
 
