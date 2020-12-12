@@ -7,7 +7,9 @@ enum myblas_enum
     MyblasTrans
   };
 
-void myblas_dgb_set_lu(double *a, int la);
-void myblas_dgbtlu(enum myblas_enum my_enum, double *a, int la);
+void myblas_tri_dgbsetlu(double *a, int la);
+void myblas_tri_dgbup(int ld, double *a, double *x, double *b);
+void myblas_tri_dgbdown(int ld, double *a, double *x, double *b);
+void myblas_tri_dgblu(enum myblas_enum my_enum, int ld, double *a, double *x, double *b);
 
 #endif
