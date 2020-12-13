@@ -340,9 +340,11 @@ b = A * u
 Nous allons calculer l'erreur relative suivante :
 
 \begin{equation*}
-relres = \frac{\norm{b - A * u}}{\norm{A * u}}
+relres = \frac{\norm{EX\_SOL - B}}{\norm{B}}
 \end{equation*}
 
+où \textbf{B} est en fait le résultat calculé et \textbf{EX\_SOL} la
+solution exacte.\newline
 Le résultat exacte de \textbf{B} est stocké dans le fichier \textbf{B.dat}.
 
 \subsubsection{Priorité Ligne}
