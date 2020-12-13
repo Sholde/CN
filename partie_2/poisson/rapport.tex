@@ -409,47 +409,70 @@ mais pas pour la priorité ligne pour le moment.
 
 \subsection{Question 1}
 
-Le code scilab de la fonction se trouve dans le fichier
-\textbf{src/facto\_lu.sci}.
+\subsubsection{Implémentation scilab}
+
+Voir le premier rapport.
+
+\subsubsection{Implémentation C}
+
+Nous avons effectuer une résolution d'un sytème linéaire tel que $A *
+x = b$ ou bien même $LU * x = b $ grâce à une factorisation
+LU.\newline
+Puis avec une méthode de dessente : $ L * y = b $.\newline
+Puis avex une méthode de remonté : $ U * x = y $\newline
+
+Pour cela nous avons dû utiliser 1 matrice A et deux vecteurs X et B
+où A est une matrice tridiagonnale stocké en format général bandes 
+priorité colonne de taille $3 * la$ (où \textbf{la} est la leading dimension de
+A), X un vecteur de taille \textbf{la} ainsi que B un vecteur de
+taille \textbf{la}.\newline
+
+Et nous effecturons les opérations suivantes :
+
+\begin{equation*}
+  \left\{
+  \begin{array}{l}
+    A = LU(A) \\
+    L * X = B \\
+    U * B = X \\
+  \end{array}
+  \right.
+\end{equation*}
+
+\begin{itemize}
+\item on effectue la factorisation LU de A que l'on stocke dans A
+\item on effectue la méthode de dessente sur L et B et l'on stocke le
+  résultat dans X
+\item on effectue la méthode de remonté sur U et X et l'on stocke le
+  résultat dans B
+\item le résultat est bien dans le second membre c'est-à-dire B
+\end{itemize}
 
 \subsection{Question 2}
 
-Le code scilab du script de test se trouve dans le fichier
-\textbf{src/script\_facto\_lu.sci}.
+Pour la méthode de validation, nous allons calculer l'erreur relative
+avant et s'assurer que l'erreur est proche de la précision machine.
 
-\subsubsection{Graphiques}
+\subsubsection{Calcul}
 
-\underline{Temps :}
+\begin{equation*}
+relres = \frac{\norm{EX\_SOL - B}}{\norm{B}}
+\end{equation*}
 
-\includegraphics[scale=0.5]{img/lu_times.png}
+\subsubsection{Résultat}
 
-\begin{itemize}
-\item Nous pouvons apercevoir que le temps est plutôt linéaire.
-\end{itemize}
+\begin{lstlisting}
+--------- Facto LU ---------
 
-\underline{Conditionnement :}
+The relative residual error is relres = 1.764638e-16
 
-\includegraphics[scale=0.5]{img/lu_cond.png}
-
-Le conditionnement reste bon pour des tailles de matrice entre 10 et
-100 étant donné qu'il ne dépasse pas $10^{10}$, ce qui rendrait l'erreur
-pour un double une erreur pour un float.\newline
-
-\underline{Erreur relative avant :}
-
-\includegraphics[scale=0.5]{img/lu_compact_error.png}
-
-L'erreur relative arrière est respectable étant donné qu'elle est de
-l'ordre de $10^{-34}$ pour des matrices de taille \textbf{100 x 100} ce
-qui donne des bornes pour l'erreur vers $10^{-24}$ (étant donné
-que le conditionnement est de $\approx 10^{10}$). Et cette
-borne est également respectable comparé à la précision machine de
-$10^{-16}$.
+----------- End ------------
+\end{lstlisting}
 
 \subsubsection{Conclusion}
 
-Donc nous pouvons dire que l'algorithme et son implémentation est
-validé.
+Le résultat de l'erreur est bien proche de la précision machine donc
+on peut valider notre algorithme et notre implémentation.
 
 \section{Exercice 6}
 
