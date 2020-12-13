@@ -476,6 +476,14 @@ The relative residual error is relres = 1.764638e-16
 Le résultat de l'erreur est bien proche de la précision machine donc
 on peut valider notre algorithme et notre implémentation.
 
+\subsubsection{Comparaison avec cblas\_dgbmv}
+
+L'erreur relative pour les deux calculs sont les mêmes, en effet la
+fonction de BLAS fait les mêmes que ce que l'ont a fait pour le
+cas particulier d'une matrice tridiagonnale mais sur des matices avec
+plus ou moins de diagonales. Il faudrai étudié le temps que prends les
+deux méthodes pour pouvoir mieux les comparer.
+
 \section{Exercice 6}
 
 \subsection{Question 1}
