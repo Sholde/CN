@@ -16,6 +16,10 @@
 
 \section{Exercice 1}
 
+\subsubsection{Question 1}
+
+Approximation de $T''$ au moyen d'un schéma centré d'ordre 2.
+\vspace{5mm}
 Developpement limité : 
 
 \begin{equation*}
@@ -34,7 +38,14 @@ On somme et on inverse le signe :
   \end{split}
 \end{equation*}
 
-Or on a :
+Donc
+\begin{equation*}
+  T'' = \frac{T(x + h) - 2 T(x) + T(x - h)}{h^2}
+\end{equation*}
+
+\subsubsection{Question 2}
+
+On a :
 
 \begin{equation*}
   - k \left( \frac{\delta^2 T}{\delta x^2} \right)_i = g_i, k > 0
