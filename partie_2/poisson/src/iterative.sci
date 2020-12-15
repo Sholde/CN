@@ -17,14 +17,16 @@ function [A] = set_matrix_A_heat(n)
 
 endfunction
 
-function [b] = set_vector_b_heat(n)
+function [b] = set_vector_b_heat(n, T0, T1)
 
 	 //
 	 b = zeros(n, 1);
 
-	 for i = 1:n
-	     b(i) = 1;
+	 b(1) = T0;
+	 for i = 2:n-1
+	     b(i) = 0;
 	 end
+	 b(n) = T1;
 
 endfunction
 
@@ -72,9 +74,8 @@ function [x, count] = gauss_seidel(A, b, e, max_count)
 	 // E
 	 E = zeros(n, n);
 	 for i = 2:n
-	     E(i, i - 1) = A(i, i - 1);
+	     E(i, i - 1) = - A(i, i - 1);
 	 end
-	 disp(E);
 
 	 // (D - E)-1
 	 DE = inv(D - E);
