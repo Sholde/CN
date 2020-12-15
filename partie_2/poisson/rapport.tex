@@ -5,6 +5,8 @@
 \usepackage{mathtools} % norm
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \usepackage{listings} % show code
+\usepackage{amssymb} % math symb
+\usepackage[ruled,vlined]{algorithm2e} % algo
 
 \title{TP de Calcul Numérique}
 \author{Nicolas BOUTON}
@@ -512,6 +514,54 @@ deux méthodes pour pouvoir mieux les comparer.
 \section{Exercice 6}
 
 \subsection{Question 1}
+
+\subsubsection{Jacobi}
+
+\begin{algorithm} [H]
+  \SetAlgoLined
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$, $\epsilon \in \mathbb{R}$}
+  \KwResult{$x \in \mathbb{R}^{n}$}
+  \SetKwRepeat{Do}{do}{while}
+  
+  \For{$i = 1:n$} {
+    $D(i,i) = \frac{1}{A(i, i)}$\;
+    $x(i) = 1$\;
+  }
+  
+  \Do{$\norm{r} > \epsilon$}{
+    r = b - A * x\;
+    x = x + D * r\;
+  }
+
+  \caption{Applique le méthode de Jacobi}
+\end{algorithm}
+
+\subsubsection{Gauss Seidel}
+
+\begin{algorithm} [H]
+  \SetAlgoLined
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$, $\epsilon \in \mathbb{R}$}
+  \KwResult{$x \in \mathbb{R}^{n}$}
+  \SetKwRepeat{Do}{do}{while}
+  
+  \For{$i = 1:n$} {
+    $D(i,i) = A(i, i)$\;
+    $x(i) = 1$\;
+  }
+
+  \For{$i = 2:n$} {
+    $E(i,i - 1) = - A(i, i - 1)$\;
+  }
+
+  $DE = inverse(D - E)$\; 
+
+  \Do{$\norm{r} > \epsilon$}{
+    r = b - A * x\;
+    x = x + DE * r\;
+  }
+
+  \caption{Applique le méthode de Gauss Seidel}
+\end{algorithm}
 
 \subsection{Question 2}
 
