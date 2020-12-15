@@ -565,13 +565,37 @@ deux méthodes pour pouvoir mieux les comparer.
 
 \subsection{Question 2}
 
+Pour nos deux algorithme, nous voyons que la complexité en temps ne
+peux pas être explicite car tout dépend de l'erreur. D'après le cours
+on était réduit à la formule ci dessous :\newline
+\vspace{5mm}
+Pour Jacobi :
+
+\begin{equation*}
+  k = - \frac{p}{2 * log(cos(\pi * h))}
+\end{equation*}
+
+Pour Gauss Seidel :
+
+\begin{equation*}
+  k = - \frac{p}{log(cos(\pi * h))}
+\end{equation*}
+
+avec
+
+\begin{itemize}
+\item k le nombre d'itération
+\item p le nombre de chiffre significatif de l'erreur
+\item h un entier quelconque
+\end{itemize}
+
 \subsubsection{Jacobi}
 
 \underline{Complexité :}
 
 \begin{itemize}
-\item en temps :
-\item en espace : 
+\item en temps : indéterminé (dépend des paramètre d'entré)
+\item en espace : $O(2n^2 + 3n)$ (2 matrice + 3 vecteur)
 \end{itemize}
 
 \subsubsection{Gauss Seidel}
@@ -579,9 +603,19 @@ deux méthodes pour pouvoir mieux les comparer.
 \underline{Complexité :}
 
 \begin{itemize}
-\item en temps :
-\item en espace : 
+\item en temps : indéterminé (dépend des paramètre d'entré)
+\item en espace : $O(4n^2 + 3n)$ (4 matrice + 3 vecteur)
 \end{itemize}
+
+Pour amèliorer nos algorithmes d'un point de vu mémoire ainsi qu'en
+tant on pourrai transformé les matrices en format général bandes, on
+pourrai facilement calculé l'inverse des matrices pour les 2 méthodes
+car ici on est dans un cas particuliers des matrices
+tridiagonnales. Et dans la boucle \textbf{do...while} on fera appelle
+à la fonction de blas \textbf{dgvsv} pour nos 2 opérations car se sont
+en faites des systèmes linéaires. Il faudra juste multiplié par $-1$
+le produit \textbf{matrice x vecteur} de la deuxième opération pour
+les 2 méthodes.
 
 \subsection{Question 3}
 
@@ -611,6 +645,28 @@ Pour $n = 3$ on obtient le nombre d'itération suivante :
 \textbf{src/tp2\_iterative.sci}
 
 \subsection{Question 5}
+
+\subsubsection{Varié la taille de la matrice}
+
+Ici un graphe qui montre l'évolution du nombre d'itération nécessaire
+en fonction de la taille de la matrice A afin d'atteindre la
+convergence pour une erreur de $10^{-8}$.
+
+\includegraphics[scale=0.5]{img/number_of_iteration.png}
+
+\subsubsection{Varié l'erreur souhaité}
+
+Ici un graphe qui montre l'évolution du nombre d'itération nécessaire
+en fonction de l'erreur souhaité afin d'atteindre la convergence pour
+une taille de matrice $n = 10$, soit une matrice $10 x 10$.
+
+\includegraphics[scale=0.5]{img/error.png}
+
+\subsubsection{Conclusion}
+
+Ces 2 graphiques confirmes que la méthode de Gauss Seidel converge
+plus rapidement que celle de Jacobi en termes de nombre d'itération de
+la méthode. Mais cela ne veut pas dire qu'elle est plsu rapide.
 
 \section{Annexe}
 
