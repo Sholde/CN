@@ -654,6 +654,11 @@ convergence pour une erreur de $10^{-8}$.
 
 \includegraphics[scale=0.5]{img/number_of_iteration.png}
 
+Nous pouvons appercevoir que le nombre d'itération évolue de manière
+\textbf{quadratique} ce qui est normal car nous stockons les matrices en format
+classique et donc elle augmente le nombre d'élément de façon
+quadratique et c'est donc plus difficiles d'arrivé à convergeance.
+
 \subsubsection{Varié l'erreur souhaité}
 
 Ici un graphe qui montre l'évolution du nombre d'itération nécessaire
@@ -661,6 +666,11 @@ en fonction de l'erreur souhaité afin d'atteindre la convergence pour
 une taille de matrice $n = 10$, soit une matrice $10 x 10$.
 
 \includegraphics[scale=0.5]{img/error.png}
+
+Nous pouvons apercevoir que lorsque l'on diminu l'erreur souhaité le
+nombre d'itération évolue de manière \textbf{linéaire} car le fait de
+diminuer l'erreur souhaité peut être écrit de façon linéaire tel que
+$e = e * 10^{-1}$.
 
 \subsubsection{Conclusion}
 
