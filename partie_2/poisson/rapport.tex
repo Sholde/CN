@@ -515,11 +515,21 @@ deux méthodes pour pouvoir mieux les comparer.
 
 \subsection{Question 1}
 
+On ajoute une nombre d'itération maximale pour éviter une boucle
+infini à cause de l'une des raisons suivantes :
+
+\begin{itemize}
+\item la solution ne converge pas
+\item la solution converge mais meet très longtemps à convergé et nous
+  voulons limité le temps
+\end{itemize}
+
 \subsubsection{Jacobi}
 
 \begin{algorithm} [H]
   \SetAlgoLined
-  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$, $\epsilon \in \mathbb{R}$}
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
+    $max\_count, \epsilon \in \mathbb{R}$}
   \KwResult{$x \in \mathbb{R}^{n}$}
   \SetKwRepeat{Do}{do}{while}
   
@@ -527,10 +537,13 @@ deux méthodes pour pouvoir mieux les comparer.
     $D(i,i) = \frac{1}{A(i, i)}$\;
     $x(i) = 1$\;
   }
-  
-  \Do{$\norm{r} > \epsilon$}{
+
+  count = 0\;
+
+  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
     r = b - A * x\;
     x = x + D * r\;
+    count = count + 1;
   }
 
   \caption{Applique le méthode de Jacobi}
@@ -540,7 +553,8 @@ deux méthodes pour pouvoir mieux les comparer.
 
 \begin{algorithm} [H]
   \SetAlgoLined
-  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$, $\epsilon \in \mathbb{R}$}
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
+    $max\_count, \epsilon \in \mathbb{R}$}
   \KwResult{$x \in \mathbb{R}^{n}$}
   \SetKwRepeat{Do}{do}{while}
   
@@ -553,11 +567,14 @@ deux méthodes pour pouvoir mieux les comparer.
     $E(i,i - 1) = - A(i, i - 1)$\;
   }
 
-  $DE = inverse(D - E)$\; 
+  $DE = inverse(D - E)$\;
 
-  \Do{$\norm{r} > \epsilon$}{
+  count = 0\;
+
+  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
     r = b - A * x\;
     x = x + DE * r\;
+    count = count + 1\;
   }
 
   \caption{Applique le méthode de Gauss Seidel}
@@ -595,6 +612,8 @@ avec
 
 \begin{itemize}
 \item en temps : indéterminé (dépend des paramètre d'entré)
+\item en temps d'une itération : $O(2n^2 + 2n)$ (2 produit \textbf{matrice x
+  matrice} et 2 adition \textbf{vecteur x vecteur})
 \item en espace : $O(2n^2 + 3n)$ (2 matrice + 3 vecteur)
 \end{itemize}
 
@@ -604,10 +623,12 @@ avec
 
 \begin{itemize}
 \item en temps : indéterminé (dépend des paramètre d'entré)
+\item en temps d'une itération : $O(2n^2 + 2n)$ (2 produit \textbf{matrice x
+  matrice} et 2 adition \textbf{vecteur x vecteur})
 \item en espace : $O(4n^2 + 3n)$ (4 matrice + 3 vecteur)
 \end{itemize}
 
-Pour amèliorer nos algorithmes d'un point de vu mémoire ainsi qu'en
+Pour améliorer nos algorithmes d'un point de vu mémoire ainsi qu'en
 tant on pourrai transformé les matrices en format général bandes, on
 pourrai facilement calculé l'inverse des matrices pour les 2 méthodes
 car ici on est dans un cas particuliers des matrices
@@ -616,6 +637,42 @@ tridiagonnales. Et dans la boucle \textbf{do...while} on fera appelle
 en faites des systèmes linéaires. Il faudra juste multiplié par $-1$
 le produit \textbf{matrice x vecteur} de la deuxième opération pour
 les 2 méthodes.
+
+\subsubsection{Amélioration pour Jacobi}
+
+Pour l'équation de la chaleur, sur la diagonale de la matrice A on a
+les même valeur et donc l'inverse sera aussi la même valeur pour toute
+la diagonale donc on peut réduire le produit \textbf{matrice x
+  vecteur} ($D * r$) en produit \textbf{scalaire x vecteur}.\newline
+\vspace{5mm}
+\begin{algorithm} [H]
+  \SetAlgoLined
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
+    $max\_count, \epsilon \in \mathbb{R}$}
+  \KwResult{$x \in \mathbb{R}^{n}$}
+  \SetKwRepeat{Do}{do}{while}
+
+  D = 1 / 2\;
+  count = 0\;
+  
+  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
+    r = b - A * x\;
+    x = x + D * r\;
+    count = count + 1\;
+  }
+
+  \caption{Applique le méthode de Jacobi}
+\end{algorithm}
+\vspace{5mm}
+Ce qui nous conduit au complexité suivantes :
+
+\begin{itemize}
+\item en temps : indéterminé (dépend des paramètre d'entré)
+\item en temps d'une itération : $O(n^2 + 3n)$ (1 produit \textbf{matrice x
+  matrice}, 1 produit \textbf{scalaire x vecteur} et 2 adition
+  \textbf{vecteur x vecteur})
+\item en espace : $O(n^2 + 3n)$ (1 matrice + 3 vecteur)
+\end{itemize}
 
 \subsection{Question 3}
 
@@ -636,13 +693,23 @@ Pour $n = 3$ on obtient le nombre d'itération suivante :
   \end{tabular}
 \end{center}
 
+Ce qui confirme l'approximation analytique qui dit que \textbf{Jacobi}
+à besoin de 2 fois plus d'itération que \textbf{Gauss Seidel} pour
+convergé.
+
 \subsection{Question 4}
 
 \underline{librairie :} voir dans le fichier
 \textbf{src/iterative.sci}\newline
+\underline{Explication :}\newline
+Simple implémentation qui respecte les algorithmes ci-dessus, rien à
+dire de spécial.\newline
 \vspace{5mm}
 \underline{script test :} voir dans le fichier
-\textbf{src/tp2\_iterative.sci}
+\textbf{src/tp2\_iterative.sci}\newline
+\underline{Explication :}\newline
+Il y a deux boucles, une qui vari la taille de la matrice et une qui
+varie l'erreur souhaité pour voir l'évolution du nombre d'itération.
 
 \subsection{Question 5}
 
@@ -657,7 +724,16 @@ convergence pour une erreur de $10^{-8}$.
 Nous pouvons appercevoir que le nombre d'itération évolue de manière
 \textbf{quadratique} ce qui est normal car nous stockons les matrices en format
 classique et donc elle augmente le nombre d'élément de façon
-quadratique et c'est donc plus difficiles d'arrivé à convergeance.
+quadratique et c'est donc plus difficiles d'arrivé à convergeance.\newline
+\vspace{5mm}
+\underline{Erreur relative avant :}\newline
+\includegraphics[scale=0.5]{img/number_of_iteration_relres.png}
+
+Nous pouvons voir que l'erreur avant n'est pas très bonne étant donné
+qu'on a fixé l'erreur machine à $10^{-16}$ et nous avons des erreurs
+autour de $10^{-10}$ pour des matrices de taille \textbf{50 x 50}
+maximum. Nous pouvons expliqué ceci par le fait qu'on ajoute du bruit
+au résultat.
 
 \subsubsection{Varié l'erreur souhaité}
 
@@ -670,13 +746,161 @@ une taille de matrice $n = 10$, soit une matrice $10 x 10$.
 Nous pouvons apercevoir que lorsque l'on diminu l'erreur souhaité le
 nombre d'itération évolue de manière \textbf{linéaire} car le fait de
 diminuer l'erreur souhaité peut être écrit de façon linéaire tel que
-$e = e * 10^{-1}$.
+$e = e * 10^{-1}$.\newline
+\vspace{5mm}
+\underline{Erreur relative avant :}\newline
+\includegraphics[scale=0.5]{img/error_relres.png}
+
+Ici ce n'a pas vraimment grand intéret de calculer l'erreur relative
+car justement on varie l'erreur souhaité et donc on y ariive à un
+moment. Plus on baisse l'erreur souhaité plus l'erreur relative est faible.
 
 \subsubsection{Conclusion}
 
 Ces 2 graphiques confirmes que la méthode de Gauss Seidel converge
 plus rapidement que celle de Jacobi en termes de nombre d'itération de
 la méthode. Mais cela ne veut pas dire qu'elle est plsu rapide.
+
+\section{Exercice 7}
+
+\subsection{Question 1}
+
+Soit $$x^{k + 1} = x^k + \alpha (b - Ax^k)$$
+avec $\alpha \in \mathbb{R}^{*+}, A \in \mathbb{R}^{n \cdot n}, b, x^k
+\in \mathbb{R}^n, k \in \mathbb{N}$\newline
+
+\begin{equation*}
+  \begin{split}
+    x^{k+1} & = x^k + \alpha b - \alpha A x^k \\
+    & = (I - \alpha A) x^k + \alpha b \\
+    & = G_{\alpha} x^k + \alpha b \\
+  \end{split}
+\end{equation*}
+
+On pose $G_{\alpha} = I - \alpha A$\newline
+\vspace{5mm}
+$G_{\alpha}$ est inversible et l'équation ci-dessus converge si
+$\rho(G_{\alpha}) < 1$
+
+\subsection{Question 2}
+
+Encadrement pour les valeurs propres (vp) de $G_{\alpha}$ qu'on note
+$\mu_i$.\newline
+
+\vspace{5mm}
+
+Soit les vp réelles de A, noté $\lambda_i$ telles que :
+$$ \lambda_{min} \le \lambda_i \le \lambda_{max} $$
+
+Alors les vp de $G_{\alpha} = (I - \alpha A)$ sont telles  que
+$$ 1 - \alpha \lambda_{max} \le \mu_i \le 1 - \alpha \lambda_{min}$$
+
+\underline{Remarques :} Comment en ai-t-on arrivé à cette conclusion ?\newline
+
+\vspace{5mm}
+
+Soit $P^{-1}AP = D_A = \left[
+  \begin{array}{ccc}
+    \lambda_1 & ... & 0 \\
+    ... & \lambda_i & ... \\
+    0 & ... & \lambda_n \\
+  \end{array}
+  \right]$
+
+\begin{equation*}
+  \begin{split}
+    P^{-1}G_{\alpha}P & = I - \alpha D_A \\
+    & = D_{G_{\alpha}} \\
+    & = \left[
+      \begin{array}{ccc}
+        1 - \alpha \lambda_1 & ... & 0 \\
+        ... & 1 - \alpha \lambda_i & ... \\
+        0 & ... & 1 - \alpha \lambda_n \\
+      \end{array}
+      \right]
+  \end{split}
+\end{equation*}
+
+Ce qui implique que $\mu_i = 1 - \alpha \lambda_i$\newline
+
+\vspace{5mm}
+
+Et comme
+
+\begin{gather*}
+    \lambda_{min} \le \lambda_i \le \lambda_{max} \\
+    - \alpha \lambda_{max} \le - \alpha \lambda_i \le - \alpha
+    \lambda_{min} \\
+    1 - \alpha \lambda_{max} \le 1 - \alpha \lambda_i \le 1 - \alpha
+    \lambda_{min} \\
+\end{gather*}
+
+\subsection{Question 3}
+
+Quelle condition sur $\alpha$ pour que Richardson converge ?\newline
+
+\vspace{5mm}
+
+Les différentes conditions proviennent du signe des valeurs propres de
+A.
+
+\begin{itemize}
+\item Soit $\lambda_{min} < 0$ et $\lambda_{max} > 0$\newline
+  alors au moins une valeur propre de $\mu_i$ est $> 1$\newline
+  car $1 - \alpha \lambda_{max} < 1$ et $1 - \alpha \lambda_{min} > 1$\newline
+  Donc $\rho(G_{\alpha}) > 1 =>$ Diverge \newline
+  \underline{Remarque :} cela marche uniquement pour les matrices
+  défini positives
+\item $\lambda_{min} > 0$ toutes les vp de A sont positives\newline
+  \underline{Remarque :} cas des matrices SPD\newline
+  Alors la convergeance garantie par $\rho(G_{\alpha}) < 1$, est
+  satisfaite pour :
+  $$ 1 - \alpha \lambda_{min} < 1 => \alpha > 0 $$
+  $$ 1 - \alpha \lambda_{max} > -1 => \alpha <
+  \frac{2}{\lambda_{max}} $$
+  Donc la méthode converge pour
+  $$ 0 < \alpha < \frac{2}{\lambda_{max}} $$
+\end{itemize}
+
+\subsection{Question 4}
+
+Essayons maintenant de déterminé la valeur optimale de $\alpha$ que
+l'on notera $\alpha_{opt}$.\newline
+
+\vspace{5mm}
+
+Tout d'abord quelle est la caractéristique du $\alpha_{opt}$. C'est la
+valeur de $\alpha$ qui minimise $\rho(G_{\alpha})$.\newline
+
+\vspace{5mm}
+
+Donc $ \rho(G_{\alpha}) = max\{|1 - \alpha \lambda_{min}|, |1 - \alpha
+\lambda_{max}|\} $\newline
+
+\vspace{5mm}
+
+On trace les fonctions :
+
+\begin{equation*}
+  \begin{split}
+    f_{min, max} : \mathbb{R} & \rightarrow
+    \mathbb{R}\\
+    \alpha & \rightarrow | 1 - \alpha
+    \lambda_{min, max} | \\
+  \end{split}
+\end{equation*}
+
+Intersection entre $-1 + \alpha \lambda_{max}$ et $1 - \alpha
+\lambda_{min}$ \newline
+
+\vspace{5mm}
+
+Donc,
+
+$$ -1 + \alpha_{opt} \lambda_{max} = 1 - \alpha_{opt} \lambda_{min} $$
+$$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
+
+\subsection{Question 5}
 
 \section{Annexe}
 
