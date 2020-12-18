@@ -30,37 +30,47 @@ function [b] = set_vector_b_heat(n, T0, T1)
 
 endfunction
 
-function [x, count] = jacobi(A, b, e, max_count)
+function [x, count, residual, relres] = jacobi(A, b, e, max_count)
 
 	 // Size of matrix A
 	 n = max(size(A));
 
 	 // D-1
-	 D = zeros(n, n);
-	 for i = 1:n
-	     D(i, i) = 1 / A(i, i);
-	 end
+	 D = 1 / 2;
 
 	 // Set vector x with worst case
 	 x = zeros(n, 1);
-	 x(1:n) = 1;
 
 	 // counter
 	 count = 0;
 
+	 // Norm of b
+	 normb = norm(b);
+
 	 // Residual
-	 r = 1;
+	 r = (b - A * x);
+	 residual = norm(r) / normb;
+
+	 // Residula vector
+	 relres = zeros(max_count, 1);
 
 	 //
-	 while norm(r) > e && count < max_count do
-		r = (b - A * x);
+	 while residual > e && count < max_count do
+	       	//
 		x = x + D * r;
+		r = (b - A * x);
+
+		//
 		count = count + 1;
+
+		//
+		residual = norm(r) / normb;
+		relres(count) = residual;
 	 end
 
 endfunction
 
-function [x, count] = gauss_seidel(A, b, e, max_count)
+function [x, count, residual, relres] = gauss_seidel(A, b, e, max_count)
 
 	 // Size of matrix A
 	 n = max(size(A));
@@ -82,19 +92,32 @@ function [x, count] = gauss_seidel(A, b, e, max_count)
 
 	 // Set vector x with worst case
 	 x = zeros(n, 1);
-	 x(1:n) = 1;
 
 	 // counter
 	 count = 0;
 
+	 // Norm of b
+	 normb = norm(b);
+
 	 // Residual
-	 r = 1;
+	 r = (b - A * x);
+	 residual = norm(r) / normb;
+
+	 // Residual vector
+	 relres = zeros(max_count, 1);
 
 	 //
-	 while norm(r) > e && count < max_count do
-		r = (b - A * x);
+	 while residual > e && count < max_count do
+	        //
 		x = x + DE * r;
+		r = (b - A * x);
+
+		//
 		count = count + 1;
+
+		//
+		residual = norm(r) / normb;
+		relres(count) = residual;
 	 end
 
 endfunction

@@ -711,8 +711,6 @@ dire de spécial.\newline
 Il y a deux boucles, une qui vari la taille de la matrice et une qui
 varie l'erreur souhaité pour voir l'évolution du nombre d'itération.
 
-\subsection{Question 5}
-
 \subsubsection{Varié la taille de la matrice}
 
 Ici un graphe qui montre l'évolution du nombre d'itération nécessaire
@@ -725,21 +723,27 @@ Nous pouvons appercevoir que le nombre d'itération évolue de manière
 \textbf{quadratique} ce qui est normal car nous stockons les matrices en format
 classique et donc elle augmente le nombre d'élément de façon
 quadratique et c'est donc plus difficiles d'arrivé à convergeance.\newline
+
+\vspace{5mm}
+
+Nous voyons aussi que pour jacobi le nombre d'itération varie celon la
+parité de la taille de la matrice, en effet lorsque la taille est pair
+elle coute moins d'itération que ses voisins impair.\newline
+
 \vspace{5mm}
 \underline{Erreur relative avant :}\newline
 \includegraphics[scale=0.5]{img/number_of_iteration_relres.png}
 
-Nous pouvons voir que l'erreur avant n'est pas très bonne étant donné
+Nous pouvons voir que l'erreur avant est très bonne étant donné
 qu'on a fixé l'erreur machine à $10^{-16}$ et nous avons des erreurs
-autour de $10^{-10}$ pour des matrices de taille \textbf{50 x 50}
-maximum. Nous pouvons expliqué ceci par le fait qu'on ajoute du bruit
-au résultat.
+supérieur à celle-ci pour des matrices de taille \textbf{50 x 50}
+maximum.
 
 \subsubsection{Varié l'erreur souhaité}
 
 Ici un graphe qui montre l'évolution du nombre d'itération nécessaire
 en fonction de l'erreur souhaité afin d'atteindre la convergence pour
-une taille de matrice $n = 10$, soit une matrice $10 x 10$.
+une taille de matrice $n = 10$, soit une matrice 10 x 10.
 
 \includegraphics[scale=0.5]{img/error.png}
 
@@ -759,7 +763,18 @@ moment. Plus on baisse l'erreur souhaité plus l'erreur relative est faible.
 
 Ces 2 graphiques confirmes que la méthode de Gauss Seidel converge
 plus rapidement que celle de Jacobi en termes de nombre d'itération de
-la méthode. Mais cela ne veut pas dire qu'elle est plsu rapide.
+la méthode. Mais cela ne veut pas dire qu'elle est plus rapide.
+
+\subsection{Question 5}
+
+Nous prenons un $n = 10$ et une erreur souhaité de $e = 10^{-8}$ pour
+le problème de poisson 1D et nous allons étudier sa convergence :
+
+\includegraphics[scale=0.5]{img/convergence.png}
+
+On voit que pour les 2 méthodes il y a convergence à $10^(-8)$ pour
+notre problème. Et que le nombre d'itération de Jacobi est 2 fosi plus
+élevé que celui de Gauss Seidel
 
 \section{Exercice 7}
 
