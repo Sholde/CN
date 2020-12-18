@@ -1049,6 +1049,31 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
 \item en espace : $O(n^2 + 3n)$ (1 matrice et 3 vecteur)
 \end{itemize}
 
+\underline{Remarques :}\newline
+
+\vspace{5mm}
+Nous pouvons voir que la méthode de richardson se rapproche de la
+méthode de Jacobi car pour les 2 méthodes $M^{-1}$ est un scalaire, et
+étant donné que pour la méthode de \textbf{Richardson} nous avons calculé
+l'alpha optimal, la méthode de \textbf{Jacobi} est en fait un cas
+particulié de \textbf{Richardson} et cela ne sert a rien de
+l'implémenter. Autant implémenter \textbf{Richardson} directement.
+
+\underline{Question :} Comment déterminer les valeurs propres de la
+matrice A ?\newline
+
+\vspace{5mm}
+
+Pour cela il y a plusieurs option :
+
+\begin{itemize}
+\item calculer les vp à partir du déterminant mais cela est très
+  couteux
+\item calculer les vp à l'aide de fonction d'approximation (souvent
+  utilisé) (approximation des vp ou des bornes)
+\item calculer les vp analytiquement lorsque l'on peut
+\end{itemize}
+
 \section{Annexe}
 
 Dépôt github : \url{https://github.com/Sholde/CN/tree/master/partie_2/poisson}
