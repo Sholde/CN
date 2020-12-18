@@ -583,6 +583,8 @@ infini à cause de l'une des raisons suivantes :
 
   x = zeros(n) \Comment{Init. vecteur résultat à 0}
 
+  resvec = zeros(max\_count) \Comment{Init. vecteur relres à 0}
+
   normb = norm(b) \Comment{Init. norme de b}
 
   r = b - A * x \Comment{Init. résidu}
@@ -627,6 +629,8 @@ infini à cause de l'une des raisons suivantes :
   count = 0 \Comment{Init. compteur}
 
   x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  resvec = zeros(max\_count) \Comment{Init. vecteur relres à 0}
 
   normb = norm(b) \Comment{Init. norme de b}
 
@@ -727,6 +731,8 @@ la diagonale donc on peut réduire le produit \textbf{matrice x
   count = 0 \Comment{Init. compteur}
 
   x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  resvec = zeros(max\_count) \Comment{Init. vecteur relres à 0}
 
   normb = norm(b) \Comment{Init. norme de b}
 
@@ -1012,6 +1018,8 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
   count = 0 \Comment{Initialisation du compteur}
 
   x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  resvec = zeros(max\_count) \Comment{Init. vecteur relres à 0}
 
   normb = norm(b) \Comment{Init. norme de b}
   
