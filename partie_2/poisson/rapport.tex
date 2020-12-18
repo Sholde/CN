@@ -574,6 +574,8 @@ infini à cause de l'une des raisons suivantes :
     $max\_count, \epsilon \in \mathbb{R}$}
   \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
     \mathbb{R}^{n}$}
+
+  D = zeros(n, n) \Comment{Declare matrice D}
   
   \For{$i = 1:n$} {
     $D(i,i) = \frac{1}{A(i, i)}$ \Comment{Init. matrice D}
@@ -615,10 +617,14 @@ infini à cause de l'une des raisons suivantes :
     $max\_count, \epsilon \in \mathbb{R}$}
   \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
     \mathbb{R}^{n}$}
+
+  D = zeros(n, n) \Comment{Declare matrice D}
   
   \For{i = 1:n} {
     D(i, i) = A(i, i) \Comment{Init. matrice D}
   }
+
+  E = zeros(n, n) \Comment{Declare matrice E}
 
   \For{i = 2:n} {
     E(i, i - 1) = - A(i, i - 1) \Comment{Init. matrice E}
@@ -679,6 +685,12 @@ avec
 \item p le nombre de chiffre significatif de l'erreur
 \item h un entier quelconque
 \end{itemize}
+
+De plus pour toute les complexités nous allons uniquement prendre en
+considération les informations de base des algorithmes qui permettent
+de calculé le résultat. C'est-à-dire que nous prendraon pas en comptes
+les vecteurs ainsi que les calculs qui sauvegarde les erreurs relative
+par exemple.
 
 \subsubsection{Jacobi}
 
@@ -1044,6 +1056,14 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
 
   \caption{Méthode de Richardson}
 \end{algorithm}
+
+\vspace{5mm}
+
+De plus pour toute les complexités nous allons uniquement prendre en
+considération les informations de base des algorithmes qui permettent
+de calculé le résultat. C'est-à-dire que nous prendraon pas en comptes
+les vecteurs ainsi que les calculs qui sauvegarde les erreurs relative
+par exemple.\newline
 
 \vspace{5mm}
 
