@@ -7,6 +7,7 @@
 \usepackage{listings} % show code
 \usepackage{amssymb} % math symb
 \usepackage[ruled,vlined]{algorithm2e} % algo
+\usepackage{algorithmicx}
 
 \title{TP de Calcul Numérique}
 \author{Nicolas BOUTON}
@@ -916,6 +917,47 @@ $$ -1 + \alpha_{opt} \lambda_{max} = 1 - \alpha_{opt} \lambda_{min} $$
 $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
 
 \subsection{Question 5}
+
+\begin{algorithm} [H]
+  \SetAlgoLined
+  \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
+    $max\_count, \epsilon, \alpha \in \mathbb{R}$}
+  \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
+    \mathbb{R}^{n}$}
+
+  count = 0 \Comment{Initialisation du compteur}
+
+  x = zeros(n) \Comment{Init. vecteur résultat à 0}
+  
+  r = b - A * x \Comment{Initialisation du résidu}
+  
+  \While{$relres > \epsilon$ and $count < max\_count$}{
+
+    x = x + $\alpha$ * r     \Comment{Calcul de richardson}
+    
+    r = b - A * x \Comment{Calcul du résidu}
+
+    
+    relres = norm(b - Ax) / norm(b) \Comment{Calcul de l'erreur relative}
+    
+    rexvec(count) = relres \Comment{Sauv. vecteur}
+
+
+    count = count + 1     \Comment{Incrémentation du compteur}
+  }
+
+  \caption{Méthode de Richardson}
+\end{algorithm}
+
+\vspace{5mm}
+
+\underline{Complexité :}
+
+\begin{itemize}
+\item en temps : indéterminé
+\item en temps pour une itération :
+\item en espace :
+\end{itemize}
 
 \section{Annexe}
 
