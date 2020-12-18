@@ -21,7 +21,7 @@
 
 \subsubsection{Question 1}
 
-Approximation de $T''$ au moyen d'un schéma centré d'ordre 2.
+Approximation de $T''$ au moyen d'un schéma centré d'ordre 2.\newline
 \vspace{5mm}
 Developpement limité : 
 
@@ -54,7 +54,7 @@ On a :
   - k \left( \frac{\partial^2 T}{\partial x^2} \right)_i = g_i, k > 0
 \end{equation*}
 
-On se permet de négligé k car c'est une constante dans nos prochain calcul :
+On se permet de négligé k car c'est une constante dans nos prochain calcul:
 
 \begin{equation*}
   \begin{split}
@@ -135,6 +135,45 @@ D'où $g = \left[
     T_1 \\
   \end{array}
   \right]$
+
+Nous avons donc :
+
+\begin{equation*}
+  \left[
+    \begin{array}{ccccccc}
+      2 & -1 & 0 & - & - & - & 0 \\
+      -1 & 2 & -1 & . &  &  & |  \\
+      0 & -1 & . & . & . &  & |  \\
+      | & . & . & . & . & . & |  \\
+      | & & . & . & . & -1 & 0  \\
+      | & & & . & -1 & 2 & -1  \\
+      0 & - & - & - & 0 & -1 & 2 \\
+    \end{array}
+    \right]
+  \left[
+    \begin{array}{c}
+      T_1 \\
+      T_2 \\
+      | \\
+      | \\
+      | \\
+      T_{n - 1} \\
+      T_n \\
+    \end{array}
+    \right]
+  =
+  \left[
+  \begin{array}{c}
+    T_0 \\
+    0 \\
+    | \\
+    | \\
+    | \\
+    0 \\
+    T_1 \\
+  \end{array}
+  \right]
+\end{equation*}
 
 Et la solution analytique qui se déguage est : 
 
@@ -521,7 +560,7 @@ infini à cause de l'une des raisons suivantes :
 
 \begin{itemize}
 \item la solution ne converge pas
-\item la solution converge mais meet très longtemps à convergé et nous
+\item la solution converge mais met très longtemps à convergé et nous
   voulons limité le temps
 \end{itemize}
 
@@ -531,20 +570,34 @@ infini à cause de l'une des raisons suivantes :
   \SetAlgoLined
   \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
     $max\_count, \epsilon \in \mathbb{R}$}
-  \KwResult{$x \in \mathbb{R}^{n}$}
-  \SetKwRepeat{Do}{do}{while}
+  \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
+    \mathbb{R}^{n}$}
   
   \For{$i = 1:n$} {
-    $D(i,i) = \frac{1}{A(i, i)}$\;
-    $x(i) = 1$\;
+    $D(i,i) = \frac{1}{A(i, i)}$ \Comment{Init. matrice D}
   }
 
-  count = 0\;
+  count = 0 \Comment{Init. compteur}
 
-  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
-    r = b - A * x\;
-    x = x + D * r\;
-    count = count + 1;
+  x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  normb = norm(b) \Comment{Init. norme de b}
+
+  r = b - A * x \Comment{Init. résidu}
+
+  relres = norm(r) / normb \Comment{Init. erreur relative}
+
+  \While{$relres > \epsilon$ and $count < max\_count$}{
+
+    x = x + D * r \Comment{Calcul de Richardson}
+
+    r = b - A * x \Comment{Calcul du résidu}
+    
+    relres = norm(r) / normb \Comment{Calcul de l'erreur relative}
+    
+    resvec(count) = relres \Comment{Sauv. vecteur}
+
+    count = count + 1; \Comment{Inc. compteur}
   }
 
   \caption{Applique le méthode de Jacobi}
@@ -556,26 +609,40 @@ infini à cause de l'une des raisons suivantes :
   \SetAlgoLined
   \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
     $max\_count, \epsilon \in \mathbb{R}$}
-  \KwResult{$x \in \mathbb{R}^{n}$}
-  \SetKwRepeat{Do}{do}{while}
+  \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
+    \mathbb{R}^{n}$}
   
-  \For{$i = 1:n$} {
-    $D(i,i) = A(i, i)$\;
-    $x(i) = 1$\;
+  \For{i = 1:n} {
+    D(i, i) = A(i, i) \Comment{Init. matrice D}
   }
 
-  \For{$i = 2:n$} {
-    $E(i,i - 1) = - A(i, i - 1)$\;
+  \For{i = 2:n} {
+    E(i, i - 1) = - A(i, i - 1) \Comment{Init. matrice E}
   }
 
-  $DE = inverse(D - E)$\;
+  DE = inverse(D - E) \Comment{Inverse (D - E)}
 
-  count = 0\;
+  count = 0 \Comment{Init. compteur}
 
-  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
-    r = b - A * x\;
-    x = x + DE * r\;
-    count = count + 1\;
+  x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  normb = norm(b) \Comment{Init. norme de b}
+
+  r = b - A * x \Comment{Init. résidu}
+
+  relres = norm(r) / normb \Comment{Init. erreur relative}
+
+  \While{$\norm{r} > \epsilon$ and $count < max\_count$}{
+
+    x = x + DE * r \Comment{Calcul de Richardson}
+
+    r = b - A * x \Comment{Calcul du résidu}
+
+    relres = norm(r) / normb \Comment{Calcul erreur relative}
+
+    resvec(i) = relres \Comment{Stocke erreur relative}
+    
+    count = count + 1 \Comment{Inc. compteur}
   }
 
   \caption{Applique le méthode de Gauss Seidel}
@@ -650,16 +717,31 @@ la diagonale donc on peut réduire le produit \textbf{matrice x
   \SetAlgoLined
   \KwData{$A \in \mathbb{R}^{n \cdot n}$, $b \in \mathbb{R}^{n}$,
     $max\_count, \epsilon \in \mathbb{R}$}
-  \KwResult{$x \in \mathbb{R}^{n}$}
-  \SetKwRepeat{Do}{do}{while}
+  \KwResult{$x \in \mathbb{R}^{n}$, $count, relres \in \mathbb{R}$, $resvec \in
+    \mathbb{R}^{n}$}
 
-  D = 1 / 2\;
-  count = 0\;
-  
-  \Do{$\norm{r} > \epsilon$ and $count < max\_count$}{
-    r = b - A * x\;
-    x = x + D * r\;
-    count = count + 1\;
+  D = 1 / 2 \Comment{Simplification}
+
+  count = 0 \Comment{Init. compteur}
+
+  x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  normb = norm(b) \Comment{Init. norme de b}
+
+  r = b - A * x \Comment{Init. résidu}
+
+  relres = norm(r) / normb \Comment{Init. erreur relative}
+
+  \While{$relres > \epsilon$ and $count < max\_count$}{
+    x = x + D * r \Comment{Calcul de Richardson}
+
+    r = b - A * x \Comment{Calcul du résidu}
+
+    relres = norm(r) / normb \Comment{Calcul erreur relative}
+
+    resvec(i) = relres \Comment{Stocke erreur relative}
+    
+    count = count + 1 \Comment {Inc. compteur}
   }
 
   \caption{Applique le méthode de Jacobi}
@@ -928,8 +1010,12 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
   count = 0 \Comment{Initialisation du compteur}
 
   x = zeros(n) \Comment{Init. vecteur résultat à 0}
+
+  normb = norm(b) \Comment{Init. norme de b}
   
   r = b - A * x \Comment{Initialisation du résidu}
+
+  relres = norm(r) / normb \Comment{Init. erreur relative}
   
   \While{$relres > \epsilon$ and $count < max\_count$}{
 
@@ -938,9 +1024,9 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
     r = b - A * x \Comment{Calcul du résidu}
 
     
-    relres = norm(r) / norm(b) \Comment{Calcul de l'erreur relative}
+    relres = norm(r) / normb \Comment{Calcul de l'erreur relative}
     
-    rexvec(count) = relres \Comment{Sauv. vecteur}
+    resvec(count) = relres \Comment{Sauv. vecteur}
 
 
     count = count + 1     \Comment{Incrémentation du compteur}
