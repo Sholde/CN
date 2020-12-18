@@ -938,7 +938,7 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
     r = b - A * x \Comment{Calcul du résidu}
 
     
-    relres = norm(b - Ax) / norm(b) \Comment{Calcul de l'erreur relative}
+    relres = norm(r) / norm(b) \Comment{Calcul de l'erreur relative}
     
     rexvec(count) = relres \Comment{Sauv. vecteur}
 
@@ -955,8 +955,10 @@ $$ \alpha_{opt} = \frac{2}{\lambda_{min} + \lambda_{max}} $$
 
 \begin{itemize}
 \item en temps : indéterminé
-\item en temps pour une itération :
-\item en espace :
+\item en temps pour une itération : $O(n^2 + 3n)$ (1 produit
+  \textbf{matrice x vecteur}, 1 produit \textbf{scalaire x vecteur} et
+  2 addition/soustraction \textbf{vecteur x vecteur})
+\item en espace : $O(n^2 + 3n)$ (1 matrice et 3 vecteur)
 \end{itemize}
 
 \section{Annexe}
