@@ -211,7 +211,7 @@ doivent être stockées dans l'un des formats suivant :
   de la matrice supérieur ou inférieur)
 \item stockage bandes pour les matrices à bandes (cad que les
   diagonales autour de la diagonale principale contiennent la
-  plupart des NNZ) (GB et GE)
+  plupart des NNZ) (GB)
 \item utilisation de 2 ou 3 tableaux à 1 dimension pour stocker les
   matrices bidiagonale et tridiagonale respectivement
 \end{itemize}
@@ -221,7 +221,7 @@ source : \url{http://performance.netlib.org/lapack/lug/node121}
 \subsection{Question 2}
 
 \begin{itemize}
-\item Les constantes LAPACK\_ROW\_MAJOR et LAPACK\_COL\_MAJOR
+\item Les constantes \textbf{LAPACK\_ROW\_MAJOR} et \textbf{LAPACK\_COL\_MAJOR}
   signifie la priorité ligne ou colonne respectivement de la
   représentation de la matrice.
 \item Effectivement, cet argument sert si on utilise un stockage
